@@ -3044,21 +3044,24 @@
     </script>
     <script>
       document.addEventListener("click", function (e) {
-        const link = e.target.closest("a");
+        let el = e.target;
 
-        if (!link) return;
+        while (el && el !== document) {
+          const href = el.getAttribute && el.getAttribute("href");
 
-        const href = link.getAttribute("href");
+          if (href && href.includes(".pdf")) {
+            console.log("PDF CLICK DETECTED:", href);
 
-        if (href && href.endsWith(".pdf")) {
-          if (typeof gtag === "function") {
-            gtag("event", "download", {
-              file_name: href.split("/").pop(),
-            });
-            console.log("Download tracked:", href);
-          } else {
-            console.log("gtag NOT loaded yet");
+            if (typeof gtag === "function") {
+              gtag("event", "download", {
+                file_name: href.split("/").pop(),
+              });
+            }
+
+            return;
           }
+
+          el = el.parentElement;
         }
       });
     </script>
