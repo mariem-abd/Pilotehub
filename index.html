@@ -3051,9 +3051,14 @@
         const href = link.getAttribute("href");
 
         if (href && href.endsWith(".pdf")) {
-          gtag("event", "download", {
-            file_name: href.split("/").pop(),
-          });
+          if (typeof gtag === "function") {
+            gtag("event", "download", {
+              file_name: href.split("/").pop(),
+            });
+            console.log("Download tracked:", href);
+          } else {
+            console.log("gtag NOT loaded yet");
+          }
         }
       });
     </script>
