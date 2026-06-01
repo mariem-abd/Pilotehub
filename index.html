@@ -605,11 +605,8 @@
           if (typeof gtag === "function") {
             gtag("event", "download", { file_name: item.title });
           }
-          // Trigger the actual file download
-          const a = document.createElement("a");
-          a.href = item.pdf;
-          a.download = item.title + ".pdf";
-          a.click();
+          // Open in new tab — works on all devices including iPhone
+          window.open(item.pdf, "_blank");
         };
         return (
           <div
