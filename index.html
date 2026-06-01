@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-SE7SCC4E7W"
@@ -13,7 +12,6 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-SE7SCC4E7W");
     </script>
     <meta charset="UTF-8" />
@@ -80,38 +78,13 @@
         SOFT = "#F5F7FA",
         GRAY = "#8A99B0";
 
-      // ╔══════════════════════════════════════════════════════════════════════╗
-      // ║ 📁 CONTENT SECTION ║
-      // ║ This is the ONLY part you need to edit to add your PDFs. ║
-      // ║ ║
-      // ║ HOW TO ADD A FILE: ║
-      // ║ 1. Put your PDF in the pdfs/ folder next to this HTML file ║
-      // ║ 2. Find the right grade + subject below ║
-      // ║ 3. Add a line like: ║
-      // ║ { title: "Chapter 1", pdf: "pdfs/your_file.pdf" }, ║
-      // ║ 4. Save & refresh — done. Add as many lines as you want. ║
-      // ║ ║
-      // ║ Leave an array empty [] if you have nothing yet for that section. ║
-      // ╚══════════════════════════════════════════════════════════════════════╝
-
       const CONTENT = {
-        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        // MIDDLE SCHOOL
-        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         "Middle School": {
-          // ── 7TH GRADE ──────────────────────────────────
           "7th Grade": {
             Arabic: {
-              courses: [
-                // { title: "Course 1 — Title", pdf: "pdfs/arabic_7th_course_1.pdf" },
-                // { title: "Course 2 — Title", pdf: "pdfs/arabic_7th_course_2.pdf" },
-              ],
-              exercises: [
-                // { title: "Exercise Set 1", pdf: "pdfs/arabic_7th_exo_1.pdf" },
-              ],
-              exams: [
-                // { title: "Exam 2024", pdf: "pdfs/arabic_7th_exam_2024.pdf" },
-              ],
+              courses: [],
+              exercises: [],
+              exams: [],
             },
             French: {
               courses: [],
@@ -168,9 +141,8 @@
               exercises: [],
               exams: [],
             },
-          }, // end 7th Grade
+          },
 
-          // ── 8TH GRADE ──────────────────────────────────
           "8th Grade": {
             Arabic: {
               courses: [],
@@ -232,27 +204,35 @@
               exercises: [],
               exams: [],
             },
-          }, // end 8th Grade
+          },
 
-          // ── 9TH GRADE ──────────────────────────────────
           "9th Grade": {
             Arabic: {
               courses: [
-                { title: "محور العمل", pdf: "pdfs/محور العمل.pdf" },
                 {
-                  title: " أدوات الربط و معانيها",
-                  pdf: "pdfs/أدوات الربط و معانيها.pdf",
+                  title: "محور العمل",
+                  pdf: "pdfs/%D9%85%D8%AD%D9%88%D8%B1%20%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
+                },
+                {
+                  title: "أدوات الربط و معانيها",
+                  pdf: "pdfs/%D8%A3%D8%AF%D9%88%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B1%D8%A8%D8%B7%20%D9%88%20%D9%85%D8%B9%D8%A7%D9%86%D9%8A%D9%87%D8%A7.pdf",
                 },
                 {
                   title: "الإسم المقصور و المنقوص و الممدود",
-                  pdf: "pdfs/الاسم المقصور المنقوص.pdf",
+                  pdf: "pdfs/%D8%A7%D9%84%D8%A7%D8%B3%D9%85%20%D8%A7%D9%84%D9%85%D9%82%D8%B5%D9%88%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D9%82%D9%88%D8%B5.pdf",
                 },
-                { title: "الجمل المختزلة", pdf: "pdfs/الجمل المختزلة.pdf" },
+                {
+                  title: "الجمل المختزلة",
+                  pdf: "pdfs/%D8%A7%D9%84%D8%AC%D9%85%D9%84%20%D8%A7%D9%84%D9%85%D8%AE%D8%AA%D8%B2%D9%84%D8%A9.pdf",
+                },
                 {
                   title: "العلاقات بين الجمل",
-                  pdf: "pdfs/العلاقات بين الجمل.pdf",
+                  pdf: "pdfs/%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%82%D8%A7%D8%AA%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D8%AC%D9%85%D9%84.pdf",
                 },
-                { title: "جملة النداء", pdf: "pdfs/النداء.pdf" },
+                {
+                  title: "جملة النداء",
+                  pdf: "pdfs/%D8%A7%D9%84%D9%86%D8%AF%D8%A7%D8%A1.pdf",
+                },
               ],
               exercises: [],
               exams: [],
@@ -263,14 +243,24 @@
               exams: [],
             },
             English: {
-              courses: [],
+              courses: [
+                {
+                  title: "English essay examples 1st trimestre",
+                  pdf: "pdfs/English%20essay%20examples1.pdf",
+                },
+              ],
               exercises: [],
               exams: [],
             },
             Math: {
               courses: [],
               exercises: [],
-              exams: [],
+              exams: [
+                {
+                  title: "Controle math 2",
+                  pdf: "pdfs/devoir%20cntrl%2022.pdf",
+                },
+              ],
             },
             Physics: {
               courses: [],
@@ -279,7 +269,10 @@
             },
             Science: {
               courses: [
-                { title: "وظيفة الاتصال", pdf: "pdfs/وظيفة الاتصال.pdf" },
+                {
+                  title: "وظيفة الاتصال",
+                  pdf: "pdfs/%D9%88%D8%B8%D9%8A%D9%81%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84.pdf",
+                },
               ],
               exercises: [],
               exams: [],
@@ -314,14 +307,10 @@
               exercises: [],
               exams: [],
             },
-          }, // end 9th Grade
-        }, // end Middle School
+          },
+        },
 
-        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        // HIGH SCHOOL
-        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         "High School": {
-          // ── FRESHMAN ───────────────────────────────────
           Freshman: {
             Arabic: {
               courses: [],
@@ -383,9 +372,8 @@
               exercises: [],
               exams: [],
             },
-          }, // end Freshman
+          },
 
-          // ── SOPHOMORE ──────────────────────────────────
           Sophomore: {
             Arabic: {
               courses: [],
@@ -447,11 +435,8 @@
               exercises: [],
               exams: [],
             },
-          }, // end Sophomore
+          },
 
-          // ── JUNIOR ─────────────────────────────────────
-          // NOTE: Junior has different subjects — no Technology/Civic Ed,
-          // replaced with Optional Language and Philosophy
           Junior: {
             Arabic: {
               courses: [],
@@ -513,13 +498,9 @@
               exercises: [],
               exams: [],
             },
-          }, // end Junior
-        }, // end High School
-      }; // ← END OF CONTENT — do not delete this line
-
-      // ══════════════════════════════════════════════════════
-      // APP CODE — do not edit below this line
-      // ══════════════════════════════════════════════════════
+          },
+        },
+      };
 
       const SICO = {
         Arabic: "🔤",
@@ -556,7 +537,7 @@
             setTimeout(() => onDone(), 3600),
           ];
           return () => t.forEach(clearTimeout);
-        }, []);
+        }, [onDone]);
         return (
           <div
             style={{
@@ -616,6 +597,15 @@
         const tc = dark ? WHITE : NAVY;
         const card = dark ? NAVY2 : WHITE;
         const download = () => {
+          // Count in Firebase (cumulative, never resets)
+          if (typeof window.trackDownload === "function") {
+            window.trackDownload();
+          }
+          // Count in Google Analytics
+          if (typeof gtag === "function") {
+            gtag("event", "download", { file_name: item.title });
+          }
+          // Trigger the actual file download
           const a = document.createElement("a");
           a.href = item.pdf;
           a.download = item.title + ".pdf";
@@ -714,11 +704,13 @@
                 <iframe
                   src={item.pdf}
                   width="100%"
+                  height="100%"
                   style={{
                     flex: 1,
                     border: "none",
                     borderRadius: 14,
                     boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+                    minHeight: 0,
                   }}
                   title={item.title}
                 />
@@ -832,6 +824,30 @@
             setLevel(null);
           }
         };
+
+        const setLevelSafe = (v) => {
+          setLevel(v);
+          setGrade(null);
+          setSubj(null);
+          setCtype(null);
+          setOpenItem(null);
+        };
+        const setGradeSafe = (v) => {
+          setGrade(v);
+          setSubj(null);
+          setCtype(null);
+          setOpenItem(null);
+        };
+        const setSubjSafe = (v) => {
+          setSubj(v);
+          setCtype(null);
+          setOpenItem(null);
+        };
+        const setCtypeSafe = (v) => {
+          setCtype(v);
+          setOpenItem(null);
+        };
+
         const hasBack = !!(level || grade || subj || ctype || openItem);
         const grades = level ? Object.keys(CONTENT[level]) : [];
         const subjects = grade ? Object.keys(CONTENT[level][grade]) : [];
@@ -1077,7 +1093,7 @@
                     {["Middle School", "High School"].map((lv, i) => (
                       <div
                         key={lv}
-                        onClick={() => setLevel(lv)}
+                        onClick={() => setLevelSafe(lv)}
                         style={{
                           flex: 1,
                           borderRadius: 20,
@@ -1165,7 +1181,7 @@
                     {grades.map((g) => (
                       <div
                         key={g}
-                        onClick={() => setGrade(g)}
+                        onClick={() => setGradeSafe(g)}
                         style={{
                           background: card,
                           borderRadius: 18,
@@ -1242,7 +1258,7 @@
                     {subjects.map((s) => (
                       <div
                         key={s}
-                        onClick={() => setSubj(s)}
+                        onClick={() => setSubjSafe(s)}
                         style={{
                           background: card,
                           borderRadius: 14,
@@ -1326,7 +1342,7 @@
                     ].map((item, i) => (
                       <div
                         key={item.type}
-                        onClick={() => setCtype(item.type)}
+                        onClick={() => setCtypeSafe(item.type)}
                         style={{
                           background: card,
                           borderRadius: 18,
@@ -1526,1541 +1542,22 @@
 
       ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     </script>
-  </body>
-</html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pilotehub+</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        background: #0a1628;
-        font-family: "Lato", sans-serif;
-        max-width: 430px;
-        margin: 0 auto;
-        min-height: 100vh;
-      }
-      ::-webkit-scrollbar {
-        width: 4px;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #c9a84c44;
-        border-radius: 4px;
-      }
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateX(16px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="text/babel">
-      const { useState, useEffect } = React;
-      const GOLD = "#C9A84C",
-        NAVY = "#0A1628",
-        NAVY2 = "#0D1F3C",
-        LNAV = "#1A3158",
-        WHITE = "#FFFFFF",
-        SOFT = "#F5F7FA",
-        GRAY = "#8A99B0";
 
-      // ╔══════════════════════════════════════════════════════════════════════╗
-      // ║ 📁 CONTENT SECTION ║
-      // ║ This is the ONLY part you need to edit to add your PDFs. ║
-      // ║ ║
-      // ║ HOW TO ADD A FILE: ║
-      // ║ 1. Put your PDF in the pdfs/ folder next to this HTML file ║
-      // ║ 2. Find the right grade + subject below ║
-      // ║ 3. Add a line like: ║
-      // ║ { title: "Chapter 1", pdf: "pdfs/your_file.pdf" }, ║
-      // ║ 4. Save & refresh — done. Add as many lines as you want. ║
-      // ║ ║
-      // ║ Leave an array empty [] if you have nothing yet for that section. ║
-      // ╚══════════════════════════════════════════════════════════════════════╝
-
-      const CONTENT = {
-        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        // MIDDLE SCHOOL
-        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        "Middle School": {
-          // ── 7TH GRADE ──────────────────────────────────
-          "7th Grade": {
-            Arabic: {
-              courses: [
-                // { title: "Course 1 — Title", pdf: "pdfs/arabic_7th_course_1.pdf" },
-                // { title: "Course 2 — Title", pdf: "pdfs/arabic_7th_course_2.pdf" },
-              ],
-              exercises: [
-                // { title: "Exercise Set 1", pdf: "pdfs/arabic_7th_exo_1.pdf" },
-              ],
-              exams: [
-                // { title: "Exam 2024", pdf: "pdfs/arabic_7th_exam_2024.pdf" },
-              ],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          }, // end 7th Grade
-
-          // ── 8TH GRADE ──────────────────────────────────
-          "8th Grade": {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          }, // end 8th Grade
-
-          // ── 9TH GRADE ──────────────────────────────────
-          "9th Grade": {
-            Arabic: {
-              courses: [
-                { title: "محور العمل", pdf: "pdfs/محور العمل.pdf" },
-                {
-                  title: " أدوات الربط و معانيها",
-                  pdf: "pdfs/أدوات الربط و معانيها.pdf",
-                },
-                {
-                  title: "الإسم المقصور و المنقوص و الممدود",
-                  pdf: "pdfs/الاسم المقصور المنقوص.pdf",
-                },
-                { title: "الجمل المختزلة", pdf: "pdfs/الجمل المختزلة.pdf" },
-                {
-                  title: "العلاقات بين الجمل",
-                  pdf: "pdfs/العلاقات بين الجمل.pdf",
-                },
-                { title: "جملة النداء", pdf: "pdfs/النداء.pdf" },
-              ],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [
-                { title: "وظيفة الاتصال", pdf: "pdfs/وظيفة الاتصال.pdf" },
-              ],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          }, // end 9th Grade
-        }, // end Middle School
-
-        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        // HIGH SCHOOL
-        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        "High School": {
-          // ── FRESHMAN ───────────────────────────────────
-          Freshman: {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          }, // end Freshman
-
-          // ── SOPHOMORE ──────────────────────────────────
-          Sophomore: {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          }, // end Sophomore
-
-          // ── JUNIOR ─────────────────────────────────────
-          // NOTE: Junior has different subjects — no Technology/Civic Ed,
-          // replaced with Optional Language and Philosophy
-          Junior: {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Optional Language": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Philosophy: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          }, // end Junior
-        }, // end High School
-      }; // ← END OF CONTENT — do not delete this line
-
-      // ══════════════════════════════════════════════════════
-      // APP CODE — do not edit below this line
-      // ══════════════════════════════════════════════════════
-
-      const SICO = {
-        Arabic: "🔤",
-        French: "🇫🇷",
-        English: "🇬🇧",
-        Math: "➕",
-        Physics: "⚡",
-        Science: "🔬",
-        Technology: "🔧",
-        "Computer Science": "💻",
-        "Islamic Education": "☪️",
-        "Civic Education": "🏛️",
-        Geography: "🌍",
-        History: "📜",
-        Philosophy: "🤔",
-        "Optional Language": "🌐",
-      };
-      const QUOTES = [
-        "You're doing amazing — keep going! ✨",
-        "Every page you study is a step forward 📚",
-        "Rest if you must, but don't quit 💪",
-        "Your future self will thank you 🌟",
-        "Small steps every day lead to big results 🚀",
-        "Believe in yourself — you've got this! 🎯",
-      ];
-
-      function Splash({ onDone }) {
-        const [ph, setPh] = useState(0);
-        const letters = "Pilotehub+".split("");
-        useEffect(() => {
-          const t = [
-            setTimeout(() => setPh(1), 400),
-            setTimeout(() => setPh(2), 1900),
-            setTimeout(() => onDone(), 3600),
-          ];
-          return () => t.forEach(clearTimeout);
-        }, []);
-        return (
-          <div
-            style={{
-              position: "fixed",
-              inset: 0,
-              background: WHITE,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 9999,
-            }}
-          >
-            <div style={{ display: "flex", gap: 2, alignItems: "baseline" }}>
-              {letters.map((l, i) => (
-                <span
-                  key={i}
-                  style={{
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: l === "+" ? 36 : 52,
-                    fontWeight: 700,
-                    color: ph === 2 ? GOLD : NAVY,
-                    display: "inline-block",
-                    opacity: ph >= 1 ? 1 : 0,
-                    transform: ph >= 1 ? "translateY(0)" : "translateY(20px)",
-                    transition: `all 0.5s cubic-bezier(.22,1,.36,1) ${
-                      i * 60
-                    }ms`,
-                    textShadow:
-                      ph === 2
-                        ? `0 0 30px ${GOLD}88,0 0 60px ${GOLD}44`
-                        : "none",
-                  }}
-                >
-                  {l}
-                </span>
-              ))}
-            </div>
-            <div
-              style={{
-                marginTop: 12,
-                fontSize: 13,
-                color: GRAY,
-                letterSpacing: 4,
-                textTransform: "uppercase",
-                opacity: ph >= 1 ? 1 : 0,
-                transition: "opacity 1s ease 0.8s",
-              }}
-            >
-              Learn. Grow. Excel.
-            </div>
-          </div>
-        );
-      }
-
-      function PDFViewer({ item, dark, onBack }) {
-        const tc = dark ? WHITE : NAVY;
-        const card = dark ? NAVY2 : WHITE;
-        const download = () => {
-          const a = document.createElement("a");
-          a.href = item.pdf;
-          a.download = item.title + ".pdf";
-          a.click();
-        };
-        return (
-          <div
-            style={{
-              position: "fixed",
-              inset: 0,
-              background: dark ? "#080F1C" : SOFT,
-              zIndex: 400,
-              display: "flex",
-              flexDirection: "column",
-              maxWidth: 430,
-              margin: "0 auto",
-            }}
-          >
-            <div
-              style={{
-                background: dark ? `${NAVY}F5` : `${WHITE}F5`,
-                backdropFilter: "blur(12px)",
-                borderBottom: `1px solid ${
-                  dark ? "rgba(201,168,76,0.15)" : "rgba(10,22,40,0.08)"
-                }`,
-                padding: "14px 16px",
-                display: "flex",
-                alignItems: "center",
-                gap: 12,
-                flexShrink: 0,
-              }}
-            >
-              <button
-                onClick={onBack}
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: GOLD,
-                  fontSize: 22,
-                  cursor: "pointer",
-                  lineHeight: 1,
-                }}
-              >
-                ←
-              </button>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div
-                  style={{
-                    color: tc,
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: 15,
-                    fontWeight: 700,
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {item.title}
-                </div>
-                <div style={{ color: GRAY, fontSize: 11, marginTop: 2 }}>
-                  PDF Document
-                </div>
-              </div>
-              <button
-                onClick={download}
-                style={{
-                  background: `linear-gradient(135deg,${GOLD},#A8822A)`,
-                  border: "none",
-                  borderRadius: 10,
-                  padding: "8px 14px",
-                  color: NAVY,
-                  fontWeight: 700,
-                  fontSize: 13,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 6,
-                  flexShrink: 0,
-                  boxShadow: `0 3px 12px rgba(201,168,76,0.35)`,
-                }}
-              >
-                ⬇️ Download
-              </button>
-            </div>
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                padding: 12,
-                gap: 12,
-                overflow: "hidden",
-              }}
-            >
-              {item.pdf ? (
-                <iframe
-                  src={item.pdf}
-                  width="100%"
-                  style={{
-                    flex: 1,
-                    border: "none",
-                    borderRadius: 14,
-                    boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
-                  }}
-                  title={item.title}
-                />
-              ) : (
-                <div
-                  style={{
-                    flex: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: card,
-                    borderRadius: 20,
-                    padding: "40px 24px",
-                    textAlign: "center",
-                    border: `2px dashed ${
-                      dark ? "rgba(201,168,76,0.2)" : "rgba(10,22,40,0.12)"
-                    }`,
-                  }}
-                >
-                  <div style={{ fontSize: 52, marginBottom: 14 }}>📄</div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 17,
-                      fontWeight: 700,
-                      marginBottom: 10,
-                    }}
-                  >
-                    {item.title}
-                  </div>
-                  <div style={{ color: GRAY, fontSize: 13, lineHeight: 1.8 }}>
-                    PDF not linked yet.
-                    <br />
-                    Add the file path in the CONTENT section.
-                  </div>
-                </div>
-              )}
-              <button
-                onClick={download}
-                style={{
-                  width: "100%",
-                  padding: "14px",
-                  borderRadius: 14,
-                  background: `linear-gradient(135deg,${GOLD},#A8822A)`,
-                  border: "none",
-                  color: NAVY,
-                  fontWeight: 700,
-                  fontSize: 15,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8,
-                  boxShadow: `0 4px 20px rgba(201,168,76,0.3)`,
-                  flexShrink: 0,
-                }}
-              >
-                ⬇️ Download PDF
-              </button>
-            </div>
-          </div>
-        );
-      }
-
-      function App() {
-        const [started, setStarted] = useState(false);
-        const [dark, setDark] = useState(false);
-        const [level, setLevel] = useState(null);
-        const [grade, setGrade] = useState(null);
-        const [subj, setSubj] = useState(null);
-        const [ctype, setCtype] = useState(null);
-        const [openItem, setOpenItem] = useState(null);
-        const [showInfo, setShowInfo] = useState(false);
-        const [quote, setQuote] = useState(null);
-
-        const bg = dark ? "#080F1C" : SOFT,
-          card = dark ? NAVY2 : WHITE,
-          tc = dark ? WHITE : NAVY,
-          sub = dark ? "#8A99B0" : "#5A6A80";
-
-        useEffect(() => {
-          const show = () => {
-            setQuote(QUOTES[Math.floor(Math.random() * QUOTES.length)]);
-            setTimeout(() => setQuote(null), 5000);
-          };
-          show();
-          const iv = setInterval(show, 20 * 60 * 1000);
-          return () => clearInterval(iv);
-        }, []);
-
-        const goBack = () => {
-          if (openItem) {
-            setOpenItem(null);
-            return;
-          }
-          if (ctype) {
-            setCtype(null);
-            return;
-          }
-          if (subj) {
-            setSubj(null);
-            return;
-          }
-          if (grade) {
-            setGrade(null);
-            return;
-          }
-          if (level) {
-            setLevel(null);
-          }
-        };
-        const hasBack = !!(level || grade || subj || ctype || openItem);
-        const grades = level ? Object.keys(CONTENT[level]) : [];
-        const subjects = grade ? Object.keys(CONTENT[level][grade]) : [];
-        const items =
-          level && grade && subj && ctype
-            ? CONTENT[level][grade][subj][ctype]
-            : [];
-        const ctypeIcon = (t) =>
-          t === "courses" ? "📖" : t === "exercises" ? "✏️" : "📋";
-
-        if (!started) return <Splash onDone={() => setStarted(true)} />;
-        if (openItem)
-          return (
-            <PDFViewer
-              item={openItem}
-              dark={dark}
-              onBack={() => setOpenItem(null)}
-            />
-          );
-
-        return (
-          <div
-            style={{
-              minHeight: "100vh",
-              background: bg,
-              transition: "background 0.3s",
-            }}
-          >
-            {quote && (
-              <div
-                style={{
-                  position: "fixed",
-                  bottom: 24,
-                  right: 16,
-                  zIndex: 1000,
-                  background: `linear-gradient(135deg,${NAVY},${LNAV})`,
-                  border: `1px solid ${GOLD}44`,
-                  borderRadius: 16,
-                  padding: "12px 16px",
-                  maxWidth: 240,
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
-                  animation: "slideIn 0.4s ease",
-                }}
-              >
-                <div style={{ color: WHITE, fontSize: 13, lineHeight: 1.5 }}>
-                  {quote}
-                </div>
-              </div>
-            )}
-
-            {showInfo && (
-              <div
-                style={{
-                  position: "fixed",
-                  inset: 0,
-                  background: "rgba(0,0,0,0.7)",
-                  zIndex: 500,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: 20,
-                }}
-                onClick={() => setShowInfo(false)}
-              >
-                <div
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    background: card,
-                    borderRadius: 20,
-                    padding: 28,
-                    maxWidth: 400,
-                    width: "100%",
-                    border: `1px solid ${GOLD}33`,
-                  }}
-                >
-                  <h2
-                    style={{
-                      color: GOLD,
-                      fontFamily: "'Playfair Display',serif",
-                      margin: "0 0 12px",
-                    }}
-                  >
-                    About Pilotehub+
-                  </h2>
-                  <p
-                    style={{
-                      color: tc,
-                      fontSize: 14,
-                      lineHeight: 1.8,
-                      margin: "0 0 12px",
-                    }}
-                  >
-                    Pilotehub+ is a free educational platform for students from
-                    7th grade to Junior year. All courses, exercises, and exams
-                    — organized by grade and subject — in one place.
-                  </p>
-                  <p style={{ color: sub, fontSize: 13 }}>
-                    No ads. No subscriptions. Forever free.
-                  </p>
-                  <button
-                    onClick={() => setShowInfo(false)}
-                    style={{
-                      marginTop: 18,
-                      padding: "11px 22px",
-                      background: GOLD,
-                      border: "none",
-                      borderRadius: 10,
-                      color: NAVY,
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      fontSize: 14,
-                    }}
-                  >
-                    Got it!
-                  </button>
-                </div>
-              </div>
-            )}
-
-            <div
-              style={{
-                background: dark ? `${NAVY}EE` : `${WHITE}EE`,
-                backdropFilter: "blur(12px)",
-                borderBottom: `1px solid ${
-                  dark ? "rgba(201,168,76,0.15)" : "rgba(10,22,40,0.08)"
-                }`,
-                padding: "14px 20px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                position: "sticky",
-                top: 0,
-                zIndex: 100,
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                {hasBack && (
-                  <button
-                    onClick={goBack}
-                    style={{
-                      background: "none",
-                      border: "none",
-                      color: GOLD,
-                      fontSize: 22,
-                      cursor: "pointer",
-                      padding: "0 6px 0 0",
-                      lineHeight: 1,
-                    }}
-                  >
-                    ←
-                  </button>
-                )}
-                <span
-                  style={{
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: 20,
-                    fontWeight: 700,
-                    color: tc,
-                  }}
-                >
-                  Pilotehub<span style={{ color: GOLD }}>+</span>
-                </span>
-              </div>
-              <button
-                onClick={() => setDark((d) => !d)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  fontSize: 20,
-                  cursor: "pointer",
-                }}
-              >
-                {dark ? "☀️" : "🌙"}
-              </button>
-            </div>
-
-            {!level && (
-              <div
-                onClick={() => setShowInfo(true)}
-                style={{
-                  background: `linear-gradient(135deg,${NAVY},${LNAV})`,
-                  padding: "14px 20px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                    }}
-                  >
-                    ABOUT PILOTEHUB+
-                  </div>
-                  <div
-                    style={{
-                      color: "rgba(255,255,255,0.7)",
-                      fontSize: 13,
-                      marginTop: 2,
-                    }}
-                  >
-                    Tap to learn about the app →
-                  </div>
-                </div>
-                <span style={{ fontSize: 20 }}>ℹ️</span>
-              </div>
-            )}
-
-            <div style={{ padding: "24px 20px 40px" }}>
-              {!level && (
-                <>
-                  <div
-                    style={{
-                      fontSize: 22,
-                      fontWeight: 700,
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      marginBottom: 6,
-                    }}
-                  >
-                    Welcome to Pilotehub+ 👋
-                  </div>
-                  <div style={{ color: sub, fontSize: 14, marginBottom: 28 }}>
-                    Select your school level to get started.
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 13,
-                      color: sub,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 14,
-                    }}
-                  >
-                    CHOOSE YOUR LEVEL
-                  </div>
-                  <div style={{ display: "flex", gap: 14 }}>
-                    {["Middle School", "High School"].map((lv, i) => (
-                      <div
-                        key={lv}
-                        onClick={() => setLevel(lv)}
-                        style={{
-                          flex: 1,
-                          borderRadius: 20,
-                          cursor: "pointer",
-                          background:
-                            i === 0
-                              ? `linear-gradient(135deg,#1A3158,#0A1628)`
-                              : `linear-gradient(135deg,#2A1A10,#1A0A05)`,
-                          border: `1px solid ${GOLD}33`,
-                          padding: "24px 16px",
-                          position: "relative",
-                          boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
-                        }}
-                      >
-                        <div style={{ fontSize: 32, marginBottom: 10 }}>
-                          {i === 0 ? "🏫" : "🎓"}
-                        </div>
-                        <div
-                          style={{
-                            color: WHITE,
-                            fontWeight: 700,
-                            fontSize: 16,
-                            fontFamily: "'Playfair Display',serif",
-                          }}
-                        >
-                          {lv}
-                        </div>
-                        <div
-                          style={{
-                            color: "rgba(255,255,255,0.5)",
-                            fontSize: 12,
-                            marginTop: 4,
-                          }}
-                        >
-                          {i === 0 ? "Grades 7–9" : "Freshman–Junior"}
-                        </div>
-                        <div
-                          style={{
-                            position: "absolute",
-                            bottom: 14,
-                            right: 16,
-                            color: GOLD,
-                            fontSize: 20,
-                          }}
-                        >
-                          →
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {level && !grade && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {level.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    Select Grade
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: 12,
-                    }}
-                  >
-                    {grades.map((g) => (
-                      <div
-                        key={g}
-                        onClick={() => setGrade(g)}
-                        style={{
-                          background: card,
-                          borderRadius: 18,
-                          padding: "20px",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          border: `1px solid ${
-                            dark
-                              ? "rgba(201,168,76,0.12)"
-                              : "rgba(10,22,40,0.08)"
-                          }`,
-                          boxShadow: dark
-                            ? "none"
-                            : "0 2px 12px rgba(10,22,40,0.06)",
-                        }}
-                      >
-                        <div>
-                          <div
-                            style={{
-                              color: tc,
-                              fontWeight: 700,
-                              fontSize: 17,
-                              fontFamily: "'Playfair Display',serif",
-                            }}
-                          >
-                            {g}
-                          </div>
-                          <div
-                            style={{ color: sub, fontSize: 12, marginTop: 4 }}
-                          >
-                            {Object.keys(CONTENT[level][g]).length} subjects
-                          </div>
-                        </div>
-                        <span style={{ color: GOLD, fontSize: 22 }}>→</span>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {level && grade && !subj && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {grade.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    Select Subject
-                  </div>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: 12,
-                    }}
-                  >
-                    {subjects.map((s) => (
-                      <div
-                        key={s}
-                        onClick={() => setSubj(s)}
-                        style={{
-                          background: card,
-                          borderRadius: 14,
-                          padding: "16px 14px",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 10,
-                          border: `1px solid ${
-                            dark
-                              ? "rgba(255,255,255,0.05)"
-                              : "rgba(10,22,40,0.07)"
-                          }`,
-                          boxShadow: dark
-                            ? "none"
-                            : "0 2px 8px rgba(10,22,40,0.04)",
-                        }}
-                      >
-                        <span style={{ fontSize: 22 }}>{SICO[s] || "📚"}</span>
-                        <span
-                          style={{ color: tc, fontSize: 13, fontWeight: 600 }}
-                        >
-                          {s}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {level && grade && subj && !ctype && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {subj.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    What to study?
-                  </div>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: 14,
-                    }}
-                  >
-                    {[
-                      {
-                        type: "courses",
-                        icon: "📖",
-                        label: "Courses",
-                        desc: "Lessons & resumes",
-                      },
-                      {
-                        type: "exercises",
-                        icon: "✏️",
-                        label: "Exercises",
-                        desc: "Practice problems",
-                      },
-                      {
-                        type: "exams",
-                        icon: "📋",
-                        label: "Exams",
-                        desc: "Past & mock exams",
-                      },
-                    ].map((item, i) => (
-                      <div
-                        key={item.type}
-                        onClick={() => setCtype(item.type)}
-                        style={{
-                          background: card,
-                          borderRadius: 18,
-                          padding: "22px 16px",
-                          cursor: "pointer",
-                          gridColumn: i === 2 ? "span 2" : "auto",
-                          border: `1px solid ${
-                            dark
-                              ? "rgba(201,168,76,0.12)"
-                              : "rgba(10,22,40,0.08)"
-                          }`,
-                          boxShadow: dark
-                            ? "none"
-                            : "0 2px 12px rgba(10,22,40,0.06)",
-                        }}
-                      >
-                        <div style={{ fontSize: 32, marginBottom: 10 }}>
-                          {item.icon}
-                        </div>
-                        <div
-                          style={{
-                            color: tc,
-                            fontWeight: 700,
-                            fontSize: 16,
-                            fontFamily: "'Playfair Display',serif",
-                          }}
-                        >
-                          {item.label}
-                        </div>
-                        <div style={{ color: sub, fontSize: 12, marginTop: 4 }}>
-                          {item.desc}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {level && grade && subj && ctype && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {subj.toUpperCase()} · {grade.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    {ctype === "courses"
-                      ? "Courses"
-                      : ctype === "exercises"
-                      ? "Exercises"
-                      : "Exams"}
-                  </div>
-                  {items.length === 0 ? (
-                    <div
-                      style={{
-                        background: card,
-                        borderRadius: 20,
-                        padding: "44px 24px",
-                        textAlign: "center",
-                        border: `2px dashed ${
-                          dark ? "rgba(255,255,255,0.08)" : "rgba(10,22,40,0.1)"
-                        }`,
-                      }}
-                    >
-                      <div style={{ fontSize: 40, marginBottom: 12 }}>
-                        {ctypeIcon(ctype)}
-                      </div>
-                      <div
-                        style={{
-                          color: tc,
-                          fontFamily: "'Playfair Display',serif",
-                          fontSize: 16,
-                          fontWeight: 700,
-                          marginBottom: 8,
-                        }}
-                      >
-                        No {ctype} yet
-                      </div>
-                      <div
-                        style={{ color: GRAY, fontSize: 13, lineHeight: 1.7 }}
-                      >
-                        Content coming soon.
-                        <br />
-                        Check back later!
-                      </div>
-                    </div>
-                  ) : (
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 10,
-                      }}
-                    >
-                      {items.map((item, i) => (
-                        <div
-                          key={i}
-                          onClick={() => setOpenItem(item)}
-                          style={{
-                            background: card,
-                            borderRadius: 14,
-                            padding: "16px 18px",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 14,
-                            border: `1px solid ${
-                              dark
-                                ? "rgba(255,255,255,0.06)"
-                                : "rgba(10,22,40,0.07)"
-                            }`,
-                            boxShadow: dark
-                              ? "none"
-                              : "0 2px 8px rgba(10,22,40,0.04)",
-                            cursor: "pointer",
-                            animation: `fadeUp 0.35s ease ${i * 0.06}s both`,
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: 44,
-                              height: 44,
-                              borderRadius: 12,
-                              flexShrink: 0,
-                              background: `linear-gradient(135deg,${NAVY},${LNAV})`,
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              fontSize: 18,
-                            }}
-                          >
-                            {ctypeIcon(ctype)}
-                          </div>
-                          <div style={{ flex: 1, minWidth: 0 }}>
-                            <div
-                              style={{
-                                color: tc,
-                                fontWeight: 600,
-                                fontSize: 14,
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                whiteSpace: "nowrap",
-                              }}
-                            >
-                              {item.title}
-                            </div>
-                            <div style={{ marginTop: 4 }}>
-                              <span
-                                style={{
-                                  fontSize: 10,
-                                  padding: "2px 8px",
-                                  borderRadius: 20,
-                                  background: item.pdf
-                                    ? `${GOLD}18`
-                                    : "rgba(150,150,150,0.1)",
-                                  border: `1px solid ${
-                                    item.pdf
-                                      ? GOLD + "44"
-                                      : "rgba(150,150,150,0.2)"
-                                  }`,
-                                  color: item.pdf ? GOLD : GRAY,
-                                  fontWeight: 700,
-                                }}
-                              >
-                                {item.pdf ? "📄 PDF ready" : "📄 Coming soon"}
-                              </span>
-                            </div>
-                          </div>
-                          <span
-                            style={{ color: GOLD, fontSize: 18, flexShrink: 0 }}
-                          >
-                            →
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
-        );
-      }
-
-      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-    </script>
     <script>
+      // PDF download click tracker for Google Analytics
       window.addEventListener(
         "click",
         function (e) {
           const path = e.composedPath ? e.composedPath() : [];
-
           for (let el of path) {
             if (el && el.tagName === "A") {
               const href = el.getAttribute("href");
-
               if (href && href.includes(".pdf")) {
-                console.log("PDF CLICK DETECTED:", href);
-
                 if (typeof gtag === "function") {
                   gtag("event", "download", {
                     file_name: href.split("/").pop(),
                   });
                 }
-
                 break;
               }
             }
@@ -3069,6 +1566,38 @@
         true
       );
     </script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+      import {
+        getFirestore,
+        doc,
+        updateDoc,
+        increment,
+      } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAz1tmNsEWKaCFwK8Ue-6OQMmsSgW08RDY",
+        authDomain: "pilotehub-617bf.firebaseapp.com",
+        projectId: "pilotehub-617bf",
+        storageBucket: "pilotehub-617bf.firebasestorage.app",
+        messagingSenderId: "664479873048",
+        appId: "1:664479873048:web:3d985beb36502ea032eb6d",
+        measurementId: "G-834HYGDPSQ",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      window.trackDownload = async function () {
+        try {
+          const ref = doc(db, "downloads", "total");
+          await updateDoc(ref, { count: increment(1) });
+          console.log("Download counted!");
+        } catch (err) {
+          console.error("Firebase error:", err);
+        }
+      };
+    </script>
   </body>
 </html>
->>>>>>> 7cae87cdb541a2c0d428e9b2f6945a7986a868bd
