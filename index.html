@@ -1,1685 +1,2396 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-SE7SCC4E7W"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-SE7SCC4E7W");
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pilotehub+</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        background: #0a1628;
-        font-family: "Lato", sans-serif;
-        max-width: 430px;
-        margin: 0 auto;
-        min-height: 100vh;
-      }
-      ::-webkit-scrollbar {
-        width: 4px;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #c9a84c44;
-        border-radius: 4px;
-      }
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateX(16px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="text/babel">
-      const { useState, useEffect } = React;
-      const GOLD = "#C9A84C",
-        NAVY = "#0A1628",
-        NAVY2 = "#0D1F3C",
-        LNAV = "#1A3158",
-        WHITE = "#FFFFFF",
-        SOFT = "#F5F7FA",
-        GRAY = "#8A99B0";
+<head>
+<!-- Google Analytics -->
+<script
+async
+src="https://www.googletagmanager.com/gtag/js?id=G-SE7SCC4E7W"
+></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag() {
+dataLayer.push(arguments);
+}
+gtag("js", new Date());
+gtag("config", "G-SE7SCC4E7W");
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pilotehub+</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<link
+href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+rel="stylesheet"
+/>
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+body {
+background: #0a1628;
+font-family: "Lato", sans-serif;
+max-width: 430px;
+margin: 0 auto;
+min-height: 100vh;
+}
+::-webkit-scrollbar {
+width: 4px;
+}
+::-webkit-scrollbar-thumb {
+background: #c9a84c44;
+border-radius: 4px;
+}
+@keyframes fadeUp {
+from {
+opacity: 0;
+transform: translateY(10px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+@keyframes slideIn {
+from {
+opacity: 0;
+transform: translateX(16px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect } = React;
+const GOLD = "#C9A84C",
+NAVY = "#0A1628",
+NAVY2 = "#0D1F3C",
+LNAV = "#1A3158",
+WHITE = "#FFFFFF",
+SOFT = "#F5F7FA",
+GRAY = "#8A99B0";
 
-      const CONTENT = {
-        "Middle School": {
-          "7th Grade": {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
+const CONTENT = {
+"Middle School": {
+"7th Grade": {
+Arabic: {
+courses: [],
+exercises: [],
+exams: [],
+},
+French: {
+courses: [],
+exercises: [],
+exams: [],
+},
+English: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Math: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Physics: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Science: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Technology: {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Computer Science": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Islamic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Civic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+Geography: {
+courses: [],
+exercises: [],
+exams: [],
+},
+History: {
+courses: [],
+exercises: [],
+exams: [],
+},
+},
 
-          "8th Grade": {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
+"8th Grade": {
+Arabic: {
+courses: [],
+exercises: [],
+exams: [],
+},
+French: {
+courses: [],
+exercises: [],
+exams: [],
+},
+English: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Math: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Physics: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Science: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Technology: {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Computer Science": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Islamic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Civic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+Geography: {
+courses: [],
+exercises: [],
+exams: [],
+},
+History: {
+courses: [],
+exercises: [],
+exams: [],
+},
+},
 
-          "9th Grade": {
-            Arabic: {
-              courses: [
-                {
-                  title: "محور العمل",
-                  pdf: "pdfs/%D9%85%D8%AD%D9%88%D8%B1%20%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
-                },
-                {
-                  title: "أدوات الربط و معانيها",
-                  pdf: "pdfs/%D8%A3%D8%AF%D9%88%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B1%D8%A8%D8%B7%20%D9%88%20%D9%85%D8%B9%D8%A7%D9%86%D9%8A%D9%87%D8%A7.pdf",
-                },
-                {
-                  title: "الإسم المقصور و المنقوص و الممدود",
-                  pdf: "pdfs/%D8%A7%D9%84%D8%A7%D8%B3%D9%85%20%D8%A7%D9%84%D9%85%D9%82%D8%B5%D9%88%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D9%82%D9%88%D8%B5.pdf",
-                },
-                {
-                  title: "الجمل المختزلة",
-                  pdf: "pdfs/%D8%A7%D9%84%D8%AC%D9%85%D9%84%20%D8%A7%D9%84%D9%85%D8%AE%D8%AA%D8%B2%D9%84%D8%A9.pdf",
-                },
-                {
-                  title: "العلاقات بين الجمل",
-                  pdf: "pdfs/%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%82%D8%A7%D8%AA%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D8%AC%D9%85%D9%84.pdf",
-                },
-                {
-                  title: "جملة النداء",
-                  pdf: "pdfs/%D8%A7%D9%84%D9%86%D8%AF%D8%A7%D8%A1.pdf",
-                },
-                { title: "محور المرأة", pdf: "pdfs/المرأة.pdf" },
-                {
-                  title: "الأساليب اللغوية و الروابط المنطقية",
-                  pdf: "pdfs/الأساليب اللغوية و الروابط المنطقية.pdf",
-                },
-                { title: "الاستفهام و معانيه", pdf: "pdfs/الاستفهام.pdf" },
-                {
-                  title: "الأمر و النهي و معانيهما",
-                  pdf: "pdfs/الأمر و النهي.pdf",
-                },
-                {
-                  title: "دلالة الحروف المقترنة بالأفعال",
-                  pdf: "pdfs/دلالة الحروف المقترنة بالأفعال.pdf",
-                },
-                {
-                  title: "محور شواغل عالمنا المعاصر",
-                  pdf: "pdfs/شواغل عالمنا المعاصر.pdf",
-                },
-                { title: "التصغير و معانيه", pdf: "pdfs/التصغير.pdf" },
-                {
-                  title: "النسبة و المصدر الصناعي",
-                  pdf: " pdfs/النسبة والمصدر.pdf",
-                },
-                {
-                  title: "اسم العدد الأصلي و الرتبي",
-                  pdf: "pdfs/اسم العدد.pdf",
-                },
-              ],
-              exercises: [
-                {
-                  title: "سلسلة تمارين اسم التصغير و معانيه",
-                  pdf: "pdfs/تمارين تصغير.pdf",
-                },
-              ],
-              exams: [
-                { title: "الفرض التأليفي 1", pdf: "pdfs/synth1arabe.pdf" },
-                { title: "الفرض التأليفي 3", pdf: "pdfs/cntrl3arabe.pdf" },
-                { title: "فرض المراقبة 2", pdf: "pdfs/cntrl2ar.pdf" },
-                { title: "فرض المراقبة 1", pdf: "pdfs/cntrl1ar.pdf" },
-                { title: "الفرض التأليفي 2", pdf: "pdfs/synth2arabe.pdf" },
-              ],
-            },
-            French: {
-              courses: [],
-              exercises: [
-                {
-                  title: "Série d'exercices Cause et Conséquence",
-                  pdf: "pdfs/Causeconsq.pdf",
-                },
-              ],
-              exams: [
-                { title: "Controle français 1", pdf: "pdfs/cntrl1fr.pdf" },
-                { title: "Synthese français 1", pdf: "pdfs/synth1fr.pdf" },
-                { title: "Controle Français 3", pdf: "pdfs/cntrl3fr.pdf" },
-                { title: "Synthese Français 2", pdf: "pdfs/synth2.pdf" },
-                { title: "Controle Français 2", pdf: "pdfs/cntrl2fr.pdf" },
-              ],
-            },
-            English: {
-              courses: [
-                {
-                  title: "Family",
-                  pdf: "pdfs/Family9.pdf",
-                },
-                {
-                  title: "Pocket Money",
-                  pdf: "pdfs/Pocketmoney9.pdf",
-                },
-                { title: "School", pdf: "pdfs/School9.pdf" },
-                { title: "Fast Food", pdf: "pdfs/Fastfood9.pdf" },
-                { title: "Pollution", pdf: "pdfs/Pollution9.pdf" },
-                { title: "Smoking", pdf: "pdfs/Smoking9.pdf" },
-                { title: "The Internet", pdf: "pdfs/Theinternet9.pdf" },
-                { title: "Transport", pdf: "pdfs/Transport9.pdf" },
-              ],
-              exercises: [],
-              exams: [
-                { title: "Synthese anglais 1", pdf: "pdfs/synth1eng.pdf" },
-                { title: "Synthese anglais 3", pdf: "pdfs/syntheng3.pdf" },
-                { title: "Controle anglais 3", pdf: "pdfs/cntrleng3.pdf" },
-                { title: "Controle anglais 2", pdf: "pdfs/cntrl2eng.pdf" },
-                { title: "Synthese anglais 2", pdf: "pdfs/synth2eng.pdf" },
-              ],
-            },
-            Math: {
-              courses: [],
-              exercises: [
-                {
-                  title: "سلسلة تمارين طالس و تطبيقاتها",
-                  pdf: "pdfs/طالس.pdf",
-                },
-              ],
-              exams: [
-                {
-                  title: "Controle math 2",
-                  pdf: "pdfs/devoir%20cntrl%2022.pdf",
-                },
-                { title: "Controle math 1", pdf: "pdfs/cntrlmath1.pdf" },
-                { title: "synthese math 1", pdf: "pdfs/synth1math.pdf" },
-                { title: "Controle math 6", pdf: "pdfs/cntrl6math.pdf" },
-              ],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [
-                {
-                  title: "وظيفة الاتصال",
-                  pdf: "pdfs/%D9%88%D8%B8%D9%8A%D9%81%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84.pdf",
-                },
-              ],
-              exercises: [
-                {
-                  title: "سلسلة تمارين درس الاتصال",
-                  pdf: "pdfs/تمرين اتصال.pdf",
-                },
-              ],
-              exams: [
-                { title: "Controle science 1", pdf: "pdfs/cntrlsc1.pdf" },
-                { title: "Controle science 3", pdf: "pdfs/cntrlsc3.pdf" },
-                { title: "Controle science 2", pdf: "pdfs/cntrl2sc.pdf" },
-                { title: "Synthese science 1", pdf: "pdfs/synthsc1.pdf" },
-                { title: "Synthese science 2", pdf: "pdfs/synth2sc.pdf" },
-              ],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
-        },
+"9th Grade": {
+Arabic: {
+courses: [
+{
+title: "محور العمل",
+pdf: "pdfs/%D9%85%D8%AD%D9%88%D8%B1%20%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
+},
+{
+title: "أدوات الربط و معانيها",
+pdf: "pdfs/%D8%A3%D8%AF%D9%88%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B1%D8%A8%D8%B7%20%D9%88%20%D9%85%D8%B9%D8%A7%D9%86%D9%8A%D9%87%D8%A7.pdf",
+},
+{
+title: "الإسم المقصور و المنقوص و الممدود",
+pdf: "pdfs/%D8%A7%D9%84%D8%A7%D8%B3%D9%85%20%D8%A7%D9%84%D9%85%D9%82%D8%B5%D9%88%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D9%82%D9%88%D8%B5.pdf",
+},
+{
+title: "الجمل المختزلة",
+pdf: "pdfs/%D8%A7%D9%84%D8%AC%D9%85%D9%84%20%D8%A7%D9%84%D9%85%D8%AE%D8%AA%D8%B2%D9%84%D8%A9.pdf",
+},
+{
+title: "العلاقات بين الجمل",
+pdf: "pdfs/%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%82%D8%A7%D8%AA%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D8%AC%D9%85%D9%84.pdf",
+},
+{
+title: "جملة النداء",
+pdf: "pdfs/%D8%A7%D9%84%D9%86%D8%AF%D8%A7%D8%A1.pdf",
+},
+{ title: "محور المرأة", pdf: "pdfs/المرأة.pdf" },
+{
+title: "الأساليب اللغوية و الروابط المنطقية",
+pdf: "pdfs/الأساليب اللغوية و الروابط المنطقية.pdf",
+},
+{ title: "الاستفهام و معانيه", pdf: "pdfs/الاستفهام.pdf" },
+{
+title: "الأمر و النهي و معانيهما",
+pdf: "pdfs/الأمر و النهي.pdf",
+},
+{
+title: "دلالة الحروف المقترنة بالأفعال",
+pdf: "pdfs/دلالة الحروف المقترنة بالأفعال.pdf",
+},
+{
+title: "محور شواغل عالمنا المعاصر",
+pdf: "pdfs/شواغل عالمنا المعاصر.pdf",
+},
+{ title: "التصغير و معانيه", pdf: "pdfs/التصغير.pdf" },
+{
+title: "النسبة و المصدر الصناعي",
+pdf: " pdfs/النسبة والمصدر.pdf",
+},
+{
+title: "اسم العدد الأصلي و الرتبي",
+pdf: "pdfs/اسم العدد.pdf",
+},
+],
+exercises: [
+{
+title: "سلسلة تمارين اسم التصغير و معانيه",
+pdf: "pdfs/تمارين تصغير.pdf",
+},
+],
+exams: [
+{ title: "الفرض التأليفي 1", pdf: "pdfs/synth1arabe.pdf" },
+{ title: "الفرض التأليفي 3", pdf: "pdfs/cntrl3arabe.pdf" },
+{ title: "فرض المراقبة 2", pdf: "pdfs/cntrl2ar.pdf" },
+{ title: "فرض المراقبة 1", pdf: "pdfs/cntrl1ar.pdf" },
+{ title: "الفرض التأليفي 2", pdf: "pdfs/synth2arabe.pdf" },
+],
+},
+French: {
+courses: [],
+exercises: [
+{
+title: "Série d'exercices Cause et Conséquence",
+pdf: "pdfs/Causeconsq.pdf",
+},
+],
+exams: [
+{ title: "Controle français 1", pdf: "pdfs/cntrl1fr.pdf" },
+{ title: "Synthese français 1", pdf: "pdfs/synth1fr.pdf" },
+{ title: "Controle Français 3", pdf: "pdfs/cntrl3fr.pdf" },
+{ title: "Synthese Français 2", pdf: "pdfs/synth2.pdf" },
+{ title: "Controle Français 2", pdf: "pdfs/cntrl2fr.pdf" },
+],
+},
+English: {
+courses: [
+{
+title: "Family",
+pdf: "pdfs/Family9.pdf",
+},
+{
+title: "Pocket Money",
+pdf: "pdfs/Pocketmoney9.pdf",
+},
+{ title: "School", pdf: "pdfs/School9.pdf" },
+{ title: "Fast Food", pdf: "pdfs/Fastfood9.pdf" },
+{ title: "Pollution", pdf: "pdfs/Pollution9.pdf" },
+{ title: "Smoking", pdf: "pdfs/Smoking9.pdf" },
+{ title: "The Internet", pdf: "pdfs/Theinternet9.pdf" },
+{ title: "Transport", pdf: "pdfs/Transport9.pdf" },
+],
+exercises: [],
+exams: [
+{ title: "Synthese anglais 1", pdf: "pdfs/synth1eng.pdf" },
+{ title: "Synthese anglais 3", pdf: "pdfs/syntheng3.pdf" },
+{ title: "Controle anglais 3", pdf: "pdfs/cntrleng3.pdf" },
+{ title: "Controle anglais 2", pdf: "pdfs/cntrl2eng.pdf" },
+{ title: "Synthese anglais 2", pdf: "pdfs/synth2eng.pdf" },
+],
+},
+Math: {
+courses: [],
+exercises: [
+{
+title: "سلسلة تمارين طالس و تطبيقاتها",
+pdf: "pdfs/طالس.pdf",
+},
+],
+exams: [
+{
+title: "Controle math 2",
+pdf: "pdfs/devoir%20cntrl%2022.pdf",
+},
+{ title: "Controle math 1", pdf: "pdfs/cntrlmath1.pdf" },
+{ title: "synthese math 1", pdf: "pdfs/synth1math.pdf" },
+{ title: "Controle math 6", pdf: "pdfs/cntrl6math.pdf" },
+],
+},
+Physics: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Science: {
+courses: [
+{
+title: "وظيفة الاتصال",
+pdf: "pdfs/%D9%88%D8%B8%D9%8A%D9%81%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84.pdf",
+},
+],
+exercises: [
+{
+title: "سلسلة تمارين درس الاتصال",
+pdf: "pdfs/تمرين اتصال.pdf",
+},
+],
+exams: [
+{ title: "Controle science 1", pdf: "pdfs/cntrlsc1.pdf" },
+{ title: "Controle science 3", pdf: "pdfs/cntrlsc3.pdf" },
+{ title: "Controle science 2", pdf: "pdfs/cntrl2sc.pdf" },
+{ title: "Synthese science 1", pdf: "pdfs/synthsc1.pdf" },
+{ title: "Synthese science 2", pdf: "pdfs/synth2sc.pdf" },
+],
+},
+Technology: {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Computer Science": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Islamic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Civic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+Geography: {
+courses: [],
+exercises: [],
+exams: [],
+},
+History: {
+courses: [],
+exercises: [],
+exams: [],
+},
+},
+},
 
-        "High School": {
-          Freshman: {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
+"High School": {
+Freshman: {
+Arabic: {
+courses: [],
+exercises: [],
+exams: [],
+},
+French: {
+courses: [],
+exercises: [],
+exams: [],
+},
+English: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Math: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Physics: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Science: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Technology: {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Computer Science": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Islamic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Civic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+Geography: {
+courses: [],
+exercises: [],
+exams: [],
+},
+History: {
+courses: [],
+exercises: [],
+exams: [],
+},
+},
 
-          Sophomore: {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
+Sophomore: {
+Arabic: {
+courses: [],
+exercises: [],
+exams: [],
+},
+French: {
+courses: [],
+exercises: [],
+exams: [],
+},
+English: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Math: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Physics: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Science: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Technology: {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Computer Science": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Islamic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Civic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+Geography: {
+courses: [],
+exercises: [],
+exams: [],
+},
+History: {
+courses: [],
+exercises: [],
+exams: [],
+},
+},
 
-          Junior: {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Optional Language": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Philosophy: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
-        },
-      };
+Junior: {
+Arabic: {
+courses: [],
+exercises: [],
+exams: [],
+},
+French: {
+courses: [],
+exercises: [],
+exams: [],
+},
+English: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Math: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Physics: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Science: {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Optional Language": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Computer Science": {
+courses: [],
+exercises: [],
+exams: [],
+},
+"Islamic Education": {
+courses: [],
+exercises: [],
+exams: [],
+},
+Philosophy: {
+courses: [],
+exercises: [],
+exams: [],
+},
+Geography: {
+courses: [],
+exercises: [],
+exams: [],
+},
+History: {
+courses: [],
+exercises: [],
+exams: [],
+},
+},
+},
+};
 
-      const SICO = {
-        Arabic: "🔤",
-        French: "🇫🇷",
-        English: "🇬🇧",
-        Math: "➕",
-        Physics: "⚡",
-        Science: "🔬",
-        Technology: "🔧",
-        "Computer Science": "💻",
-        "Islamic Education": "☪️",
-        "Civic Education": "🏛️",
-        Geography: "🌍",
-        History: "📜",
-        Philosophy: "🤔",
-        "Optional Language": "🌐",
-      };
-      const QUOTES = [
-        "You're doing amazing — keep going! ✨",
-        "Every page you study is a step forward 📚",
-        "Rest if you must, but don't quit 💪",
-        "Your future self will thank you 🌟",
-        "Small steps every day lead to big results 🚀",
-        "Believe in yourself — you've got this! 🎯",
-      ];
+const SICO = {
+Arabic: "🔤",
+French: "🇫🇷",
+English: "🇬🇧",
+Math: "➕",
+Physics: "⚡",
+Science: "🔬",
+Technology: "🔧",
+"Computer Science": "💻",
+"Islamic Education": "☪️",
+"Civic Education": "🏛️",
+Geography: "🌍",
+History: "📜",
+Philosophy: "🤔",
+"Optional Language": "🌐",
+};
+const QUOTES = [
+"You're doing amazing — keep going! ✨",
+"Every page you study is a step forward 📚",
+"Rest if you must, but don't quit 💪",
+"Your future self will thank you 🌟",
+"Small steps every day lead to big results 🚀",
+"Believe in yourself — you've got this! 🎯",
+];
 
-      function Splash({ onDone }) {
-        const [ph, setPh] = useState(0);
-        const letters = "Pilotehub+".split("");
-        useEffect(() => {
-          const t = [
-            setTimeout(() => setPh(1), 400),
-            setTimeout(() => setPh(2), 1900),
-            setTimeout(() => onDone(), 3600),
-          ];
-          return () => t.forEach(clearTimeout);
-        }, [onDone]);
-        return (
-          <div
-            style={{
-              position: "fixed",
-              inset: 0,
-              background: WHITE,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 9999,
-            }}
-          >
-            <div style={{ display: "flex", gap: 2, alignItems: "baseline" }}>
-              {letters.map((l, i) => (
-                <span
-                  key={i}
-                  style={{
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: l === "+" ? 36 : 52,
-                    fontWeight: 700,
-                    color: ph === 2 ? GOLD : NAVY,
-                    display: "inline-block",
-                    opacity: ph >= 1 ? 1 : 0,
-                    transform: ph >= 1 ? "translateY(0)" : "translateY(20px)",
-                    transition: `all 0.5s cubic-bezier(.22,1,.36,1) ${
-                      i * 60
-                    }ms`,
-                    textShadow:
-                      ph === 2
-                        ? `0 0 30px ${GOLD}88,0 0 60px ${GOLD}44`
-                        : "none",
-                  }}
-                >
-                  {l}
-                </span>
-              ))}
-            </div>
-            <div
-              style={{
-                marginTop: 12,
-                fontSize: 13,
-                color: GRAY,
-                letterSpacing: 4,
-                textTransform: "uppercase",
-                opacity: ph >= 1 ? 1 : 0,
-                transition: "opacity 1s ease 0.8s",
-              }}
-            >
-              Learn. Grow. Excel.
-            </div>
-          </div>
-        );
-      }
+// ---- Project / community config ----
+// TODO: update these two numbers whenever they change in real life.
+const SCHOOLS_COUNT = 7; // number of schools the contributing students come from
+const TEAM_MEMBERS_COUNT = 7; // number of people working on Pilotehub+
+// TODO: replace with your real Google Form (or other) application link.
+const JOIN_FORM_LINK = "https://forms.gle/REPLACE-WITH-YOUR-FORM-LINK";
 
-      function PDFViewer({ item, dark, onBack }) {
-        const tc = dark ? WHITE : NAVY;
-        const card = dark ? NAVY2 : WHITE;
-        const download = () => {
-          // Count in Firebase (cumulative, never resets)
-          if (typeof window.trackDownload === "function") {
-            window.trackDownload();
-          }
-          // Count in Google Analytics
-          if (typeof gtag === "function") {
-            gtag("event", "download", { file_name: item.title });
-          }
-          // Open in new tab — works on all devices including iPhone
-          window.open(item.pdf, "_blank");
-        };
-        return (
-          <div
-            style={{
-              position: "fixed",
-              inset: 0,
-              background: dark ? "#080F1C" : SOFT,
-              zIndex: 400,
-              display: "flex",
-              flexDirection: "column",
-              maxWidth: 430,
-              margin: "0 auto",
-            }}
-          >
-            <div
-              style={{
-                background: dark ? `${NAVY}F5` : `${WHITE}F5`,
-                backdropFilter: "blur(12px)",
-                borderBottom: `1px solid ${
-                  dark ? "rgba(201,168,76,0.15)" : "rgba(10,22,40,0.08)"
-                }`,
-                padding: "14px 16px",
-                display: "flex",
-                alignItems: "center",
-                gap: 12,
-                flexShrink: 0,
-              }}
-            >
-              <button
-                onClick={onBack}
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: GOLD,
-                  fontSize: 22,
-                  cursor: "pointer",
-                  lineHeight: 1,
-                }}
-              >
-                ←
-              </button>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div
-                  style={{
-                    color: tc,
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: 15,
-                    fontWeight: 700,
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {item.title}
-                </div>
-                <div style={{ color: GRAY, fontSize: 11, marginTop: 2 }}>
-                  PDF Document
-                </div>
-              </div>
-              <button
-                onClick={download}
-                style={{
-                  background: `linear-gradient(135deg,${GOLD},#A8822A)`,
-                  border: "none",
-                  borderRadius: 10,
-                  padding: "8px 14px",
-                  color: NAVY,
-                  fontWeight: 700,
-                  fontSize: 13,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 6,
-                  flexShrink: 0,
-                  boxShadow: `0 3px 12px rgba(201,168,76,0.35)`,
-                }}
-              >
-                ⬇️ Download
-              </button>
-            </div>
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                padding: 12,
-                gap: 12,
-                overflow: "hidden",
-              }}
-            >
-              {item.pdf ? (
-                <iframe
-                  src={item.pdf}
-                  width="100%"
-                  height="100%"
-                  style={{
-                    flex: 1,
-                    border: "none",
-                    borderRadius: 14,
-                    boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
-                    minHeight: 0,
-                  }}
-                  title={item.title}
-                />
-              ) : (
-                <div
-                  style={{
-                    flex: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: card,
-                    borderRadius: 20,
-                    padding: "40px 24px",
-                    textAlign: "center",
-                    border: `2px dashed ${
-                      dark ? "rgba(201,168,76,0.2)" : "rgba(10,22,40,0.12)"
-                    }`,
-                  }}
-                >
-                  <div style={{ fontSize: 52, marginBottom: 14 }}>📄</div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 17,
-                      fontWeight: 700,
-                      marginBottom: 10,
-                    }}
-                  >
-                    {item.title}
-                  </div>
-                  <div style={{ color: GRAY, fontSize: 13, lineHeight: 1.8 }}>
-                    PDF not linked yet.
-                    <br />
-                    Add the file path in the CONTENT section.
-                  </div>
-                </div>
-              )}
-              <button
-                onClick={download}
-                style={{
-                  width: "100%",
-                  padding: "14px",
-                  borderRadius: 14,
-                  background: `linear-gradient(135deg,${GOLD},#A8822A)`,
-                  border: "none",
-                  color: NAVY,
-                  fontWeight: 700,
-                  fontSize: 15,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8,
-                  boxShadow: `0 4px 20px rgba(201,168,76,0.3)`,
-                  flexShrink: 0,
-                }}
-              >
-                ⬇️ Download PDF
-              </button>
-            </div>
-          </div>
-        );
-      }
+// Counts every resource (course/exercise/exam) that has a real PDF attached.
+function countResources(content) {
+let total = 0;
+Object.values(content).forEach((levelObj) => {
+Object.values(levelObj).forEach((gradeObj) => {
+Object.values(gradeObj).forEach((subjObj) => {
+["courses", "exercises", "exams"].forEach((t) => {
+(subjObj[t] || []).forEach((item) => {
+if (item.pdf) total++;
+});
+});
+});
+});
+});
+return total;
+}
+const RESOURCES_COUNT = countResources(CONTENT);
 
-      function App() {
-        const [started, setStarted] = useState(false);
-        const [dark, setDark] = useState(false);
-        const [level, setLevel] = useState(null);
-        const [grade, setGrade] = useState(null);
-        const [subj, setSubj] = useState(null);
-        const [ctype, setCtype] = useState(null);
-        const [openItem, setOpenItem] = useState(null);
-        const [showInfo, setShowInfo] = useState(false);
-        const [quote, setQuote] = useState(null);
+function Splash({ onDone }) {
+const [ph, setPh] = useState(0);
+const letters = "Pilotehub+".split("");
+useEffect(() => {
+const t = [
+setTimeout(() => setPh(1), 400),
+setTimeout(() => setPh(2), 1900),
+setTimeout(() => onDone(), 3600),
+];
+return () => t.forEach(clearTimeout);
+}, [onDone]);
+return (
+<div
+style={{
+position: "fixed",
+inset: 0,
+background: WHITE,
+display: "flex",
+flexDirection: "column",
+alignItems: "center",
+justifyContent: "center",
+zIndex: 9999,
+}}
+>
+<div style={{ display: "flex", gap: 2, alignItems: "baseline" }}>
+{letters.map((l, i) => (
+<span
+key={i}
+style={{
+fontFamily: "'Playfair Display',serif",
+fontSize: l === "+" ? 36 : 52,
+fontWeight: 700,
+color: ph === 2 ? GOLD : NAVY,
+display: "inline-block",
+opacity: ph >= 1 ? 1 : 0,
+transform: ph >= 1 ? "translateY(0)" : "translateY(20px)",
+transition: `all 0.5s cubic-bezier(.22,1,.36,1) ${
+i * 60
+}ms`,
+textShadow:
+ph === 2
+? `0 0 30px ${GOLD}88,0 0 60px ${GOLD}44`
+: "none",
+}}
+>
+{l}
+</span>
+))}
+</div>
+<div
+style={{
+marginTop: 12,
+fontSize: 13,
+color: GRAY,
+letterSpacing: 4,
+textTransform: "uppercase",
+opacity: ph >= 1 ? 1 : 0,
+transition: "opacity 1s ease 0.8s",
+}}
+>
+Learn. Grow. Excel.
+</div>
+</div>
+);
+}
 
-        const bg = dark ? "#080F1C" : SOFT,
-          card = dark ? NAVY2 : WHITE,
-          tc = dark ? WHITE : NAVY,
-          sub = dark ? "#8A99B0" : "#5A6A80";
+function PDFViewer({ item, dark, onBack }) {
+const tc = dark ? WHITE : NAVY;
+const card = dark ? NAVY2 : WHITE;
+const download = () => {
+// Count in Firebase (cumulative, never resets)
+if (typeof window.trackDownload === "function") {
+window.trackDownload();
+}
+// Count in Google Analytics
+if (typeof gtag === "function") {
+gtag("event", "download", { file_name: item.title });
+}
+// Open in new tab — works on all devices including iPhone
+window.open(item.pdf, "_blank");
+};
+return (
+<div
+style={{
+position: "fixed",
+inset: 0,
+background: dark ? "#080F1C" : SOFT,
+zIndex: 400,
+display: "flex",
+flexDirection: "column",
+maxWidth: 430,
+margin: "0 auto",
+}}
+>
+<div
+style={{
+background: dark ? `${NAVY}F5` : `${WHITE}F5`,
+backdropFilter: "blur(12px)",
+borderBottom: `1px solid ${
+dark ? "rgba(201,168,76,0.15)" : "rgba(10,22,40,0.08)"
+}`,
+padding: "14px 16px",
+display: "flex",
+alignItems: "center",
+gap: 12,
+flexShrink: 0,
+}}
+>
+<button
+onClick={onBack}
+style={{
+background: "none",
+border: "none",
+color: GOLD,
+fontSize: 22,
+cursor: "pointer",
+lineHeight: 1,
+}}
+>
+←
+</button>
+<div style={{ flex: 1, minWidth: 0 }}>
+<div
+style={{
+color: tc,
+fontFamily: "'Playfair Display',serif",
+fontSize: 15,
+fontWeight: 700,
+overflow: "hidden",
+textOverflow: "ellipsis",
+whiteSpace: "nowrap",
+}}
+>
+{item.title}
+</div>
+<div style={{ color: GRAY, fontSize: 11, marginTop: 2 }}>
+PDF Document
+</div>
+</div>
+<button
+onClick={download}
+style={{
+background: `linear-gradient(135deg,${GOLD},#A8822A)`,
+border: "none",
+borderRadius: 10,
+padding: "8px 14px",
+color: NAVY,
+fontWeight: 700,
+fontSize: 13,
+cursor: "pointer",
+display: "flex",
+alignItems: "center",
+gap: 6,
+flexShrink: 0,
+boxShadow: `0 3px 12px rgba(201,168,76,0.35)`,
+}}
+>
+⬇️ Download
+</button>
+</div>
+<div
+style={{
+flex: 1,
+display: "flex",
+flexDirection: "column",
+padding: 12,
+gap: 12,
+overflow: "hidden",
+}}
+>
+{item.pdf ? (
+<iframe
+src={item.pdf}
+width="100%"
+height="100%"
+style={{
+flex: 1,
+border: "none",
+borderRadius: 14,
+boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+minHeight: 0,
+}}
+title={item.title}
+/>
+) : (
+<div
+style={{
+flex: 1,
+display: "flex",
+flexDirection: "column",
+alignItems: "center",
+justifyContent: "center",
+background: card,
+borderRadius: 20,
+padding: "40px 24px",
+textAlign: "center",
+border: `2px dashed ${
+dark ? "rgba(201,168,76,0.2)" : "rgba(10,22,40,0.12)"
+}`,
+}}
+>
+<div style={{ fontSize: 52, marginBottom: 14 }}>📄</div>
+<div
+style={{
+color: tc,
+fontFamily: "'Playfair Display',serif",
+fontSize: 17,
+fontWeight: 700,
+marginBottom: 10,
+}}
+>
+{item.title}
+</div>
+<div style={{ color: GRAY, fontSize: 13, lineHeight: 1.8 }}>
+PDF not linked yet.
+<br />
+Add the file path in the CONTENT section.
+</div>
+</div>
+)}
+<button
+onClick={download}
+style={{
+width: "100%",
+padding: "14px",
+borderRadius: 14,
+background: `linear-gradient(135deg,${GOLD},#A8822A)`,
+border: "none",
+color: NAVY,
+fontWeight: 700,
+fontSize: 15,
+cursor: "pointer",
+display: "flex",
+alignItems: "center",
+justifyContent: "center",
+gap: 8,
+boxShadow: `0 4px 20px rgba(201,168,76,0.3)`,
+flexShrink: 0,
+}}
+>
+⬇️ Download PDF
+</button>
+</div>
+</div>
+);
+}
 
-        useEffect(() => {
-          const show = () => {
-            setQuote(QUOTES[Math.floor(Math.random() * QUOTES.length)]);
-            setTimeout(() => setQuote(null), 5000);
-          };
-          show();
-          const iv = setInterval(show, 20 * 60 * 1000);
-          return () => clearInterval(iv);
-        }, []);
+function App() {
+const [started, setStarted] = useState(false);
+const [dark, setDark] = useState(false);
+const [level, setLevel] = useState(null);
+const [grade, setGrade] = useState(null);
+const [subj, setSubj] = useState(null);
+const [ctype, setCtype] = useState(null);
+const [openItem, setOpenItem] = useState(null);
+const [showInfo, setShowInfo] = useState(false);
+const [quote, setQuote] = useState(null);
 
-        const goBack = () => {
-          if (openItem) {
-            setOpenItem(null);
-            return;
-          }
-          if (ctype) {
-            setCtype(null);
-            return;
-          }
-          if (subj) {
-            setSubj(null);
-            return;
-          }
-          if (grade) {
-            setGrade(null);
-            return;
-          }
-          if (level) {
-            setLevel(null);
-          }
-        };
+// ---- Auth (email registration/login) ----
+const [user, setUser] = useState(null);
+const [authChecked, setAuthChecked] = useState(false);
+const [authMode, setAuthMode] = useState("signup"); // "signup" | "login"
+const [authEmail, setAuthEmail] = useState("");
+const [authPassword, setAuthPassword] = useState("");
+const [authError, setAuthError] = useState("");
+const [authLoading, setAuthLoading] = useState(false);
+const [registeredCount, setRegisteredCount] = useState(null);
 
-        const setLevelSafe = (v) => {
-          setLevel(v);
-          setGrade(null);
-          setSubj(null);
-          setCtype(null);
-          setOpenItem(null);
-        };
-        const setGradeSafe = (v) => {
-          setGrade(v);
-          setSubj(null);
-          setCtype(null);
-          setOpenItem(null);
-        };
-        const setSubjSafe = (v) => {
-          setSubj(v);
-          setCtype(null);
-          setOpenItem(null);
-        };
-        const setCtypeSafe = (v) => {
-          setCtype(v);
-          setOpenItem(null);
-        };
+// ---- Reviews (stars + comments) ----
+const [showReviews, setShowReviews] = useState(false);
+const [reviews, setReviews] = useState([]);
+const [reviewName, setReviewName] = useState("");
+const [reviewStars, setReviewStars] = useState(5);
+const [reviewText, setReviewText] = useState("");
+const [reviewLoading, setReviewLoading] = useState(false);
 
-        const hasBack = !!(level || grade || subj || ctype || openItem);
-        const grades = level ? Object.keys(CONTENT[level]) : [];
-        const subjects = grade ? Object.keys(CONTENT[level][grade]) : [];
-        const items =
-          level && grade && subj && ctype
-            ? CONTENT[level][grade][subj][ctype]
-            : [];
-        const ctypeIcon = (t) =>
-          t === "courses" ? "📖" : t === "exercises" ? "✏️" : "📋";
+useEffect(() => {
+if (typeof window.pilotehubOnAuthChange === "function") {
+const unsub = window.pilotehubOnAuthChange((u) => {
+setUser(u);
+setAuthChecked(true);
+});
+return unsub;
+} else {
+// Firebase not available for some reason — don't block forever.
+setAuthChecked(true);
+}
+}, []);
 
-        if (!started) return <Splash onDone={() => setStarted(true)} />;
-        if (openItem)
-          return (
-            <PDFViewer
-              item={openItem}
-              dark={dark}
-              onBack={() => setOpenItem(null)}
-            />
-          );
+useEffect(() => {
+if (typeof window.pilotehubGetRegisteredUsersCount === "function") {
+window.pilotehubGetRegisteredUsersCount().then(setRegisteredCount);
+}
+}, []);
 
-        return (
-          <div
-            style={{
-              minHeight: "100vh",
-              background: bg,
-              transition: "background 0.3s",
-            }}
-          >
-            {quote && (
-              <div
-                style={{
-                  position: "fixed",
-                  bottom: 24,
-                  right: 16,
-                  zIndex: 1000,
-                  background: `linear-gradient(135deg,${NAVY},${LNAV})`,
-                  border: `1px solid ${GOLD}44`,
-                  borderRadius: 16,
-                  padding: "12px 16px",
-                  maxWidth: 240,
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
-                  animation: "slideIn 0.4s ease",
-                }}
-              >
-                <div style={{ color: WHITE, fontSize: 13, lineHeight: 1.5 }}>
-                  {quote}
-                </div>
-              </div>
-            )}
+const loadReviews = () => {
+if (typeof window.pilotehubGetReviews === "function") {
+window.pilotehubGetReviews().then(setReviews);
+}
+};
+useEffect(() => {
+loadReviews();
+}, []);
 
-            {showInfo && (
-              <div
-                style={{
-                  position: "fixed",
-                  inset: 0,
-                  background: "rgba(0,0,0,0.7)",
-                  zIndex: 500,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: 20,
-                }}
-                onClick={() => setShowInfo(false)}
-              >
-                <div
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    background: card,
-                    borderRadius: 20,
-                    padding: 28,
-                    maxWidth: 400,
-                    width: "100%",
-                    border: `1px solid ${GOLD}33`,
-                  }}
-                >
-                  <h2
-                    style={{
-                      color: GOLD,
-                      fontFamily: "'Playfair Display',serif",
-                      margin: "0 0 12px",
-                    }}
-                  >
-                    About Pilotehub+
-                  </h2>
-                  <p
-                    style={{
-                      color: tc,
-                      fontSize: 14,
-                      lineHeight: 1.8,
-                      margin: "0 0 12px",
-                    }}
-                  >
-                    Pilotehub+ is a free educational platform for students from
-                    7th grade to Junior year. All courses, exercises, and exams
-                    — organized by grade and subject — in one place.
-                  </p>
-                  <p style={{ color: sub, fontSize: 13 }}>
-                    No ads. No subscriptions. Forever free.
-                  </p>
-                  <button
-                    onClick={() => setShowInfo(false)}
-                    style={{
-                      marginTop: 18,
-                      padding: "11px 22px",
-                      background: GOLD,
-                      border: "none",
-                      borderRadius: 10,
-                      color: NAVY,
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      fontSize: 14,
-                    }}
-                  >
-                    Got it!
-                  </button>
-                </div>
-              </div>
-            )}
+const avgRating = reviews.length
+? reviews.reduce((a, r) => a + (r.stars || 0), 0) / reviews.length
+: 0;
 
-            <div
-              style={{
-                background: dark ? `${NAVY}EE` : `${WHITE}EE`,
-                backdropFilter: "blur(12px)",
-                borderBottom: `1px solid ${
-                  dark ? "rgba(201,168,76,0.15)" : "rgba(10,22,40,0.08)"
-                }`,
-                padding: "14px 20px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                position: "sticky",
-                top: 0,
-                zIndex: 100,
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                {hasBack && (
-                  <button
-                    onClick={goBack}
-                    style={{
-                      background: "none",
-                      border: "none",
-                      color: GOLD,
-                      fontSize: 22,
-                      cursor: "pointer",
-                      padding: "0 6px 0 0",
-                      lineHeight: 1,
-                    }}
-                  >
-                    ←
-                  </button>
-                )}
-                <span
-                  style={{
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: 20,
-                    fontWeight: 700,
-                    color: tc,
-                  }}
-                >
-                  Pilotehub<span style={{ color: GOLD }}>+</span>
-                </span>
-              </div>
-              <button
-                onClick={() => setDark((d) => !d)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  fontSize: 20,
-                  cursor: "pointer",
-                }}
-              >
-                {dark ? "☀️" : "🌙"}
-              </button>
-            </div>
+const handleAuthSubmit = async () => {
+setAuthError("");
+if (!authEmail || !authPassword) {
+setAuthError("Please fill in both fields.");
+return;
+}
+setAuthLoading(true);
+try {
+if (authMode === "signup") {
+const u = await window.pilotehubSignUp(authEmail, authPassword);
+setUser(u);
+window.pilotehubGetRegisteredUsersCount().then(setRegisteredCount);
+} else {
+const u = await window.pilotehubSignIn(authEmail, authPassword);
+setUser(u);
+}
+setShowAuth(false);
+setAuthEmail("");
+setAuthPassword("");
+} catch (err) {
+setAuthError(err.message || "Something went wrong. Please try again.");
+}
+setAuthLoading(false);
+};
 
-            {!level && (
-              <div
-                onClick={() => setShowInfo(true)}
-                style={{
-                  background: `linear-gradient(135deg,${NAVY},${LNAV})`,
-                  padding: "14px 20px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                    }}
-                  >
-                    ABOUT PILOTEHUB+
-                  </div>
-                  <div
-                    style={{
-                      color: "rgba(255,255,255,0.7)",
-                      fontSize: 13,
-                      marginTop: 2,
-                    }}
-                  >
-                    Tap to learn about the app →
-                  </div>
-                </div>
-                <span style={{ fontSize: 20 }}>ℹ️</span>
-              </div>
-            )}
+const handleSignOut = async () => {
+try {
+await window.pilotehubSignOut();
+} catch (err) {}
+setUser(null);
+};
 
-            <div style={{ padding: "24px 20px 40px" }}>
-              {!level && (
-                <>
-                  <div
-                    style={{
-                      fontSize: 22,
-                      fontWeight: 700,
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      marginBottom: 6,
-                    }}
-                  >
-                    Welcome to Pilotehub+ 👋
-                  </div>
-                  <div style={{ color: sub, fontSize: 14, marginBottom: 28 }}>
-                    Select your school level to get started.
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 13,
-                      color: sub,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 14,
-                    }}
-                  >
-                    CHOOSE YOUR LEVEL
-                  </div>
-                  <div style={{ display: "flex", gap: 14 }}>
-                    {["Middle School", "High School"].map((lv, i) => (
-                      <div
-                        key={lv}
-                        onClick={() => setLevelSafe(lv)}
-                        style={{
-                          flex: 1,
-                          borderRadius: 20,
-                          cursor: "pointer",
-                          background:
-                            i === 0
-                              ? `linear-gradient(135deg,#1A3158,#0A1628)`
-                              : `linear-gradient(135deg,#2A1A10,#1A0A05)`,
-                          border: `1px solid ${GOLD}33`,
-                          padding: "24px 16px",
-                          position: "relative",
-                          boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
-                        }}
-                      >
-                        <div style={{ fontSize: 32, marginBottom: 10 }}>
-                          {i === 0 ? "🏫" : "🎓"}
-                        </div>
-                        <div
-                          style={{
-                            color: WHITE,
-                            fontWeight: 700,
-                            fontSize: 16,
-                            fontFamily: "'Playfair Display',serif",
-                          }}
-                        >
-                          {lv}
-                        </div>
-                        <div
-                          style={{
-                            color: "rgba(255,255,255,0.5)",
-                            fontSize: 12,
-                            marginTop: 4,
-                          }}
-                        >
-                          {i === 0 ? "Grades 7–9" : "Freshman–Junior"}
-                        </div>
-                        <div
-                          style={{
-                            position: "absolute",
-                            bottom: 14,
-                            right: 16,
-                            color: GOLD,
-                            fontSize: 20,
-                          }}
-                        >
-                          →
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
+const handleSubmitReview = async () => {
+if (!reviewText.trim()) return;
+setReviewLoading(true);
+try {
+await window.pilotehubSubmitReview(reviewName, reviewStars, reviewText.trim());
+setReviewName("");
+setReviewText("");
+setReviewStars(5);
+loadReviews();
+} catch (err) {}
+setReviewLoading(false);
+};
 
-              {level && !grade && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {level.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    Select Grade
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: 12,
-                    }}
-                  >
-                    {grades.map((g) => (
-                      <div
-                        key={g}
-                        onClick={() => setGradeSafe(g)}
-                        style={{
-                          background: card,
-                          borderRadius: 18,
-                          padding: "20px",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          border: `1px solid ${
-                            dark
-                              ? "rgba(201,168,76,0.12)"
-                              : "rgba(10,22,40,0.08)"
-                          }`,
-                          boxShadow: dark
-                            ? "none"
-                            : "0 2px 12px rgba(10,22,40,0.06)",
-                        }}
-                      >
-                        <div>
-                          <div
-                            style={{
-                              color: tc,
-                              fontWeight: 700,
-                              fontSize: 17,
-                              fontFamily: "'Playfair Display',serif",
-                            }}
-                          >
-                            {g}
-                          </div>
-                          <div
-                            style={{ color: sub, fontSize: 12, marginTop: 4 }}
-                          >
-                            {Object.keys(CONTENT[level][g]).length} subjects
-                          </div>
-                        </div>
-                        <span style={{ color: GOLD, fontSize: 22 }}>→</span>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
+const bg = dark ? "#080F1C" : SOFT,
+card = dark ? NAVY2 : WHITE,
+tc = dark ? WHITE : NAVY,
+sub = dark ? "#8A99B0" : "#5A6A80";
 
-              {level && grade && !subj && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {grade.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    Select Subject
-                  </div>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: 12,
-                    }}
-                  >
-                    {subjects.map((s) => (
-                      <div
-                        key={s}
-                        onClick={() => setSubjSafe(s)}
-                        style={{
-                          background: card,
-                          borderRadius: 14,
-                          padding: "16px 14px",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 10,
-                          border: `1px solid ${
-                            dark
-                              ? "rgba(255,255,255,0.05)"
-                              : "rgba(10,22,40,0.07)"
-                          }`,
-                          boxShadow: dark
-                            ? "none"
-                            : "0 2px 8px rgba(10,22,40,0.04)",
-                        }}
-                      >
-                        <span style={{ fontSize: 22 }}>{SICO[s] || "📚"}</span>
-                        <span
-                          style={{ color: tc, fontSize: 13, fontWeight: 600 }}
-                        >
-                          {s}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
+useEffect(() => {
+const show = () => {
+setQuote(QUOTES[Math.floor(Math.random() * QUOTES.length)]);
+setTimeout(() => setQuote(null), 5000);
+};
+show();
+const iv = setInterval(show, 20 * 60 * 1000);
+return () => clearInterval(iv);
+}, []);
 
-              {level && grade && subj && !ctype && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {subj.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    What to study?
-                  </div>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: 14,
-                    }}
-                  >
-                    {[
-                      {
-                        type: "courses",
-                        icon: "📖",
-                        label: "Courses",
-                        desc: "Lessons & resumes",
-                      },
-                      {
-                        type: "exercises",
-                        icon: "✏️",
-                        label: "Exercises",
-                        desc: "Practice problems",
-                      },
-                      {
-                        type: "exams",
-                        icon: "📋",
-                        label: "Exams",
-                        desc: "Past & mock exams",
-                      },
-                    ].map((item, i) => (
-                      <div
-                        key={item.type}
-                        onClick={() => setCtypeSafe(item.type)}
-                        style={{
-                          background: card,
-                          borderRadius: 18,
-                          padding: "22px 16px",
-                          cursor: "pointer",
-                          gridColumn: i === 2 ? "span 2" : "auto",
-                          border: `1px solid ${
-                            dark
-                              ? "rgba(201,168,76,0.12)"
-                              : "rgba(10,22,40,0.08)"
-                          }`,
-                          boxShadow: dark
-                            ? "none"
-                            : "0 2px 12px rgba(10,22,40,0.06)",
-                        }}
-                      >
-                        <div style={{ fontSize: 32, marginBottom: 10 }}>
-                          {item.icon}
-                        </div>
-                        <div
-                          style={{
-                            color: tc,
-                            fontWeight: 700,
-                            fontSize: 16,
-                            fontFamily: "'Playfair Display',serif",
-                          }}
-                        >
-                          {item.label}
-                        </div>
-                        <div style={{ color: sub, fontSize: 12, marginTop: 4 }}>
-                          {item.desc}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
+const goBack = () => {
+if (openItem) {
+setOpenItem(null);
+return;
+}
+if (ctype) {
+setCtype(null);
+return;
+}
+if (subj) {
+setSubj(null);
+return;
+}
+if (grade) {
+setGrade(null);
+return;
+}
+if (level) {
+setLevel(null);
+}
+};
 
-              {level && grade && subj && ctype && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {subj.toUpperCase()} · {grade.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    {ctype === "courses"
-                      ? "Courses"
-                      : ctype === "exercises"
-                      ? "Exercises"
-                      : "Exams"}
-                  </div>
-                  {items.length === 0 ? (
-                    <div
-                      style={{
-                        background: card,
-                        borderRadius: 20,
-                        padding: "44px 24px",
-                        textAlign: "center",
-                        border: `2px dashed ${
-                          dark ? "rgba(255,255,255,0.08)" : "rgba(10,22,40,0.1)"
-                        }`,
-                      }}
-                    >
-                      <div style={{ fontSize: 40, marginBottom: 12 }}>
-                        {ctypeIcon(ctype)}
-                      </div>
-                      <div
-                        style={{
-                          color: tc,
-                          fontFamily: "'Playfair Display',serif",
-                          fontSize: 16,
-                          fontWeight: 700,
-                          marginBottom: 8,
-                        }}
-                      >
-                        No {ctype} yet
-                      </div>
-                      <div
-                        style={{ color: GRAY, fontSize: 13, lineHeight: 1.7 }}
-                      >
-                        Content coming soon.
-                        <br />
-                        Check back later!
-                      </div>
-                    </div>
-                  ) : (
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 10,
-                      }}
-                    >
-                      {items.map((item, i) => (
-                        <div
-                          key={i}
-                          onClick={() => setOpenItem(item)}
-                          style={{
-                            background: card,
-                            borderRadius: 14,
-                            padding: "16px 18px",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 14,
-                            border: `1px solid ${
-                              dark
-                                ? "rgba(255,255,255,0.06)"
-                                : "rgba(10,22,40,0.07)"
-                            }`,
-                            boxShadow: dark
-                              ? "none"
-                              : "0 2px 8px rgba(10,22,40,0.04)",
-                            cursor: "pointer",
-                            animation: `fadeUp 0.35s ease ${i * 0.06}s both`,
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: 44,
-                              height: 44,
-                              borderRadius: 12,
-                              flexShrink: 0,
-                              background: `linear-gradient(135deg,${NAVY},${LNAV})`,
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              fontSize: 18,
-                            }}
-                          >
-                            {ctypeIcon(ctype)}
-                          </div>
-                          <div style={{ flex: 1, minWidth: 0 }}>
-                            <div
-                              style={{
-                                color: tc,
-                                fontWeight: 600,
-                                fontSize: 14,
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                whiteSpace: "nowrap",
-                              }}
-                            >
-                              {item.title}
-                            </div>
-                            <div style={{ marginTop: 4 }}>
-                              <span
-                                style={{
-                                  fontSize: 10,
-                                  padding: "2px 8px",
-                                  borderRadius: 20,
-                                  background: item.pdf
-                                    ? `${GOLD}18`
-                                    : "rgba(150,150,150,0.1)",
-                                  border: `1px solid ${
-                                    item.pdf
-                                      ? GOLD + "44"
-                                      : "rgba(150,150,150,0.2)"
-                                  }`,
-                                  color: item.pdf ? GOLD : GRAY,
-                                  fontWeight: 700,
-                                }}
-                              >
-                                {item.pdf ? "📄 PDF ready" : "📄 Coming soon"}
-                              </span>
-                            </div>
-                          </div>
-                          <span
-                            style={{ color: GOLD, fontSize: 18, flexShrink: 0 }}
-                          >
-                            →
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
-        );
-      }
+const setLevelSafe = (v) => {
+setLevel(v);
+setGrade(null);
+setSubj(null);
+setCtype(null);
+setOpenItem(null);
+};
+const setGradeSafe = (v) => {
+setGrade(v);
+setSubj(null);
+setCtype(null);
+setOpenItem(null);
+};
+const setSubjSafe = (v) => {
+setSubj(v);
+setCtype(null);
+setOpenItem(null);
+};
+const setCtypeSafe = (v) => {
+setCtype(v);
+setOpenItem(null);
+};
 
-      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-    </script>
+const hasBack = !!(level || grade || subj || ctype || openItem);
+const grades = level ? Object.keys(CONTENT[level]) : [];
+const subjects = grade ? Object.keys(CONTENT[level][grade]) : [];
+const items =
+level && grade && subj && ctype
+? CONTENT[level][grade][subj][ctype]
+: [];
+const ctypeIcon = (t) =>
+t === "courses" ? "📖" : t === "exercises" ? "✏️" : "📋";
 
-    <script>
-      // PDF download click tracker for Google Analytics
-      window.addEventListener(
-        "click",
-        function (e) {
-          const path = e.composedPath ? e.composedPath() : [];
-          for (let el of path) {
-            if (el && el.tagName === "A") {
-              const href = el.getAttribute("href");
-              if (href && href.includes(".pdf")) {
-                if (typeof gtag === "function") {
-                  gtag("event", "download", {
-                    file_name: href.split("/").pop(),
-                  });
-                }
-                break;
-              }
-            }
-          }
-        },
-        true
-      );
-    </script>
+if (!started) return <Splash onDone={() => setStarted(true)} />;
 
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-      import {
-        getFirestore,
-        doc,
-        updateDoc,
-        increment,
-      } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+if (!authChecked) {
+return (
+<div
+style={{
+minHeight: "100vh",
+background: bg,
+display: "flex",
+alignItems: "center",
+justifyContent: "center",
+}}
+>
+<div style={{ color: sub, fontSize: 14 }}>Loading…</div>
+</div>
+);
+}
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyAz1tmNsEWKaCFwK8Ue-6OQMmsSgW08RDY",
-        authDomain: "pilotehub-617bf.firebaseapp.com",
-        projectId: "pilotehub-617bf",
-        storageBucket: "pilotehub-617bf.firebasestorage.app",
-        messagingSenderId: "664479873048",
-        appId: "1:664479873048:web:3d985beb36502ea032eb6d",
-        measurementId: "G-834HYGDPSQ",
-      };
+if (!user) {
+return (
+<div
+style={{
+minHeight: "100vh",
+background: bg,
+display: "flex",
+flexDirection: "column",
+justifyContent: "center",
+padding: "24px 24px",
+}}
+>
+<div style={{ textAlign: "center", marginBottom: 28 }}>
+<div
+style={{
+fontFamily: "'Playfair Display',serif",
+fontSize: 34,
+fontWeight: 700,
+color: tc,
+}}
+>
+Pilotehub<span style={{ color: GOLD }}>+</span>
+</div>
+<div style={{ color: sub, fontSize: 13, marginTop: 6 }}>
+{authMode === "signup"
+? "Create a free account to access all courses, exercises, and exams."
+: "Log in to continue."}
+</div>
+</div>
 
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
+<div
+style={{
+background: card,
+borderRadius: 20,
+padding: 26,
+border: `1px solid ${GOLD}33`,
+}}
+>
+<input
+type="email"
+placeholder="Email address"
+value={authEmail}
+onChange={(e) => setAuthEmail(e.target.value)}
+style={{
+width: "100%",
+padding: "13px 14px",
+borderRadius: 10,
+border: `1px solid ${
+dark ? "rgba(255,255,255,0.15)" : "rgba(10,22,40,0.15)"
+}`,
+background: dark ? "#080F1C" : SOFT,
+color: tc,
+fontSize: 14,
+marginBottom: 10,
+outline: "none",
+}}
+/>
+<input
+type="password"
+placeholder="Password (6+ characters)"
+value={authPassword}
+onChange={(e) => setAuthPassword(e.target.value)}
+onKeyDown={(e) => {
+if (e.key === "Enter") handleAuthSubmit();
+}}
+style={{
+width: "100%",
+padding: "13px 14px",
+borderRadius: 10,
+border: `1px solid ${
+dark ? "rgba(255,255,255,0.15)" : "rgba(10,22,40,0.15)"
+}`,
+background: dark ? "#080F1C" : SOFT,
+color: tc,
+fontSize: 14,
+marginBottom: 8,
+outline: "none",
+}}
+/>
+{authError && (
+<div
+style={{ color: "#E05C5C", fontSize: 12, marginBottom: 8 }}
+>
+{authError}
+</div>
+)}
+<button
+onClick={handleAuthSubmit}
+disabled={authLoading}
+style={{
+width: "100%",
+marginTop: 8,
+padding: "14px 22px",
+background: `linear-gradient(135deg,${GOLD},#A8822A)`,
+border: "none",
+borderRadius: 12,
+color: NAVY,
+fontWeight: 700,
+cursor: "pointer",
+fontSize: 15,
+opacity: authLoading ? 0.6 : 1,
+boxShadow: "0 4px 20px rgba(201,168,76,0.3)",
+}}
+>
+{authLoading
+? "Please wait…"
+: authMode === "signup"
+? "Sign Up"
+: "Log In"}
+</button>
+<div
+onClick={() => {
+setAuthMode(authMode === "signup" ? "login" : "signup");
+setAuthError("");
+}}
+style={{
+marginTop: 16,
+textAlign: "center",
+color: sub,
+fontSize: 13,
+cursor: "pointer",
+}}
+>
+{authMode === "signup"
+? "Already have an account? Log in"
+: "New here? Create an account"}
+</div>
+</div>
 
-      window.trackDownload = async function () {
-        try {
-          const ref = doc(db, "downloads", "total");
-          await updateDoc(ref, { count: increment(1) });
-          console.log("Download counted!");
-        } catch (err) {
-          console.error("Firebase error:", err);
-        }
-      };
-    </script>
-  </body>
+<div
+style={{
+color: GRAY,
+fontSize: 12,
+textAlign: "center",
+marginTop: 20,
+lineHeight: 1.7,
+}}
+>
+Free forever. No ads. No subscriptions.
+</div>
+</div>
+);
+}
+
+if (openItem)
+return (
+<PDFViewer
+item={openItem}
+dark={dark}
+onBack={() => setOpenItem(null)}
+/>
+);
+
+return (
+<div
+style={{
+minHeight: "100vh",
+background: bg,
+transition: "background 0.3s",
+}}
+>
+{quote && (
+<div
+style={{
+position: "fixed",
+bottom: 24,
+right: 16,
+zIndex: 1000,
+background: `linear-gradient(135deg,${NAVY},${LNAV})`,
+border: `1px solid ${GOLD}44`,
+borderRadius: 16,
+padding: "12px 16px",
+maxWidth: 240,
+boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
+animation: "slideIn 0.4s ease",
+}}
+>
+<div style={{ color: WHITE, fontSize: 13, lineHeight: 1.5 }}>
+{quote}
+</div>
+</div>
+)}
+
+{showInfo && (
+<div
+style={{
+position: "fixed",
+inset: 0,
+background: "rgba(0,0,0,0.7)",
+zIndex: 500,
+display: "flex",
+alignItems: "center",
+justifyContent: "center",
+padding: 20,
+}}
+onClick={() => setShowInfo(false)}
+>
+<div
+onClick={(e) => e.stopPropagation()}
+style={{
+background: card,
+borderRadius: 20,
+padding: 28,
+maxWidth: 400,
+width: "100%",
+border: `1px solid ${GOLD}33`,
+}}
+>
+<h2
+style={{
+color: GOLD,
+fontFamily: "'Playfair Display',serif",
+margin: "0 0 12px",
+}}
+>
+About Pilotehub+
+</h2>
+<p
+style={{
+color: tc,
+fontSize: 14,
+lineHeight: 1.8,
+margin: "0 0 12px",
+}}
+>
+Pilotehub+ is a free educational platform for students from
+7th grade to Junior year. All courses, exercises, and exams
+— organized by grade and subject — in one place.
+</p>
+<p style={{ color: sub, fontSize: 13 }}>
+No ads. No subscriptions. Forever free.
+</p>
+<button
+onClick={() => setShowInfo(false)}
+style={{
+marginTop: 18,
+padding: "11px 22px",
+background: GOLD,
+border: "none",
+borderRadius: 10,
+color: NAVY,
+fontWeight: 700,
+cursor: "pointer",
+fontSize: 14,
+}}
+>
+Got it!
+</button>
+</div>
+</div>
+)}
+
+{showReviews && (
+<div
+style={{
+position: "fixed",
+inset: 0,
+background: "rgba(0,0,0,0.7)",
+zIndex: 600,
+display: "flex",
+alignItems: "flex-end",
+justifyContent: "center",
+}}
+onClick={() => setShowReviews(false)}
+>
+<div
+onClick={(e) => e.stopPropagation()}
+style={{
+background: card,
+borderRadius: "20px 20px 0 0",
+padding: 24,
+maxWidth: 430,
+width: "100%",
+maxHeight: "85vh",
+overflowY: "auto",
+border: `1px solid ${GOLD}33`,
+borderBottom: "none",
+}}
+>
+<div
+style={{
+display: "flex",
+alignItems: "center",
+justifyContent: "space-between",
+marginBottom: 4,
+}}
+>
+<h2
+style={{
+color: GOLD,
+fontFamily: "'Playfair Display',serif",
+margin: 0,
+}}
+>
+Community Reviews
+</h2>
+<button
+onClick={() => setShowReviews(false)}
+style={{
+background: "none",
+border: "none",
+color: sub,
+fontSize: 20,
+cursor: "pointer",
+}}
+>
+✕
+</button>
+</div>
+<div style={{ color: sub, fontSize: 13, marginBottom: 18 }}>
+{reviews.length > 0
+? `${avgRating.toFixed(1)} ★ average from ${reviews.length} review${
+reviews.length === 1 ? "" : "s"
+}`
+: "Be the first to leave a review!"}
+</div>
+
+<div
+style={{
+background: dark ? "#080F1C" : SOFT,
+borderRadius: 16,
+padding: 16,
+marginBottom: 20,
+}}
+>
+<input
+type="text"
+placeholder="Your name (optional)"
+value={reviewName}
+onChange={(e) => setReviewName(e.target.value)}
+style={{
+width: "100%",
+padding: "10px 12px",
+borderRadius: 10,
+border: `1px solid ${dark ? "rgba(255,255,255,0.15)" : "rgba(10,22,40,0.15)"}`,
+background: card,
+color: tc,
+fontSize: 13,
+marginBottom: 10,
+outline: "none",
+}}
+/>
+<div style={{ display: "flex", gap: 4, marginBottom: 10 }}>
+{[1, 2, 3, 4, 5].map((n) => (
+<span
+key={n}
+onClick={() => setReviewStars(n)}
+style={{
+fontSize: 24,
+cursor: "pointer",
+color: n <= reviewStars ? GOLD : GRAY,
+}}
+>
+★
+</span>
+))}
+</div>
+<textarea
+placeholder="Share your thoughts about Pilotehub+…"
+value={reviewText}
+onChange={(e) => setReviewText(e.target.value)}
+rows={3}
+style={{
+width: "100%",
+padding: "10px 12px",
+borderRadius: 10,
+border: `1px solid ${dark ? "rgba(255,255,255,0.15)" : "rgba(10,22,40,0.15)"}`,
+background: card,
+color: tc,
+fontSize: 13,
+resize: "vertical",
+outline: "none",
+fontFamily: "inherit",
+}}
+/>
+<button
+onClick={handleSubmitReview}
+disabled={reviewLoading || !reviewText.trim()}
+style={{
+width: "100%",
+marginTop: 10,
+padding: "11px 22px",
+background: `linear-gradient(135deg,${GOLD},#A8822A)`,
+border: "none",
+borderRadius: 10,
+color: NAVY,
+fontWeight: 700,
+cursor: "pointer",
+fontSize: 13,
+opacity: reviewLoading || !reviewText.trim() ? 0.6 : 1,
+}}
+>
+{reviewLoading ? "Posting…" : "Post Review"}
+</button>
+</div>
+
+<div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+{reviews.map((r, i) => (
+<div
+key={i}
+style={{
+background: dark ? "#080F1C" : SOFT,
+borderRadius: 14,
+padding: "14px 16px",
+}}
+>
+<div
+style={{
+display: "flex",
+justifyContent: "space-between",
+alignItems: "center",
+marginBottom: 6,
+}}
+>
+<span style={{ color: tc, fontWeight: 700, fontSize: 13 }}>
+{r.name}
+</span>
+<span style={{ color: GOLD, fontSize: 13 }}>
+{"★".repeat(r.stars)}
+{"☆".repeat(5 - r.stars)}
+</span>
+</div>
+<div style={{ color: sub, fontSize: 13, lineHeight: 1.6 }}>
+{r.comment}
+</div>
+</div>
+))}
+</div>
+</div>
+</div>
+)}
+
+<div
+style={{
+background: dark ? `${NAVY}EE` : `${WHITE}EE`,
+backdropFilter: "blur(12px)",
+borderBottom: `1px solid ${
+dark ? "rgba(201,168,76,0.15)" : "rgba(10,22,40,0.08)"
+}`,
+padding: "14px 20px",
+display: "flex",
+alignItems: "center",
+justifyContent: "space-between",
+position: "sticky",
+top: 0,
+zIndex: 100,
+}}
+>
+<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+{hasBack && (
+<button
+onClick={goBack}
+style={{
+background: "none",
+border: "none",
+color: GOLD,
+fontSize: 22,
+cursor: "pointer",
+padding: "0 6px 0 0",
+lineHeight: 1,
+}}
+>
+←
+</button>
+)}
+<span
+style={{
+fontFamily: "'Playfair Display',serif",
+fontSize: 20,
+fontWeight: 700,
+color: tc,
+}}
+>
+Pilotehub<span style={{ color: GOLD }}>+</span>
+</span>
+</div>
+<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+<button
+onClick={handleSignOut}
+title={user && user.email}
+style={{
+background: `${GOLD}22`,
+border: `1px solid ${GOLD}55`,
+borderRadius: 20,
+padding: "6px 12px",
+color: GOLD,
+fontSize: 11,
+fontWeight: 700,
+cursor: "pointer",
+}}
+>
+Sign Out
+</button>
+<button
+onClick={() => setDark((d) => !d)}
+style={{
+background: "none",
+border: "none",
+fontSize: 20,
+cursor: "pointer",
+}}
+>
+{dark ? "☀️" : "🌙"}
+</button>
+</div>
+</div>
+
+{!level && (
+<div
+onClick={() => setShowInfo(true)}
+style={{
+background: `linear-gradient(135deg,${NAVY},${LNAV})`,
+padding: "14px 20px",
+cursor: "pointer",
+display: "flex",
+alignItems: "center",
+justifyContent: "space-between",
+}}
+>
+<div>
+<div
+style={{
+color: GOLD,
+fontSize: 12,
+fontWeight: 700,
+letterSpacing: 2,
+}}
+>
+ABOUT PILOTEHUB+
+</div>
+<div
+style={{
+color: "rgba(255,255,255,0.7)",
+fontSize: 13,
+marginTop: 2,
+}}
+>
+Tap to learn about the app →
+</div>
+</div>
+<span style={{ fontSize: 20 }}>ℹ️</span>
+</div>
+)}
+
+<div style={{ padding: "24px 20px 40px" }}>
+{!level && (
+<>
+<div
+style={{
+fontSize: 22,
+fontWeight: 700,
+color: tc,
+fontFamily: "'Playfair Display',serif",
+marginBottom: 6,
+}}
+>
+Welcome to Pilotehub+ 👋
+</div>
+<div style={{ color: sub, fontSize: 14, marginBottom: 28 }}>
+Select your school level to get started.
+</div>
+<div
+style={{
+fontSize: 13,
+color: sub,
+fontWeight: 700,
+letterSpacing: 2,
+marginBottom: 14,
+}}
+>
+CHOOSE YOUR LEVEL
+</div>
+<div style={{ display: "flex", gap: 14 }}>
+{["Middle School", "High School"].map((lv, i) => (
+<div
+key={lv}
+onClick={() => setLevelSafe(lv)}
+style={{
+flex: 1,
+borderRadius: 20,
+cursor: "pointer",
+background:
+i === 0
+? `linear-gradient(135deg,#1A3158,#0A1628)`
+: `linear-gradient(135deg,#2A1A10,#1A0A05)`,
+border: `1px solid ${GOLD}33`,
+padding: "24px 16px",
+position: "relative",
+boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+}}
+>
+<div style={{ fontSize: 32, marginBottom: 10 }}>
+{i === 0 ? "🏫" : "🎓"}
+</div>
+<div
+style={{
+color: WHITE,
+fontWeight: 700,
+fontSize: 16,
+fontFamily: "'Playfair Display',serif",
+}}
+>
+{lv}
+</div>
+<div
+style={{
+color: "rgba(255,255,255,0.5)",
+fontSize: 12,
+marginTop: 4,
+}}
+>
+{i === 0 ? "Grades 7–9" : "Freshman–Junior"}
+</div>
+<div
+style={{
+position: "absolute",
+bottom: 14,
+right: 16,
+color: GOLD,
+fontSize: 20,
+}}
+>
+→
+</div>
+</div>
+))}
+</div>
+
+<div
+style={{
+fontSize: 13,
+color: sub,
+fontWeight: 700,
+letterSpacing: 2,
+margin: "32px 0 14px",
+}}
+>
+OUR COMMUNITY
+</div>
+<div
+style={{
+display: "grid",
+gridTemplateColumns: "1fr 1fr",
+gap: 12,
+marginBottom: 20,
+}}
+>
+{[
+{
+icon: "👥",
+label: "Registered Users",
+value: registeredCount === null ? "—" : registeredCount,
+},
+{
+icon: "📚",
+label: "Resources Available",
+value: RESOURCES_COUNT,
+},
+{
+icon: "🏫",
+label: "Schools Represented",
+value: SCHOOLS_COUNT,
+},
+{
+icon: "🤝",
+label: "Team Members",
+value: TEAM_MEMBERS_COUNT,
+},
+].map((s) => (
+<div
+key={s.label}
+style={{
+background: card,
+borderRadius: 16,
+padding: "16px 14px",
+border: `1px solid ${
+dark ? "rgba(201,168,76,0.12)" : "rgba(10,22,40,0.08)"
+}`,
+boxShadow: dark ? "none" : "0 2px 8px rgba(10,22,40,0.04)",
+}}
+>
+<div style={{ fontSize: 20, marginBottom: 6 }}>{s.icon}</div>
+<div
+style={{
+color: GOLD,
+fontFamily: "'Playfair Display',serif",
+fontSize: 22,
+fontWeight: 700,
+}}
+>
+{s.value}
+</div>
+<div style={{ color: sub, fontSize: 11, marginTop: 2 }}>
+{s.label}
+</div>
+</div>
+))}
+</div>
+
+<div
+onClick={() => window.open(JOIN_FORM_LINK, "_blank")}
+style={{
+background: `linear-gradient(135deg,${NAVY},${LNAV})`,
+borderRadius: 18,
+padding: "20px 18px",
+cursor: "pointer",
+border: `1px solid ${GOLD}44`,
+marginBottom: 14,
+boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+}}
+>
+<div
+style={{
+color: GOLD,
+fontSize: 12,
+fontWeight: 700,
+letterSpacing: 2,
+marginBottom: 6,
+}}
+>
+JOIN US
+</div>
+<div
+style={{
+color: WHITE,
+fontSize: 15,
+lineHeight: 1.6,
+marginBottom: 12,
+}}
+>
+Help us improve access to education in Tunisia — become a
+contributor to Pilotehub+.
+</div>
+<div
+style={{
+display: "inline-flex",
+alignItems: "center",
+gap: 6,
+color: GOLD,
+fontWeight: 700,
+fontSize: 13,
+}}
+>
+Apply now →
+</div>
+</div>
+
+<div
+onClick={() => setShowReviews(true)}
+style={{
+background: card,
+borderRadius: 16,
+padding: "16px 18px",
+cursor: "pointer",
+display: "flex",
+alignItems: "center",
+justifyContent: "space-between",
+border: `1px solid ${
+dark ? "rgba(201,168,76,0.12)" : "rgba(10,22,40,0.08)"
+}`,
+boxShadow: dark ? "none" : "0 2px 8px rgba(10,22,40,0.04)",
+}}
+>
+<div>
+<div
+style={{
+color: tc,
+fontWeight: 700,
+fontSize: 15,
+fontFamily: "'Playfair Display',serif",
+}}
+>
+⭐ Reviews & Comments
+</div>
+<div style={{ color: sub, fontSize: 12, marginTop: 4 }}>
+{reviews.length > 0
+? `${avgRating.toFixed(1)} ★ · ${reviews.length} review${
+reviews.length === 1 ? "" : "s"
+}`
+: "Rate us & share your thoughts"}
+</div>
+</div>
+<span style={{ color: GOLD, fontSize: 22 }}>→</span>
+</div>
+</>
+)}
+
+{level && !grade && (
+<>
+<div
+style={{
+color: GOLD,
+fontSize: 12,
+fontWeight: 700,
+letterSpacing: 2,
+marginBottom: 4,
+}}
+>
+{level.toUpperCase()}
+</div>
+<div
+style={{
+color: tc,
+fontFamily: "'Playfair Display',serif",
+fontSize: 24,
+fontWeight: 700,
+marginBottom: 20,
+}}
+>
+Select Grade
+</div>
+<div
+style={{
+display: "flex",
+flexDirection: "column",
+gap: 12,
+}}
+>
+{grades.map((g) => (
+<div
+key={g}
+onClick={() => setGradeSafe(g)}
+style={{
+background: card,
+borderRadius: 18,
+padding: "20px",
+cursor: "pointer",
+display: "flex",
+alignItems: "center",
+justifyContent: "space-between",
+border: `1px solid ${
+dark
+? "rgba(201,168,76,0.12)"
+: "rgba(10,22,40,0.08)"
+}`,
+boxShadow: dark
+? "none"
+: "0 2px 12px rgba(10,22,40,0.06)",
+}}
+>
+<div>
+<div
+style={{
+color: tc,
+fontWeight: 700,
+fontSize: 17,
+fontFamily: "'Playfair Display',serif",
+}}
+>
+{g}
+</div>
+<div
+style={{ color: sub, fontSize: 12, marginTop: 4 }}
+>
+{Object.keys(CONTENT[level][g]).length} subjects
+</div>
+</div>
+<span style={{ color: GOLD, fontSize: 22 }}>→</span>
+</div>
+))}
+</div>
+</>
+)}
+
+{level && grade && !subj && (
+<>
+<div
+style={{
+color: GOLD,
+fontSize: 12,
+fontWeight: 700,
+letterSpacing: 2,
+marginBottom: 4,
+}}
+>
+{grade.toUpperCase()}
+</div>
+<div
+style={{
+color: tc,
+fontFamily: "'Playfair Display',serif",
+fontSize: 24,
+fontWeight: 700,
+marginBottom: 20,
+}}
+>
+Select Subject
+</div>
+<div
+style={{
+display: "grid",
+gridTemplateColumns: "1fr 1fr",
+gap: 12,
+}}
+>
+{subjects.map((s) => (
+<div
+key={s}
+onClick={() => setSubjSafe(s)}
+style={{
+background: card,
+borderRadius: 14,
+padding: "16px 14px",
+cursor: "pointer",
+display: "flex",
+alignItems: "center",
+gap: 10,
+border: `1px solid ${
+dark
+? "rgba(255,255,255,0.05)"
+: "rgba(10,22,40,0.07)"
+}`,
+boxShadow: dark
+? "none"
+: "0 2px 8px rgba(10,22,40,0.04)",
+}}
+>
+<span style={{ fontSize: 22 }}>{SICO[s] || "📚"}</span>
+<span
+style={{ color: tc, fontSize: 13, fontWeight: 600 }}
+>
+{s}
+</span>
+</div>
+))}
+</div>
+</>
+)}
+
+{level && grade && subj && !ctype && (
+<>
+<div
+style={{
+color: GOLD,
+fontSize: 12,
+fontWeight: 700,
+letterSpacing: 2,
+marginBottom: 4,
+}}
+>
+{subj.toUpperCase()}
+</div>
+<div
+style={{
+color: tc,
+fontFamily: "'Playfair Display',serif",
+fontSize: 24,
+fontWeight: 700,
+marginBottom: 20,
+}}
+>
+What to study?
+</div>
+<div
+style={{
+display: "grid",
+gridTemplateColumns: "1fr 1fr",
+gap: 14,
+}}
+>
+{[
+{
+type: "courses",
+icon: "📖",
+label: "Courses",
+desc: "Lessons & resumes",
+},
+{
+type: "exercises",
+icon: "✏️",
+label: "Exercises",
+desc: "Practice problems",
+},
+{
+type: "exams",
+icon: "📋",
+label: "Exams",
+desc: "Past & mock exams",
+},
+].map((item, i) => (
+<div
+key={item.type}
+onClick={() => setCtypeSafe(item.type)}
+style={{
+background: card,
+borderRadius: 18,
+padding: "22px 16px",
+cursor: "pointer",
+gridColumn: i === 2 ? "span 2" : "auto",
+border: `1px solid ${
+dark
+? "rgba(201,168,76,0.12)"
+: "rgba(10,22,40,0.08)"
+}`,
+boxShadow: dark
+? "none"
+: "0 2px 12px rgba(10,22,40,0.06)",
+}}
+>
+<div style={{ fontSize: 32, marginBottom: 10 }}>
+{item.icon}
+</div>
+<div
+style={{
+color: tc,
+fontWeight: 700,
+fontSize: 16,
+fontFamily: "'Playfair Display',serif",
+}}
+>
+{item.label}
+</div>
+<div style={{ color: sub, fontSize: 12, marginTop: 4 }}>
+{item.desc}
+</div>
+</div>
+))}
+</div>
+</>
+)}
+
+{level && grade && subj && ctype && (
+<>
+<div
+style={{
+color: GOLD,
+fontSize: 12,
+fontWeight: 700,
+letterSpacing: 2,
+marginBottom: 4,
+}}
+>
+{subj.toUpperCase()} · {grade.toUpperCase()}
+</div>
+<div
+style={{
+color: tc,
+fontFamily: "'Playfair Display',serif",
+fontSize: 24,
+fontWeight: 700,
+marginBottom: 20,
+}}
+>
+{ctype === "courses"
+? "Courses"
+: ctype === "exercises"
+? "Exercises"
+: "Exams"}
+</div>
+{items.length === 0 ? (
+<div
+style={{
+background: card,
+borderRadius: 20,
+padding: "44px 24px",
+textAlign: "center",
+border: `2px dashed ${
+dark ? "rgba(255,255,255,0.08)" : "rgba(10,22,40,0.1)"
+}`,
+}}
+>
+<div style={{ fontSize: 40, marginBottom: 12 }}>
+{ctypeIcon(ctype)}
+</div>
+<div
+style={{
+color: tc,
+fontFamily: "'Playfair Display',serif",
+fontSize: 16,
+fontWeight: 700,
+marginBottom: 8,
+}}
+>
+No {ctype} yet
+</div>
+<div
+style={{ color: GRAY, fontSize: 13, lineHeight: 1.7 }}
+>
+Content coming soon.
+<br />
+Check back later!
+</div>
+</div>
+) : (
+<div
+style={{
+display: "flex",
+flexDirection: "column",
+gap: 10,
+}}
+>
+{items.map((item, i) => (
+<div
+key={i}
+onClick={() => setOpenItem(item)}
+style={{
+background: card,
+borderRadius: 14,
+padding: "16px 18px",
+display: "flex",
+alignItems: "center",
+gap: 14,
+border: `1px solid ${
+dark
+? "rgba(255,255,255,0.06)"
+: "rgba(10,22,40,0.07)"
+}`,
+boxShadow: dark
+? "none"
+: "0 2px 8px rgba(10,22,40,0.04)",
+cursor: "pointer",
+animation: `fadeUp 0.35s ease ${i * 0.06}s both`,
+}}
+>
+<div
+style={{
+width: 44,
+height: 44,
+borderRadius: 12,
+flexShrink: 0,
+background: `linear-gradient(135deg,${NAVY},${LNAV})`,
+display: "flex",
+alignItems: "center",
+justifyContent: "center",
+fontSize: 18,
+}}
+>
+{ctypeIcon(ctype)}
+</div>
+<div style={{ flex: 1, minWidth: 0 }}>
+<div
+style={{
+color: tc,
+fontWeight: 600,
+fontSize: 14,
+overflow: "hidden",
+textOverflow: "ellipsis",
+whiteSpace: "nowrap",
+}}
+>
+{item.title}
+</div>
+<div style={{ marginTop: 4 }}>
+<span
+style={{
+fontSize: 10,
+padding: "2px 8px",
+borderRadius: 20,
+background: item.pdf
+? `${GOLD}18`
+: "rgba(150,150,150,0.1)",
+border: `1px solid ${
+item.pdf
+? GOLD + "44"
+: "rgba(150,150,150,0.2)"
+}`,
+color: item.pdf ? GOLD : GRAY,
+fontWeight: 700,
+}}
+>
+{item.pdf ? "📄 PDF ready" : "📄 Coming soon"}
+</span>
+</div>
+</div>
+<span
+style={{ color: GOLD, fontSize: 18, flexShrink: 0 }}
+>
+→
+</span>
+</div>
+))}
+</div>
+)}
+</>
+)}
+</div>
+</div>
+);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+
+<script>
+// PDF download click tracker for Google Analytics
+window.addEventListener(
+"click",
+function (e) {
+const path = e.composedPath ? e.composedPath() : [];
+for (let el of path) {
+if (el && el.tagName === "A") {
+const href = el.getAttribute("href");
+if (href && href.includes(".pdf")) {
+if (typeof gtag === "function") {
+gtag("event", "download", {
+file_name: href.split("/").pop(),
+});
+}
+break;
+}
+}
+}
+},
+true
+);
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import {
+getFirestore,
+doc,
+setDoc,
+getDoc,
+updateDoc,
+increment,
+collection,
+addDoc,
+getDocs,
+query,
+orderBy,
+limit,
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+signOut,
+onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyAz1tmNsEWKaCFwK8Ue-6OQMmsSgW08RDY",
+authDomain: "pilotehub-617bf.firebaseapp.com",
+projectId: "pilotehub-617bf",
+storageBucket: "pilotehub-617bf.firebasestorage.app",
+messagingSenderId: "664479873048",
+appId: "1:664479873048:web:3d985beb36502ea032eb6d",
+measurementId: "G-834HYGDPSQ",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+window.trackDownload = async function () {
+try {
+const ref = doc(db, "downloads", "total");
+await updateDoc(ref, { count: increment(1) });
+console.log("Download counted!");
+} catch (err) {
+console.error("Firebase error:", err);
+}
+};
+
+// ---- User registration (email/password via Firebase Auth) ----
+window.pilotehubSignUp = async function (email, password) {
+const cred = await createUserWithEmailAndPassword(auth, email, password);
+// Bump the cumulative registered-users counter (creates the doc if missing)
+await setDoc(
+doc(db, "stats", "users"),
+{ count: increment(1) },
+{ merge: true }
+);
+return cred.user;
+};
+
+window.pilotehubSignIn = async function (email, password) {
+const cred = await signInWithEmailAndPassword(auth, email, password);
+return cred.user;
+};
+
+window.pilotehubSignOut = async function () {
+await signOut(auth);
+};
+
+window.pilotehubOnAuthChange = function (callback) {
+return onAuthStateChanged(auth, callback);
+};
+
+window.pilotehubGetRegisteredUsersCount = async function () {
+try {
+const snap = await getDoc(doc(db, "stats", "users"));
+return snap.exists() ? snap.data().count || 0 : 0;
+} catch (err) {
+console.error("Firebase error:", err);
+return null;
+}
+};
+
+// ---- Reviews / comments with star ratings ----
+window.pilotehubSubmitReview = async function (name, stars, comment) {
+await addDoc(collection(db, "reviews"), {
+name: name && name.trim() ? name.trim() : "Anonymous",
+stars,
+comment,
+createdAt: Date.now(),
+});
+};
+
+window.pilotehubGetReviews = async function () {
+try {
+const q = query(
+collection(db, "reviews"),
+orderBy("createdAt", "desc"),
+limit(50)
+);
+const snap = await getDocs(q);
+return snap.docs.map((d) => d.data());
+} catch (err) {
+console.error("Firebase error:", err);
+return [];
+}
+};
+</script>
+</body>
 </html>
-
