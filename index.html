@@ -1571,13 +1571,14 @@
                           <span
                             style={{ color: tc, fontWeight: 700, fontSize: 13 }}
                           >
-                            {r.name}
+                            {r.email || "user"}
                           </span>
                           <span style={{ color: GOLD, fontSize: 13 }}>
                             {"★".repeat(r.stars)}
                             {"☆".repeat(5 - r.stars)}
                           </span>
                         </div>
+
                         <div
                           style={{ color: sub, fontSize: 13, lineHeight: 1.6 }}
                         >
@@ -2466,21 +2467,15 @@
 
       // ---- Reviews / comments with star ratings ----
       window.pilotehubSubmitReview = async function (stars, comment) {
-        const currentUser = auth.currentUser;
-
-        if (!currentUser) {
-          throw new Error("You must be logged in.");
-        }
+        const user = auth.currentUser;
 
         await addDoc(collection(db, "reviews"), {
-          email: currentUser.email,
-          uid: currentUser.uid,
+          email: user ? user.email : "Unknown",
           stars,
           comment,
           createdAt: Date.now(),
         });
       };
-
       window.pilotehubGetReviews = async function () {
         try {
           const q = query(
