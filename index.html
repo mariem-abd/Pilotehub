@@ -901,6 +901,7 @@
         const [authEmail, setAuthEmail] = useState("");
         const [authPassword, setAuthPassword] = useState("");
         const [authError, setAuthError] = useState("");
+        const [showPassword, setShowPassword] = useState(false);
         const [authLoading, setAuthLoading] = useState(false);
         const [registeredCount, setRegisteredCount] = useState(null);
 
@@ -992,11 +993,7 @@
           if (!reviewText.trim()) return;
           setReviewLoading(true);
           try {
-            await window.pilotehubSubmitReview(
-              reviewName,
-              reviewStars,
-              reviewText.trim()
-            );
+            await window.pilotehubSubmitReview(reviewStars, reviewText.trim());
             setReviewName("");
             setReviewText("");
             setReviewStars(5);
@@ -1150,28 +1147,46 @@
                     outline: "none",
                   }}
                 />
-                <input
-                  type="password"
-                  placeholder="Password (6+ characters)"
-                  value={authPassword}
-                  onChange={(e) => setAuthPassword(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") handleAuthSubmit();
-                  }}
-                  style={{
-                    width: "100%",
-                    padding: "13px 14px",
-                    borderRadius: 10,
-                    border: `1px solid ${
-                      dark ? "rgba(255,255,255,0.15)" : "rgba(10,22,40,0.15)"
-                    }`,
-                    background: dark ? "#080F1C" : SOFT,
-                    color: tc,
-                    fontSize: 14,
-                    marginBottom: 8,
-                    outline: "none",
-                  }}
-                />
+                <div style={{ position: "relative" }}>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password (6+ characters)"
+                    value={authPassword}
+                    onChange={(e) => setAuthPassword(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleAuthSubmit();
+                    }}
+                    style={{
+                      width: "100%",
+                      padding: "13px 45px 13px 14px",
+                      borderRadius: 10,
+                      border: `1px solid ${
+                        dark ? "rgba(255,255,255,0.15)" : "rgba(10,22,40,0.15)"
+                      }`,
+                      background: dark ? "#080F1C" : SOFT,
+                      color: tc,
+                      fontSize: 14,
+                      outline: "none",
+                    }}
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      position: "absolute",
+                      right: 12,
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      fontSize: 18,
+                    }}
+                  >
+                    {showPassword ? "👁️" : "👁️‍🗨️"}
+                  </button>
+                </div>
                 <p className="password-hint">
                   Please remember your password so you can log in next time.
                   Save it somewhere secure if needed.
@@ -2450,9 +2465,16 @@
       };
 
       // ---- Reviews / comments with star ratings ----
-      window.pilotehubSubmitReview = async function (name, stars, comment) {
+      window.pilotehubSubmitReview = async function (stars, comment) {
+        const currentUser = auth.currentUser;
+
+        if (!currentUser) {
+          throw new Error("You must be logged in.");
+        }
+
         await addDoc(collection(db, "reviews"), {
-          name: name && name.trim() ? name.trim() : "Anonymous",
+          email: currentUser.email,
+          uid: currentUser.uid,
           stars,
           comment,
           createdAt: Date.now(),
