@@ -1,2496 +1,705 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-SE7SCC4E7W"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-SE7SCC4E7W");
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pilotehub+</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        background: #0a1628;
-        font-family: "Lato", sans-serif;
-        max-width: 430px;
-        margin: 0 auto;
-        min-height: 100vh;
-      }
-      ::-webkit-scrollbar {
-        width: 4px;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #c9a84c44;
-        border-radius: 4px;
-      }
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateX(16px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="text/babel">
-      const { useState, useEffect } = React;
-      const GOLD = "#C9A84C",
-        NAVY = "#0A1628",
-        NAVY2 = "#0D1F3C",
-        LNAV = "#1A3158",
-        WHITE = "#FFFFFF",
-        SOFT = "#F5F7FA",
-        GRAY = "#8A99B0";
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SE7SCC4E7W"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date()); gtag("config", "G-SE7SCC4E7W");
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pilotehub+</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a1628;font-family:"Lato",sans-serif;max-width:430px;margin:0 auto;min-height:100vh}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:#c9a84c44;border-radius:4px}
+button{font-family:inherit}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+</style>
+</head>
+<body>
+<div id="root"></div>
 
-      const CONTENT = {
-        "Middle School": {
-          "7th Grade": {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
+<!-- ===================== FIREBASE (loads first, exposes window.PH) ===================== -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc, increment, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, OAuthProvider, signOut, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
-          "8th Grade": {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
+const app = initializeApp({
+apiKey: "AIzaSyAz1tmNsEWKaCFwK8Ue-6OQMmsSgW08RDY",
+authDomain: "pilotehub-617bf.firebaseapp.com",
+projectId: "pilotehub-617bf",
+storageBucket: "pilotehub-617bf.firebasestorage.app",
+messagingSenderId: "664479873048",
+appId: "1:664479873048:web:3d985beb36502ea032eb6d",
+measurementId: "G-834HYGDPSQ",
+});
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-          "9th Grade": {
-            Arabic: {
-              courses: [
-                {
-                  title: "محور العمل",
-                  pdf: "pdfs/%D9%85%D8%AD%D9%88%D8%B1%20%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
-                },
-                {
-                  title: "أدوات الربط و معانيها",
-                  pdf: "pdfs/%D8%A3%D8%AF%D9%88%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B1%D8%A8%D8%B7%20%D9%88%20%D9%85%D8%B9%D8%A7%D9%86%D9%8A%D9%87%D8%A7.pdf",
-                },
-                {
-                  title: "الإسم المقصور و المنقوص و الممدود",
-                  pdf: "pdfs/%D8%A7%D9%84%D8%A7%D8%B3%D9%85%20%D8%A7%D9%84%D9%85%D9%82%D8%B5%D9%88%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D9%82%D9%88%D8%B5.pdf",
-                },
-                {
-                  title: "الجمل المختزلة",
-                  pdf: "pdfs/%D8%A7%D9%84%D8%AC%D9%85%D9%84%20%D8%A7%D9%84%D9%85%D8%AE%D8%AA%D8%B2%D9%84%D8%A9.pdf",
-                },
-                {
-                  title: "العلاقات بين الجمل",
-                  pdf: "pdfs/%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%82%D8%A7%D8%AA%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D8%AC%D9%85%D9%84.pdf",
-                },
-                {
-                  title: "جملة النداء",
-                  pdf: "pdfs/%D8%A7%D9%84%D9%86%D8%AF%D8%A7%D8%A1.pdf",
-                },
-                { title: "محور المرأة", pdf: "pdfs/المرأة.pdf" },
-                {
-                  title: "الأساليب اللغوية و الروابط المنطقية",
-                  pdf: "pdfs/الأساليب اللغوية و الروابط المنطقية.pdf",
-                },
-                { title: "الاستفهام و معانيه", pdf: "pdfs/الاستفهام.pdf" },
-                {
-                  title: "الأمر و النهي و معانيهما",
-                  pdf: "pdfs/الأمر و النهي.pdf",
-                },
-                {
-                  title: "دلالة الحروف المقترنة بالأفعال",
-                  pdf: "pdfs/دلالة الحروف المقترنة بالأفعال.pdf",
-                },
-                {
-                  title: "محور شواغل عالمنا المعاصر",
-                  pdf: "pdfs/شواغل عالمنا المعاصر.pdf",
-                },
-                { title: "التصغير و معانيه", pdf: "pdfs/التصغير.pdf" },
-                {
-                  title: "النسبة و المصدر الصناعي",
-                  pdf: " pdfs/النسبة والمصدر.pdf",
-                },
-                {
-                  title: "اسم العدد الأصلي و الرتبي",
-                  pdf: "pdfs/اسم العدد.pdf",
-                },
-              ],
-              exercises: [
-                {
-                  title: "سلسلة تمارين اسم التصغير و معانيه",
-                  pdf: "pdfs/تمارين تصغير.pdf",
-                },
-              ],
-              exams: [
-                { title: "الفرض التأليفي 1", pdf: "pdfs/synth1arabe.pdf" },
-                { title: "الفرض التأليفي 3", pdf: "pdfs/cntrl3arabe.pdf" },
-                { title: "فرض المراقبة 2", pdf: "pdfs/cntrl2ar.pdf" },
-                { title: "فرض المراقبة 1", pdf: "pdfs/cntrl1ar.pdf" },
-                { title: "الفرض التأليفي 2", pdf: "pdfs/synth2arabe.pdf" },
-              ],
-            },
-            French: {
-              courses: [],
-              exercises: [
-                {
-                  title: "Série d'exercices Cause et Conséquence",
-                  pdf: "pdfs/Causeconsq.pdf",
-                },
-              ],
-              exams: [
-                { title: "Controle français 1", pdf: "pdfs/cntrl1fr.pdf" },
-                { title: "Synthese français 1", pdf: "pdfs/synth1fr.pdf" },
-                { title: "Controle Français 3", pdf: "pdfs/cntrl3fr.pdf" },
-                { title: "Synthese Français 2", pdf: "pdfs/synth2.pdf" },
-                { title: "Controle Français 2", pdf: "pdfs/cntrl2fr.pdf" },
-              ],
-            },
-            English: {
-              courses: [
-                {
-                  title: "Family",
-                  pdf: "pdfs/Family9.pdf",
-                },
-                {
-                  title: "Pocket Money",
-                  pdf: "pdfs/Pocketmoney9.pdf",
-                },
-                { title: "School", pdf: "pdfs/School9.pdf" },
-                { title: "Fast Food", pdf: "pdfs/Fastfood9.pdf" },
-                { title: "Pollution", pdf: "pdfs/Pollution9.pdf" },
-                { title: "Smoking", pdf: "pdfs/Smoking9.pdf" },
-                { title: "The Internet", pdf: "pdfs/Theinternet9.pdf" },
-                { title: "Transport", pdf: "pdfs/Transport9.pdf" },
-              ],
-              exercises: [],
-              exams: [
-                { title: "Synthese anglais 1", pdf: "pdfs/synth1eng.pdf" },
-                { title: "Synthese anglais 3", pdf: "pdfs/syntheng3.pdf" },
-                { title: "Controle anglais 3", pdf: "pdfs/cntrleng3.pdf" },
-                { title: "Controle anglais 2", pdf: "pdfs/cntrl2eng.pdf" },
-                { title: "Synthese anglais 2", pdf: "pdfs/synth2eng.pdf" },
-              ],
-            },
-            Math: {
-              courses: [],
-              exercises: [
-                {
-                  title: "سلسلة تمارين طالس و تطبيقاتها",
-                  pdf: "pdfs/طالس.pdf",
-                },
-              ],
-              exams: [
-                {
-                  title: "Controle math 2",
-                  pdf: "pdfs/devoir%20cntrl%2022.pdf",
-                },
-                { title: "Controle math 1", pdf: "pdfs/cntrlmath1.pdf" },
-                { title: "synthese math 1", pdf: "pdfs/synth1math.pdf" },
-                { title: "Controle math 6", pdf: "pdfs/cntrl6math.pdf" },
-              ],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [
-                {
-                  title: "وظيفة الاتصال",
-                  pdf: "pdfs/%D9%88%D8%B8%D9%8A%D9%81%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84.pdf",
-                },
-              ],
-              exercises: [
-                {
-                  title: "سلسلة تمارين درس الاتصال",
-                  pdf: "pdfs/تمرين اتصال.pdf",
-                },
-              ],
-              exams: [
-                { title: "Controle science 1", pdf: "pdfs/cntrlsc1.pdf" },
-                { title: "Controle science 3", pdf: "pdfs/cntrlsc3.pdf" },
-                { title: "Controle science 2", pdf: "pdfs/cntrl2sc.pdf" },
-                { title: "Synthese science 1", pdf: "pdfs/synthsc1.pdf" },
-                { title: "Synthese science 2", pdf: "pdfs/synth2sc.pdf" },
-              ],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
-        },
+// Saves every user in Firestore (users/{uid}) and bumps the counter only for brand-new accounts.
+async function ensureUser(u, provider, countIfNew) {
+try {
+const ref = doc(db, "users", u.uid);
+const snap = await getDoc(ref);
+if (!snap.exists()) {
+await setDoc(ref, { email: u.email || "", name: u.displayName || "", provider, createdAt: Date.now(), lastLogin: Date.now() });
+if (countIfNew) await setDoc(doc(db, "stats", "users"), { count: increment(1) }, { merge: true });
+} else {
+await setDoc(ref, { lastLogin: Date.now() }, { merge: true });
+}
+} catch (e) { console.error("ensureUser:", e); }
+}
 
-        "High School": {
-          Freshman: {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
+getRedirectResult(auth).then((r) => { if (r && r.user) ensureUser(r.user, "social", true); }).catch(() => {});
 
-          Sophomore: {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Technology: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Civic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
+window.PH = {
+signUp: async (email, pw) => {
+const c = await createUserWithEmailAndPassword(auth, email, pw);
+await ensureUser(c.user, "password", true);
+return c.user;
+},
+signIn: async (email, pw) => {
+const c = await signInWithEmailAndPassword(auth, email, pw);
+await ensureUser(c.user, "password", false); // older accounts were already counted at signup
+return c.user;
+},
+social: async (name) => {
+let p;
+if (name === "google") p = new GoogleAuthProvider();
+else { p = new OAuthProvider("apple.com"); p.addScope("email"); p.addScope("name"); }
+try {
+const c = await signInWithPopup(auth, p);
+await ensureUser(c.user, name, true);
+return c.user;
+} catch (e) {
+if (e.code === "auth/popup-blocked" || e.code === "auth/operation-not-supported-in-this-environment") {
+await signInWithRedirect(auth, p);
+return null;
+}
+throw e;
+}
+},
+signOut: () => signOut(auth),
+reset: (email) => sendPasswordResetEmail(auth, email),
+onAuth: (cb) => onAuthStateChanged(auth, cb),
+usersCount: async () => {
+try { const s = await getDoc(doc(db, "stats", "users")); return s.exists() ? s.data().count || 0 : 0; }
+catch (e) { console.error(e); return null; }
+},
+trackDownload: async () => {
+try { await setDoc(doc(db, "downloads", "total"), { count: increment(1) }, { merge: true }); }
+catch (e) { console.error(e); }
+},
+submitReview: async (stars, comment) => {
+const u = auth.currentUser;
+if (!u) throw new Error("not-signed-in");
+await addDoc(collection(db, "reviews"), { uid: u.uid, email: u.email || u.displayName || "Student", stars, comment, createdAt: Date.now() });
+},
+getReviews: async () => {
+try {
+const s = await getDocs(query(collection(db, "reviews"), orderBy("createdAt", "desc"), limit(50)));
+return s.docs.map((d) => d.data());
+} catch (e) { console.error(e); return []; }
+},
+};
+window.dispatchEvent(new Event("ph-ready"));
+</script>
 
-          Junior: {
-            Arabic: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            French: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            English: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Math: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Physics: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Science: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Optional Language": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Computer Science": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            "Islamic Education": {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Philosophy: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            Geography: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-            History: {
-              courses: [],
-              exercises: [],
-              exams: [],
-            },
-          },
-        },
-      };
+<!-- ===================== APP ===================== -->
+<script type="text/babel">
+const { useState, useEffect } = React;
+const GOLD = "#C9A84C", NAVY = "#0A1628", NAVY2 = "#0D1F3C", LNAV = "#1A3158", WHITE = "#FFFFFF", SOFT = "#F5F7FA", GRAY = "#8A99B0";
+const GRAD = `linear-gradient(135deg,${GOLD},#A8822A)`;
+const PF = "'Playfair Display',serif";
 
-      const SICO = {
-        Arabic: "🔤",
-        French: "🇫🇷",
-        English: "🇬🇧",
-        Math: "➕",
-        Physics: "⚡",
-        Science: "🔬",
-        Technology: "🔧",
-        "Computer Science": "💻",
-        "Islamic Education": "☪️",
-        "Civic Education": "🏛️",
-        Geography: "🌍",
-        History: "📜",
-        Philosophy: "🤔",
-        "Optional Language": "🌐",
-      };
-      const QUOTES = [
-        "You're doing amazing — keep going! ✨",
-        "Every page you study is a step forward 📚",
-        "Rest if you must, but don't quit 💪",
-        "Your future self will thank you 🌟",
-        "Small steps every day lead to big results 🚀",
-        "Believe in yourself — you've got this! 🎯",
-      ];
+// ---------- CONTENT ----------
+const MS = ["Arabic","French","English","Math","Physics","Science","Technology","Computer Science","Islamic Education","Civic Education","Geography","History"];
+const JR = ["Arabic","French","English","Math","Physics","Science","Optional Language","Computer Science","Islamic Education","Philosophy","Geography","History"];
+const blank = (list) => Object.fromEntries(list.map((s) => [s, { courses: [], exercises: [], exams: [] }]));
+const L = (a) => a.map(([title, pdf]) => ({ title, pdf }));
 
-      // ---- Project / community config ----
-      // TODO: update these two numbers whenever they change in real life.
-      const SCHOOLS_COUNT = 7; // number of schools the contributing students come from
-      const TEAM_MEMBERS_COUNT = 16; // number of people working on Pilotehub+
-      // TODO: replace with your real Google Form (or other) application link.
-      const JOIN_FORM_LINK =
-        "https://docs.google.com/forms/d/e/1FAIpQLSfYqtlApc-iR9msFo1uFuk6wRnqKzTVTNmcs7NVWDr7RVkAPQ/viewform";
+const CONTENT = {
+"Middle School": {
+"7th Grade": blank(MS),
+"8th Grade": blank(MS),
+"9th Grade": {
+...blank(MS),
+Arabic: {
+courses: L([
+["محور العمل", "pdfs/%D9%85%D8%AD%D9%88%D8%B1%20%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf"],
+["أدوات الربط و معانيها", "pdfs/%D8%A3%D8%AF%D9%88%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B1%D8%A8%D8%B7%20%D9%88%20%D9%85%D8%B9%D8%A7%D9%86%D9%8A%D9%87%D8%A7.pdf"],
+["الإسم المقصور و المنقوص و الممدود", "pdfs/%D8%A7%D9%84%D8%A7%D8%B3%D9%85%20%D8%A7%D9%84%D9%85%D9%82%D8%B5%D9%88%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D9%82%D9%88%D8%B5.pdf"],
+["الجمل المختزلة", "pdfs/%D8%A7%D9%84%D8%AC%D9%85%D9%84%20%D8%A7%D9%84%D9%85%D8%AE%D8%AA%D8%B2%D9%84%D8%A9.pdf"],
+["العلاقات بين الجمل", "pdfs/%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%82%D8%A7%D8%AA%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D8%AC%D9%85%D9%84.pdf"],
+["جملة النداء", "pdfs/%D8%A7%D9%84%D9%86%D8%AF%D8%A7%D8%A1.pdf"],
+["محور المرأة", "pdfs/المرأة.pdf"],
+["الأساليب اللغوية و الروابط المنطقية", "pdfs/الأساليب اللغوية و الروابط المنطقية.pdf"],
+["الاستفهام و معانيه", "pdfs/الاستفهام.pdf"],
+["الأمر و النهي و معانيهما", "pdfs/الأمر و النهي.pdf"],
+["دلالة الحروف المقترنة بالأفعال", "pdfs/دلالة الحروف المقترنة بالأفعال.pdf"],
+["محور شواغل عالمنا المعاصر", "pdfs/شواغل عالمنا المعاصر.pdf"],
+["التصغير و معانيه", "pdfs/التصغير.pdf"],
+["النسبة و المصدر الصناعي", "pdfs/النسبة والمصدر.pdf"],
+["اسم العدد الأصلي و الرتبي", "pdfs/اسم العدد.pdf"],
+]),
+exercises: L([["سلسلة تمارين اسم التصغير و معانيه", "pdfs/تمارين تصغير.pdf"]]),
+exams: L([
+["الفرض التأليفي 1", "pdfs/synth1arabe.pdf"], ["الفرض التأليفي 3", "pdfs/cntrl3arabe.pdf"],
+["فرض المراقبة 2", "pdfs/cntrl2ar.pdf"], ["فرض المراقبة 1", "pdfs/cntrl1ar.pdf"], ["الفرض التأليفي 2", "pdfs/synth2arabe.pdf"],
+]),
+},
+French: {
+courses: [],
+exercises: L([["Série d'exercices Cause et Conséquence", "pdfs/Causeconsq.pdf"]]),
+exams: L([
+["Controle français 1", "pdfs/cntrl1fr.pdf"], ["Synthese français 1", "pdfs/synth1fr.pdf"], ["Controle Français 3", "pdfs/cntrl3fr.pdf"],
+["Synthese Français 2", "pdfs/synth2.pdf"], ["Controle Français 2", "pdfs/cntrl2fr.pdf"],
+]),
+},
+English: {
+courses: L([
+["Family", "pdfs/Family9.pdf"], ["Pocket Money", "pdfs/Pocketmoney9.pdf"], ["School", "pdfs/School9.pdf"], ["Fast Food", "pdfs/Fastfood9.pdf"],
+["Pollution", "pdfs/Pollution9.pdf"], ["Smoking", "pdfs/Smoking9.pdf"], ["The Internet", "pdfs/Theinternet9.pdf"], ["Transport", "pdfs/Transport9.pdf"],
+]),
+exercises: [],
+exams: L([
+["Synthese anglais 1", "pdfs/synth1eng.pdf"], ["Synthese anglais 3", "pdfs/syntheng3.pdf"], ["Controle anglais 3", "pdfs/cntrleng3.pdf"],
+["Controle anglais 2", "pdfs/cntrl2eng.pdf"], ["Synthese anglais 2", "pdfs/synth2eng.pdf"],
+]),
+},
+Math: {
+courses: [],
+exercises: L([["سلسلة تمارين طالس و تطبيقاتها", "pdfs/طالس.pdf"]]),
+exams: L([
+["Controle math 2", "pdfs/devoir%20cntrl%2022.pdf"], ["Controle math 1", "pdfs/cntrlmath1.pdf"],
+["synthese math 1", "pdfs/synth1math.pdf"], ["Controle math 6", "pdfs/cntrl6math.pdf"],
+]),
+},
+Science: {
+courses: L([["وظيفة الاتصال", "pdfs/%D9%88%D8%B8%D9%8A%D9%81%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AA%D8%B5%D8%A7%D9%84.pdf"]]),
+exercises: L([["سلسلة تمارين درس الاتصال", "pdfs/تمرين اتصال.pdf"]]),
+exams: L([
+["Controle science 1", "pdfs/cntrlsc1.pdf"], ["Controle science 3", "pdfs/cntrlsc3.pdf"], ["Controle science 2", "pdfs/cntrl2sc.pdf"],
+["Synthese science 1", "pdfs/synthsc1.pdf"], ["Synthese science 2", "pdfs/synth2sc.pdf"],
+]),
+},
+},
+},
+"High School": { Freshman: blank(MS), Sophomore: blank(MS), Junior: blank(JR) },
+};
 
-      // Counts every resource (course/exercise/exam) that has a real PDF attached.
-      function countResources(content) {
-        let total = 0;
-        Object.values(content).forEach((levelObj) => {
-          Object.values(levelObj).forEach((gradeObj) => {
-            Object.values(gradeObj).forEach((subjObj) => {
-              ["courses", "exercises", "exams"].forEach((t) => {
-                (subjObj[t] || []).forEach((item) => {
-                  if (item.pdf) total++;
-                });
-              });
-            });
-          });
-        });
-        return total;
-      }
-      const RESOURCES_COUNT = countResources(CONTENT);
+const SICO = { Arabic:"🔤", French:"🇫🇷", English:"🇬🇧", Math:"➕", Physics:"⚡", Science:"🔬", Technology:"🔧", "Computer Science":"💻", "Islamic Education":"☪️", "Civic Education":"🏛️", Geography:"🌍", History:"📜", Philosophy:"🤔", "Optional Language":"🌐" };
+const QUOTES = ["You're doing amazing — keep going! ✨","Every page you study is a step forward 📚","Rest if you must, but don't quit 💪","Your future self will thank you 🌟","Small steps every day lead to big results 🚀","Believe in yourself — you've got this! 🎯"];
 
-      function Splash({ onDone }) {
-        const [ph, setPh] = useState(0);
-        const letters = "Pilotehub+".split("");
-        useEffect(() => {
-          const t = [
-            setTimeout(() => setPh(1), 400),
-            setTimeout(() => setPh(2), 1900),
-            setTimeout(() => onDone(), 3600),
-          ];
-          return () => t.forEach(clearTimeout);
-        }, [onDone]);
-        return (
-          <div
-            style={{
-              position: "fixed",
-              inset: 0,
-              background: WHITE,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 9999,
-            }}
-          >
-            <div style={{ display: "flex", gap: 2, alignItems: "baseline" }}>
-              {letters.map((l, i) => (
-                <span
-                  key={i}
-                  style={{
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: l === "+" ? 36 : 52,
-                    fontWeight: 700,
-                    color: ph === 2 ? GOLD : NAVY,
-                    display: "inline-block",
-                    opacity: ph >= 1 ? 1 : 0,
-                    transform: ph >= 1 ? "translateY(0)" : "translateY(20px)",
-                    transition: `all 0.5s cubic-bezier(.22,1,.36,1) ${
-                      i * 60
-                    }ms`,
-                    textShadow:
-                      ph === 2
-                        ? `0 0 30px ${GOLD}88,0 0 60px ${GOLD}44`
-                        : "none",
-                  }}
-                >
-                  {l}
-                </span>
-              ))}
-            </div>
-            <div
-              style={{
-                marginTop: 12,
-                fontSize: 13,
-                color: GRAY,
-                letterSpacing: 4,
-                textTransform: "uppercase",
-                opacity: ph >= 1 ? 1 : 0,
-                transition: "opacity 1s ease 0.8s",
-              }}
-            >
-              Learn. Grow. Excel.
-            </div>
-          </div>
-        );
-      }
+// ---- Project / community config (edit these two when they change) ----
+const SCHOOLS_COUNT = 7;
+const TEAM_MEMBERS_COUNT = 16;
+const JOIN_FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSfYqtlApc-iR9msFo1uFuk6wRnqKzTVTNmcs7NVWDr7RVkAPQ/viewform";
 
-      function PDFViewer({ item, dark, onBack }) {
-        const tc = dark ? WHITE : NAVY;
-        const card = dark ? NAVY2 : WHITE;
-        const download = () => {
-          // Count in Firebase (cumulative, never resets)
-          if (typeof window.trackDownload === "function") {
-            window.trackDownload();
-          }
-          // Count in Google Analytics
-          if (typeof gtag === "function") {
-            gtag("event", "download", { file_name: item.title });
-          }
-          // Open in new tab — works on all devices including iPhone
-          window.open(item.pdf, "_blank");
-        };
-        return (
-          <div
-            style={{
-              position: "fixed",
-              inset: 0,
-              background: dark ? "#080F1C" : SOFT,
-              zIndex: 400,
-              display: "flex",
-              flexDirection: "column",
-              maxWidth: 430,
-              margin: "0 auto",
-            }}
-          >
-            <div
-              style={{
-                background: dark ? `${NAVY}F5` : `${WHITE}F5`,
-                backdropFilter: "blur(12px)",
-                borderBottom: `1px solid ${
-                  dark ? "rgba(201,168,76,0.15)" : "rgba(10,22,40,0.08)"
-                }`,
-                padding: "14px 16px",
-                display: "flex",
-                alignItems: "center",
-                gap: 12,
-                flexShrink: 0,
-              }}
-            >
-              <button
-                onClick={onBack}
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: GOLD,
-                  fontSize: 22,
-                  cursor: "pointer",
-                  lineHeight: 1,
-                }}
-              >
-                ←
-              </button>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div
-                  style={{
-                    color: tc,
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: 15,
-                    fontWeight: 700,
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {item.title}
-                </div>
-                <div style={{ color: GRAY, fontSize: 11, marginTop: 2 }}>
-                  PDF Document
-                </div>
-              </div>
-              <button
-                onClick={download}
-                style={{
-                  background: `linear-gradient(135deg,${GOLD},#A8822A)`,
-                  border: "none",
-                  borderRadius: 10,
-                  padding: "8px 14px",
-                  color: NAVY,
-                  fontWeight: 700,
-                  fontSize: 13,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 6,
-                  flexShrink: 0,
-                  boxShadow: `0 3px 12px rgba(201,168,76,0.35)`,
-                }}
-              >
-                ⬇️ Download
-              </button>
-            </div>
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                padding: 12,
-                gap: 12,
-                overflow: "hidden",
-              }}
-            >
-              {item.pdf ? (
-                <iframe
-                  src={item.pdf}
-                  width="100%"
-                  height="100%"
-                  style={{
-                    flex: 1,
-                    border: "none",
-                    borderRadius: 14,
-                    boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
-                    minHeight: 0,
-                  }}
-                  title={item.title}
-                />
-              ) : (
-                <div
-                  style={{
-                    flex: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: card,
-                    borderRadius: 20,
-                    padding: "40px 24px",
-                    textAlign: "center",
-                    border: `2px dashed ${
-                      dark ? "rgba(201,168,76,0.2)" : "rgba(10,22,40,0.12)"
-                    }`,
-                  }}
-                >
-                  <div style={{ fontSize: 52, marginBottom: 14 }}>📄</div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 17,
-                      fontWeight: 700,
-                      marginBottom: 10,
-                    }}
-                  >
-                    {item.title}
-                  </div>
-                  <div style={{ color: GRAY, fontSize: 13, lineHeight: 1.8 }}>
-                    PDF not linked yet.
-                    <br />
-                    Add the file path in the CONTENT section.
-                  </div>
-                </div>
-              )}
-              <button
-                onClick={download}
-                style={{
-                  width: "100%",
-                  padding: "14px",
-                  borderRadius: 14,
-                  background: `linear-gradient(135deg,${GOLD},#A8822A)`,
-                  border: "none",
-                  color: NAVY,
-                  fontWeight: 700,
-                  fontSize: 15,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8,
-                  boxShadow: `0 4px 20px rgba(201,168,76,0.3)`,
-                  flexShrink: 0,
-                }}
-              >
-                ⬇️ Download PDF
-              </button>
-            </div>
-          </div>
-        );
-      }
+// Counts every course/exercise/exam that has a PDF → goes up automatically when you add one.
+const RESOURCES_COUNT = Object.values(CONTENT).reduce((a, lv) => a + Object.values(lv).reduce((b, g) => b + Object.values(g).reduce((c, s) => c + ["courses","exercises","exams"].reduce((d, t) => d + (s[t] || []).filter((i) => i.pdf).length, 0), 0), 0), 0);
 
-      function App() {
-        const [started, setStarted] = useState(false);
-        const [dark, setDark] = useState(false);
-        const [level, setLevel] = useState(null);
-        const [grade, setGrade] = useState(null);
-        const [subj, setSubj] = useState(null);
-        const [ctype, setCtype] = useState(null);
-        const [openItem, setOpenItem] = useState(null);
-        const [showInfo, setShowInfo] = useState(false);
-        const [quote, setQuote] = useState(null);
+const pdfUrl = (p) => { const s = (p || "").trim(); try { return encodeURI(decodeURI(s)); } catch (e) { return s; } };
+const theme = (dark) => ({
+bg: dark ? "#080F1C" : SOFT, card: dark ? NAVY2 : WHITE, tc: dark ? WHITE : NAVY, sub: dark ? "#8A99B0" : "#5A6A80",
+line: dark ? "rgba(201,168,76,0.12)" : "rgba(10,22,40,0.08)",
+shadow: dark ? "none" : "0 2px 12px rgba(10,22,40,0.06)",
+inputBorder: dark ? "rgba(255,255,255,0.15)" : "rgba(10,22,40,0.15)",
+});
+const inputStyle = (t, dark, extra) => ({ width: "100%", padding: "13px 14px", borderRadius: 10, border: `1px solid ${t.inputBorder}`, background: dark ? "#080F1C" : SOFT, color: t.tc, fontSize: 14, outline: "none", ...extra });
+const goldBtn = { background: GRAD, border: "none", borderRadius: 12, color: NAVY, fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 20px rgba(201,168,76,0.3)" };
 
-        // ---- Auth (email registration/login) ----
-        const [user, setUser] = useState(null);
-        const [authChecked, setAuthChecked] = useState(false);
-        const [authMode, setAuthMode] = useState("login"); // "signup" | "login"
-        const [authEmail, setAuthEmail] = useState("");
-        const [authPassword, setAuthPassword] = useState("");
-        const [authError, setAuthError] = useState("");
-        const [showPassword, setShowPassword] = useState(false);
-        const [authLoading, setAuthLoading] = useState(false);
-        const [registeredCount, setRegisteredCount] = useState(null);
+function useFirebaseReady() {
+const [ready, setReady] = useState(!!window.PH);
+useEffect(() => {
+if (window.PH) { setReady(true); return; }
+const f = () => setReady(true);
+window.addEventListener("ph-ready", f);
+const t = setTimeout(f, 6000);
+return () => { window.removeEventListener("ph-ready", f); clearTimeout(t); };
+}, []);
+return ready;
+}
 
-        // ---- Reviews (stars + comments) ----
-        const [showReviews, setShowReviews] = useState(false);
-        const [reviews, setReviews] = useState([]);
-        const [reviewName, setReviewName] = useState("");
-        const [reviewStars, setReviewStars] = useState(5);
-        const [reviewText, setReviewText] = useState("");
-        const [reviewLoading, setReviewLoading] = useState(false);
+function Splash({ onDone }) {
+const [ph, setPh] = useState(0);
+useEffect(() => {
+const t = [setTimeout(() => setPh(1), 400), setTimeout(() => setPh(2), 1900), setTimeout(() => onDone(), 3600)];
+return () => t.forEach(clearTimeout);
+}, []); // run once, so re-renders never restart the splash
+return (
+<div style={{ position: "fixed", inset: 0, background: WHITE, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", zIndex: 9999 }}>
+<div style={{ display: "flex", gap: 2, alignItems: "baseline" }}>
+{"Pilotehub+".split("").map((l, i) => (
+<span key={i} style={{ fontFamily: PF, fontSize: l === "+" ? 36 : 52, fontWeight: 700, color: ph === 2 ? GOLD : NAVY, display: "inline-block", opacity: ph >= 1 ? 1 : 0, transform: ph >= 1 ? "translateY(0)" : "translateY(20px)", transition: `all 0.5s cubic-bezier(.22,1,.36,1) ${i * 60}ms`, textShadow: ph === 2 ? `0 0 30px ${GOLD}88,0 0 60px ${GOLD}44` : "none" }}>{l}</span>
+))}
+</div>
+<div style={{ marginTop: 12, fontSize: 13, color: GRAY, letterSpacing: 4, textTransform: "uppercase", opacity: ph >= 1 ? 1 : 0, transition: "opacity 1s ease 0.8s" }}>Learn. Grow. Excel.</div>
+</div>
+);
+}
 
-        useEffect(() => {
-          if (typeof window.pilotehubOnAuthChange === "function") {
-            const unsub = window.pilotehubOnAuthChange((u) => {
-              setUser(u);
-              setAuthChecked(true);
-            });
-            return unsub;
-          } else {
-            // Firebase not available for some reason — don't block forever.
-            setAuthChecked(true);
-          }
-        }, []);
+function AuthModal({ dark, onClose, reason }) {
+const t = theme(dark);
+const [mode, setMode] = useState("signup");
+const [email, setEmail] = useState("");
+const [pw, setPw] = useState("");
+const [show, setShow] = useState(false);
+const [err, setErr] = useState("");
+const [info, setInfo] = useState("");
+const [busy, setBusy] = useState(false);
 
-        useEffect(() => {
-          if (typeof window.pilotehubGetRegisteredUsersCount === "function") {
-            window.pilotehubGetRegisteredUsersCount().then(setRegisteredCount);
-          }
-        }, []);
+const msg = (e) => ({
+"auth/invalid-credential": "Incorrect email or password.",
+"auth/wrong-password": "Incorrect email or password.",
+"auth/user-not-found": "No account with this email. Please sign up.",
+"auth/email-already-in-use": "This email already has an account. Please log in.",
+"auth/weak-password": "Password must contain at least 6 characters.",
+"auth/invalid-email": "Please enter a valid email address.",
+"auth/too-many-requests": "Too many attempts. Please wait a bit and try again.",
+"auth/network-request-failed": "No connection. Check your internet and try again.",
+"auth/account-exists-with-different-credential": "This email is already registered with another sign-in method.",
+"auth/operation-not-allowed": "This sign-in method isn't enabled yet.",
+"auth/unauthorized-domain": "This website's domain isn't authorized in Firebase yet.",
+}[e.code] || "Something went wrong. Please try again.");
 
-        const loadReviews = () => {
-          if (typeof window.pilotehubGetReviews === "function") {
-            window.pilotehubGetReviews().then(setReviews);
-          }
-        };
-        useEffect(() => {
-          loadReviews();
-        }, []);
+const run = async (fn) => {
+setErr(""); setInfo("");
+if (!window.PH) { setErr("Service unavailable. Please refresh the page."); return; }
+setBusy(true);
+try { const u = await fn(window.PH); if (u) onClose(); }
+catch (e) { if (e.code !== "auth/popup-closed-by-user" && e.code !== "auth/cancelled-popup-request") setErr(msg(e)); }
+setBusy(false);
+};
+const submit = () => {
+if (!email.trim() || !pw) { setErr("Please fill in both fields."); return; }
+run((PH) => (mode === "signup" ? PH.signUp(email.trim(), pw) : PH.signIn(email.trim(), pw)));
+};
+const forgot = async () => {
+if (!email.trim()) { setErr("Enter your email first."); return; }
+try { await window.PH.reset(email.trim()); setErr(""); setInfo("Reset email sent! Check your inbox (and spam folder)."); }
+catch (e) { setInfo(""); setErr("Could not send reset email."); }
+};
+const social = { width: "100%", padding: "12px", borderRadius: 12, fontSize: 14, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, opacity: busy ? 0.6 : 1 };
 
-        const avgRating = reviews.length
-          ? reviews.reduce((a, r) => a + (r.stars || 0), 0) / reviews.length
-          : 0;
+return (
+<div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)", zIndex: 700, display: "flex", alignItems: "center", justifyContent: "center", padding: 18, overflowY: "auto" }}>
+<div onClick={(e) => e.stopPropagation()} style={{ background: t.card, borderRadius: 20, padding: 24, maxWidth: 400, width: "100%", border: `1px solid ${GOLD}33`, maxHeight: "95vh", overflowY: "auto" }}>
+<div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+<div style={{ fontFamily: PF, fontSize: 26, fontWeight: 700, color: t.tc }}>Pilotehub<span style={{ color: GOLD }}>+</span></div>
+<button onClick={onClose} style={{ background: "none", border: "none", color: t.sub, fontSize: 20, cursor: "pointer" }}>✕</button>
+</div>
+<div style={{ color: t.sub, fontSize: 13, margin: "6px 0 18px", lineHeight: 1.6 }}>
+{reason || (mode === "signup" ? "Create a free account to unlock every course, exercise and exam." : "Welcome back! Log in to continue.")}
+</div>
 
-        const handleAuthSubmit = async () => {
-          setAuthError("");
-          if (!authEmail || !authPassword) {
-            setAuthError("Please fill in both fields.");
-            return;
-          }
-          setAuthLoading(true);
-          try {
-            if (authMode === "signup") {
-              const u = await window.pilotehubSignUp(authEmail, authPassword);
-              setUser(u);
-              window
-                .pilotehubGetRegisteredUsersCount()
-                .then(setRegisteredCount);
-            } else {
-              const u = await window.pilotehubSignIn(authEmail, authPassword);
-              setUser(u);
-            }
-            setShowAuth(false);
-            setAuthEmail("");
-            setAuthPassword("");
-          } catch (err) {
-            if (err.code === "auth/invalid-credential") {
-              setAuthError("Incorrect email or password.");
-            } else if (err.code === "auth/email-already-in-use") {
-              setAuthError("This email already has an account. Please log in.");
-            } else if (err.code === "auth/weak-password") {
-              setAuthError("Password must contain at least 6 characters.");
-            } else if (err.code === "auth/invalid-email") {
-              setAuthError("Please enter a valid email address.");
-            } else {
-              setAuthError("Something went wrong. Please try again.");
-            }
-          }
-          setAuthLoading(false);
-        };
+<button disabled={busy} onClick={() => run((PH) => PH.social("google"))} style={{ ...social, background: WHITE, color: "#222", border: "1px solid #ddd", marginBottom: 10 }}>
+<span style={{ fontWeight: 900, color: "#4285F4", fontSize: 16 }}>G</span> Continue with Google
+</button>
+<button disabled={busy} onClick={() => run((PH) => PH.social("apple"))} style={{ ...social, background: "#000", color: WHITE, border: "1px solid #333" }}>
+<span style={{ fontSize: 16 }}>🍎</span> Continue with Apple
+</button>
 
-        const handleSignOut = async () => {
-          try {
-            await window.pilotehubSignOut();
-          } catch (err) {}
-          setUser(null);
-        };
+<div style={{ display: "flex", alignItems: "center", gap: 10, margin: "16px 0", color: GRAY, fontSize: 12 }}>
+<div style={{ flex: 1, height: 1, background: t.inputBorder }} />or use email<div style={{ flex: 1, height: 1, background: t.inputBorder }} />
+</div>
 
-        const handleSubmitReview = async () => {
-          if (!reviewText.trim()) return;
-          setReviewLoading(true);
-          try {
-            await window.pilotehubSubmitReview(reviewStars, reviewText.trim());
-            setReviewName("");
-            setReviewText("");
-            setReviewStars(5);
-            loadReviews();
-          } catch (err) {}
-          setReviewLoading(false);
-        };
+<input type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} style={inputStyle(t, dark, { marginBottom: 10 })} />
+<div style={{ position: "relative" }}>
+<input type={show ? "text" : "password"} placeholder="Password (6+ characters)" value={pw} onChange={(e) => setPw(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") submit(); }} style={inputStyle(t, dark, { padding: "13px 45px 13px 14px" })} />
+<button type="button" onClick={() => setShow(!show)} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>{show ? "👁️" : "🙈"}</button>
+</div>
+<p style={{ color: GRAY, fontSize: 11, margin: "8px 0", lineHeight: 1.5 }}>Please remember your password so you can log in next time.</p>
+{err && <div style={{ color: "#E05C5C", fontSize: 12, marginBottom: 8 }}>{err}</div>}
+{info && <div style={{ color: "#4CAF7A", fontSize: 12, marginBottom: 8 }}>{info}</div>}
+<button onClick={submit} disabled={busy} style={{ ...goldBtn, width: "100%", marginTop: 4, padding: "14px 22px", fontSize: 15, opacity: busy ? 0.6 : 1 }}>
+{busy ? "Please wait…" : mode === "signup" ? "Sign Up" : "Log In"}
+</button>
+{mode === "login" && <div onClick={forgot} style={{ textAlign: "center", marginTop: 12, color: GOLD, fontSize: 13, cursor: "pointer" }}>Forgot password?</div>}
+<div onClick={() => { setMode(mode === "signup" ? "login" : "signup"); setErr(""); setInfo(""); }} style={{ marginTop: 14, textAlign: "center", color: t.sub, fontSize: 13, cursor: "pointer" }}>
+{mode === "signup" ? "Already have an account? Log in" : "New here? Create an account"}
+</div>
+<div style={{ color: GRAY, fontSize: 11, textAlign: "center", marginTop: 14 }}>Free forever. No ads. No subscriptions.</div>
+</div>
+</div>
+);
+}
 
-        const bg = dark ? "#080F1C" : SOFT,
-          card = dark ? NAVY2 : WHITE,
-          tc = dark ? WHITE : NAVY,
-          sub = dark ? "#8A99B0" : "#5A6A80";
+function PDFViewer({ item, dark, user, authChecked, onBack, onSignIn }) {
+const t = theme(dark);
+const url = pdfUrl(item.pdf);
+const download = () => {
+if (!user) return onSignIn();
+if (window.PH) window.PH.trackDownload();
+if (typeof gtag === "function") gtag("event", "download", { file_name: item.title });
+const a = document.createElement("a");
+a.href = url; a.download = url.split("/").pop(); a.target = "_blank"; a.rel = "noopener";
+document.body.appendChild(a); a.click(); a.remove();
+};
+const locked = authChecked && !user;
+return (
+<div style={{ position: "fixed", inset: 0, background: t.bg, zIndex: 400, display: "flex", flexDirection: "column", maxWidth: 430, margin: "0 auto" }}>
+<div style={{ background: dark ? `${NAVY}F5` : `${WHITE}F5`, borderBottom: `1px solid ${t.line}`, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
+<button onClick={onBack} style={{ background: "none", border: "none", color: GOLD, fontSize: 22, cursor: "pointer", lineHeight: 1 }}>←</button>
+<div style={{ flex: 1, minWidth: 0 }}>
+<div style={{ color: t.tc, fontFamily: PF, fontSize: 15, fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.title}</div>
+<div style={{ color: GRAY, fontSize: 11, marginTop: 2 }}>{locked ? "🔒 Locked" : "PDF Document"}</div>
+</div>
+{!locked && <button onClick={download} style={{ ...goldBtn, borderRadius: 10, padding: "8px 14px", fontSize: 13, flexShrink: 0 }}>⬇️ Download</button>}
+</div>
+<div style={{ flex: 1, display: "flex", flexDirection: "column", padding: 12, gap: 12, overflow: "hidden" }}>
+{!authChecked ? (
+<div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", color: t.sub }}>Loading…</div>
+) : locked ? (
+<div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: t.card, borderRadius: 20, padding: "40px 24px", textAlign: "center", border: `2px dashed ${GOLD}55` }}>
+<div style={{ fontSize: 54, marginBottom: 14 }}>🔒</div>
+<div style={{ color: t.tc, fontFamily: PF, fontSize: 18, fontWeight: 700, marginBottom: 8 }}>{item.title}</div>
+<div style={{ color: GRAY, fontSize: 13, lineHeight: 1.7, marginBottom: 22 }}>Sign in or create a free account<br />to view and download this PDF.</div>
+<button onClick={onSignIn} style={{ ...goldBtn, padding: "14px 28px", fontSize: 15 }}>Sign in / Sign up</button>
+</div>
+) : (
+<>
+<iframe src={url} title={item.title} style={{ flex: 1, width: "100%", border: "none", borderRadius: 14, boxShadow: "0 4px 24px rgba(0,0,0,0.15)", minHeight: 0, background: WHITE }} />
+<div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
+<button onClick={() => window.open(url, "_blank")} style={{ flex: 1, padding: 14, borderRadius: 14, background: t.card, border: `1px solid ${GOLD}66`, color: GOLD, fontWeight: 700, fontSize: 14, cursor: "pointer" }}>Open in browser</button>
+<button onClick={download} style={{ ...goldBtn, flex: 1, padding: 14, borderRadius: 14, fontSize: 14 }}>⬇️ Download PDF</button>
+</div>
+</>
+)}
+</div>
+</div>
+);
+}
 
-        useEffect(() => {
-          const show = () => {
-            setQuote(QUOTES[Math.floor(Math.random() * QUOTES.length)]);
-            setTimeout(() => setQuote(null), 5000);
-          };
-          show();
-          const iv = setInterval(show, 20 * 60 * 1000);
-          return () => clearInterval(iv);
-        }, []);
+function ReviewsModal({ dark, user, reviews, onClose, onSignIn, onPosted }) {
+const t = theme(dark);
+const [stars, setStars] = useState(5);
+const [text, setText] = useState("");
+const [busy, setBusy] = useState(false);
+const [err, setErr] = useState("");
+const avg = reviews.length ? reviews.reduce((a, r) => a + (r.stars || 0), 0) / reviews.length : 0;
+const post = async () => {
+if (!text.trim() || !user) return;
+setBusy(true); setErr("");
+try { await window.PH.submitReview(stars, text.trim()); setText(""); setStars(5); onPosted(); }
+catch (e) { setErr("Could not post your review. Please try again."); }
+setBusy(false);
+};
+return (
+<div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.7)", zIndex: 600, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+<div onClick={(e) => e.stopPropagation()} style={{ background: t.card, borderRadius: "20px 20px 0 0", padding: 24, maxWidth: 430, width: "100%", maxHeight: "85vh", overflowY: "auto", border: `1px solid ${GOLD}33`, borderBottom: "none" }}>
+<div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+<h2 style={{ color: GOLD, fontFamily: PF }}>Community Reviews</h2>
+<button onClick={onClose} style={{ background: "none", border: "none", color: t.sub, fontSize: 20, cursor: "pointer" }}>✕</button>
+</div>
+<div style={{ color: t.sub, fontSize: 13, marginBottom: 18 }}>
+{reviews.length ? `${avg.toFixed(1)} ★ average from ${reviews.length} review${reviews.length === 1 ? "" : "s"}` : "Be the first to leave a review!"}
+</div>
+<div style={{ background: t.bg, borderRadius: 16, padding: 16, marginBottom: 20 }}>
+{!user ? (
+<div style={{ textAlign: "center" }}>
+<div style={{ color: t.sub, fontSize: 13, marginBottom: 12 }}>🔒 Sign in to rate us and leave a comment.</div>
+<button onClick={onSignIn} style={{ ...goldBtn, padding: "11px 22px", fontSize: 13 }}>Sign in / Sign up</button>
+</div>
+) : (
+<>
+<div style={{ color: t.sub, fontSize: 12, marginBottom: 8 }}>Posting as <b style={{ color: t.tc }}>{user.email || user.displayName}</b></div>
+<div style={{ display: "flex", gap: 4, marginBottom: 10 }}>
+{[1, 2, 3, 4, 5].map((n) => <span key={n} onClick={() => setStars(n)} style={{ fontSize: 26, cursor: "pointer", color: n <= stars ? GOLD : GRAY }}>★</span>)}
+</div>
+<textarea placeholder="Share your thoughts about Pilotehub+…" value={text} onChange={(e) => setText(e.target.value)} rows={3} style={inputStyle(t, dark, { background: t.card, fontSize: 13, resize: "vertical", fontFamily: "inherit" })} />
+{err && <div style={{ color: "#E05C5C", fontSize: 12, marginTop: 6 }}>{err}</div>}
+<button onClick={post} disabled={busy || !text.trim()} style={{ ...goldBtn, width: "100%", marginTop: 10, padding: "11px 22px", borderRadius: 10, fontSize: 13, opacity: busy || !text.trim() ? 0.6 : 1 }}>{busy ? "Posting…" : "Post Review"}</button>
+</>
+)}
+</div>
+<div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+{reviews.map((r, i) => (
+<div key={i} style={{ background: t.bg, borderRadius: 14, padding: "14px 16px" }}>
+<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, gap: 8 }}>
+<span style={{ color: t.tc, fontWeight: 700, fontSize: 13, overflow: "hidden", textOverflow: "ellipsis" }}>{r.email && r.email !== "Unknown" ? r.email : "Anonymous"}</span>
+<span style={{ color: GOLD, fontSize: 13, flexShrink: 0 }}>{"★".repeat(r.stars)}{"☆".repeat(5 - r.stars)}</span>
+</div>
+<div style={{ color: t.sub, fontSize: 13, lineHeight: 1.6 }}>{r.comment}</div>
+</div>
+))}
+</div>
+</div>
+</div>
+);
+}
 
-        const goBack = () => {
-          if (openItem) {
-            setOpenItem(null);
-            return;
-          }
-          if (ctype) {
-            setCtype(null);
-            return;
-          }
-          if (subj) {
-            setSubj(null);
-            return;
-          }
-          if (grade) {
-            setGrade(null);
-            return;
-          }
-          if (level) {
-            setLevel(null);
-          }
-        };
+function App() {
+const [started, setStarted] = useState(false);
+const [dark, setDark] = useState(false);
+const [level, setLevel] = useState(null);
+const [grade, setGrade] = useState(null);
+const [subj, setSubj] = useState(null);
+const [ctype, setCtype] = useState(null);
+const [openItem, setOpenItem] = useState(null);
+const [showInfo, setShowInfo] = useState(false);
+const [quote, setQuote] = useState(null);
+const [user, setUser] = useState(null);
+const [authChecked, setAuthChecked] = useState(false);
+const [showAuth, setShowAuth] = useState(false);
+const [authReason, setAuthReason] = useState("");
+const [registeredCount, setRegisteredCount] = useState(null);
+const [showReviews, setShowReviews] = useState(false);
+const [reviews, setReviews] = useState([]);
+const ready = useFirebaseReady();
+const t = theme(dark);
 
-        const setLevelSafe = (v) => {
-          setLevel(v);
-          setGrade(null);
-          setSubj(null);
-          setCtype(null);
-          setOpenItem(null);
-        };
-        const setGradeSafe = (v) => {
-          setGrade(v);
-          setSubj(null);
-          setCtype(null);
-          setOpenItem(null);
-        };
-        const setSubjSafe = (v) => {
-          setSubj(v);
-          setCtype(null);
-          setOpenItem(null);
-        };
-        const setCtypeSafe = (v) => {
-          setCtype(v);
-          setOpenItem(null);
-        };
+const refreshCount = () => window.PH && window.PH.usersCount().then(setRegisteredCount);
+const loadReviews = () => window.PH && window.PH.getReviews().then(setReviews);
 
-        const hasBack = !!(level || grade || subj || ctype || openItem);
-        const grades = level ? Object.keys(CONTENT[level]) : [];
-        const subjects = grade ? Object.keys(CONTENT[level][grade]) : [];
-        const items =
-          level && grade && subj && ctype
-            ? CONTENT[level][grade][subj][ctype]
-            : [];
-        const ctypeIcon = (t) =>
-          t === "courses" ? "📖" : t === "exercises" ? "✏️" : "📋";
+useEffect(() => {
+if (!ready) return;
+if (!window.PH) { setAuthChecked(true); return; }
+const unsub = window.PH.onAuth((u) => { setUser(u); setAuthChecked(true); refreshCount(); });
+refreshCount(); loadReviews();
+return unsub;
+}, [ready]);
 
-        if (!started) return <Splash onDone={() => setStarted(true)} />;
+useEffect(() => {
+const show = () => { setQuote(QUOTES[Math.floor(Math.random() * QUOTES.length)]); setTimeout(() => setQuote(null), 5000); };
+show();
+const iv = setInterval(show, 20 * 60 * 1000);
+return () => clearInterval(iv);
+}, []);
 
-        if (!authChecked) {
-          return (
-            <div
-              style={{
-                minHeight: "100vh",
-                background: bg,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div style={{ color: sub, fontSize: 14 }}>Loading…</div>
-            </div>
-          );
-        }
+const askSignIn = (reason) => { setAuthReason(reason || ""); setShowAuth(true); };
+const handleSignOut = async () => {
+try { await window.PH.signOut(); } catch (e) {}
+setUser(null); setOpenItem(null);
+};
 
-        if (!user && false) {
-          return (
-            <div
-              style={{
-                minHeight: "100vh",
-                background: bg,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                padding: "24px 24px",
-              }}
-            >
-              <div style={{ textAlign: "center", marginBottom: 28 }}>
-                <div
-                  style={{
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: 34,
-                    fontWeight: 700,
-                    color: tc,
-                  }}
-                >
-                  Pilotehub<span style={{ color: GOLD }}>+</span>
-                </div>
-                <div style={{ color: sub, fontSize: 13, marginTop: 6 }}>
-                  {authMode === "signup"
-                    ? "Create a free account to access all courses, exercises, and exams."
-                    : "Log in to continue."}
-                </div>
-              </div>
+const goBack = () => { if (openItem) setOpenItem(null); else if (ctype) setCtype(null); else if (subj) setSubj(null); else if (grade) setGrade(null); else if (level) setLevel(null); };
+const pickLevel = (v) => { setLevel(v); setGrade(null); setSubj(null); setCtype(null); setOpenItem(null); };
+const pickGrade = (v) => { setGrade(v); setSubj(null); setCtype(null); };
+const pickSubj = (v) => { setSubj(v); setCtype(null); };
 
-              <div
-                style={{
-                  background: card,
-                  borderRadius: 20,
-                  padding: 26,
-                  border: `1px solid ${GOLD}33`,
-                }}
-              >
-                <input
-                  type="email"
-                  placeholder="Email address"
-                  value={authEmail}
-                  onChange={(e) => setAuthEmail(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "13px 14px",
-                    borderRadius: 10,
-                    border: `1px solid ${
-                      dark ? "rgba(255,255,255,0.15)" : "rgba(10,22,40,0.15)"
-                    }`,
-                    background: dark ? "#080F1C" : SOFT,
-                    color: tc,
-                    fontSize: 14,
-                    marginBottom: 10,
-                    outline: "none",
-                  }}
-                />
-                <div style={{ position: "relative" }}>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password (6+ characters)"
-                    value={authPassword}
-                    onChange={(e) => setAuthPassword(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") handleAuthSubmit();
-                    }}
-                    style={{
-                      width: "100%",
-                      padding: "13px 45px 13px 14px",
-                      borderRadius: 10,
-                      border: `1px solid ${
-                        dark ? "rgba(255,255,255,0.15)" : "rgba(10,22,40,0.15)"
-                      }`,
-                      background: dark ? "#080F1C" : SOFT,
-                      color: tc,
-                      fontSize: 14,
-                      outline: "none",
-                    }}
-                  />
+const hasBack = !!(level || grade || subj || ctype);
+const grades = level ? Object.keys(CONTENT[level]) : [];
+const subjects = grade ? Object.keys(CONTENT[level][grade]) : [];
+const items = level && grade && subj && ctype ? CONTENT[level][grade][subj][ctype] : [];
+const ctypeIcon = (x) => (x === "courses" ? "📖" : x === "exercises" ? "✏️" : "📋");
+const label = (txt, mb) => ({ color: GOLD, fontSize: 12, fontWeight: 700, letterSpacing: 2, marginBottom: mb ?? 4 });
+const h1 = { color: t.tc, fontFamily: PF, fontSize: 24, fontWeight: 700, marginBottom: 20 };
+const rowCard = { background: t.card, cursor: "pointer", border: `1px solid ${t.line}`, boxShadow: t.shadow };
 
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    style={{
-                      position: "absolute",
-                      right: 12,
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      fontSize: 18,
-                    }}
-                  >
-                    {showPassword ? "👁️" : "👁️‍🗨️"}
-                  </button>
-                </div>
-                <p className="password-hint">
-                  Please remember your password so you can log in next time.
-                  Save it somewhere secure if needed.
-                </p>
-                {authError && (
-                  <div
-                    style={{ color: "#E05C5C", fontSize: 12, marginBottom: 8 }}
-                  >
-                    {authError}
-                  </div>
-                )}
-                <button
-                  onClick={handleAuthSubmit}
-                  disabled={authLoading}
-                  style={{
-                    width: "100%",
-                    marginTop: 8,
-                    padding: "14px 22px",
-                    background: `linear-gradient(135deg,${GOLD},#A8822A)`,
-                    border: "none",
-                    borderRadius: 12,
-                    color: NAVY,
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    fontSize: 15,
-                    opacity: authLoading ? 0.6 : 1,
-                    boxShadow: "0 4px 20px rgba(201,168,76,0.3)",
-                  }}
-                >
-                  {authLoading
-                    ? "Please wait…"
-                    : authMode === "signup"
-                    ? "Sign Up"
-                    : "Log In"}
-                </button>
-                {authMode === "login" && (
-                  <div
-                    onClick={async () => {
-                      if (!authEmail) {
-                        setAuthError("Enter your email first.");
-                        return;
-                      }
+if (!started) return <Splash onDone={() => setStarted(true)} />;
 
-                      try {
-                        await window.pilotehubResetPassword(authEmail);
-                        setAuthError(
-                          "Password reset email sent!\n\nPlease check your inbox. If you don't see it, check your spam or junk folder."
-                        );
-                      } catch {
-                        setAuthError("Could not send reset email.");
-                      }
-                    }}
-                    style={{
-                      textAlign: "center",
-                      marginTop: 12,
-                      color: GOLD,
-                      fontSize: 13,
-                      cursor: "pointer",
-                    }}
-                  >
-                    Forgot password?
-                  </div>
-                )}
-                <div
-                  onClick={() => {
-                    setAuthMode(authMode === "signup" ? "login" : "signup");
-                    setAuthError("");
-                  }}
-                  style={{
-                    marginTop: 16,
-                    textAlign: "center",
-                    color: sub,
-                    fontSize: 13,
-                    cursor: "pointer",
-                  }}
-                >
-                  {authMode === "signup"
-                    ? "Already have an account? Log in"
-                    : "New here? Create an account"}
-                </div>
-              </div>
+const authModal = showAuth && <AuthModal dark={dark} reason={authReason} onClose={() => setShowAuth(false)} />;
 
-              <div
-                style={{
-                  color: GRAY,
-                  fontSize: 12,
-                  textAlign: "center",
-                  marginTop: 20,
-                  lineHeight: 1.7,
-                }}
-              >
-                Free forever. No ads. No subscriptions.
-              </div>
-            </div>
-          );
-        }
+if (openItem)
+return (
+<>
+<PDFViewer item={openItem} dark={dark} user={user} authChecked={authChecked} onBack={() => setOpenItem(null)} onSignIn={() => askSignIn("Create a free account or sign in to view and download this PDF.")} />
+{authModal}
+</>
+);
 
-        if (openItem)
-          return (
-            <PDFViewer
-              item={openItem}
-              dark={dark}
-              onBack={() => setOpenItem(null)}
-            />
-          );
+return (
+<div style={{ minHeight: "100vh", background: t.bg, transition: "background 0.3s" }}>
+{quote && (
+<div style={{ position: "fixed", bottom: 24, right: 16, zIndex: 300, background: `linear-gradient(135deg,${NAVY},${LNAV})`, border: `1px solid ${GOLD}44`, borderRadius: 16, padding: "12px 16px", maxWidth: 240, boxShadow: "0 8px 32px rgba(0,0,0,0.35)", animation: "slideIn 0.4s ease" }}>
+<div style={{ color: WHITE, fontSize: 13, lineHeight: 1.5 }}>{quote}</div>
+</div>
+)}
 
-        return (
-          <div
-            style={{
-              minHeight: "100vh",
-              background: bg,
-              transition: "background 0.3s",
-            }}
-          >
-            {quote && (
-              <div
-                style={{
-                  position: "fixed",
-                  bottom: 24,
-                  right: 16,
-                  zIndex: 1000,
-                  background: `linear-gradient(135deg,${NAVY},${LNAV})`,
-                  border: `1px solid ${GOLD}44`,
-                  borderRadius: 16,
-                  padding: "12px 16px",
-                  maxWidth: 240,
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
-                  animation: "slideIn 0.4s ease",
-                }}
-              >
-                <div style={{ color: WHITE, fontSize: 13, lineHeight: 1.5 }}>
-                  {quote}
-                </div>
-              </div>
-            )}
+{showInfo && (
+<div onClick={() => setShowInfo(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.7)", zIndex: 500, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
+<div onClick={(e) => e.stopPropagation()} style={{ background: t.card, borderRadius: 20, padding: 28, maxWidth: 400, width: "100%", border: `1px solid ${GOLD}33` }}>
+<h2 style={{ color: GOLD, fontFamily: PF, margin: "0 0 12px" }}>About Pilotehub+</h2>
+<p style={{ color: t.tc, fontSize: 14, lineHeight: 1.8, margin: "0 0 12px" }}>Pilotehub+ is a free educational platform for students from 7th grade to Junior year. All courses, exercises, and exams — organized by grade and subject — in one place.</p>
+<p style={{ color: t.sub, fontSize: 13 }}>No ads. No subscriptions. Forever free.</p>
+<button onClick={() => setShowInfo(false)} style={{ marginTop: 18, padding: "11px 22px", background: GOLD, border: "none", borderRadius: 10, color: NAVY, fontWeight: 700, cursor: "pointer", fontSize: 14 }}>Got it!</button>
+</div>
+</div>
+)}
 
-            {showInfo && (
-              <div
-                style={{
-                  position: "fixed",
-                  inset: 0,
-                  background: "rgba(0,0,0,0.7)",
-                  zIndex: 500,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: 20,
-                }}
-                onClick={() => setShowInfo(false)}
-              >
-                <div
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    background: card,
-                    borderRadius: 20,
-                    padding: 28,
-                    maxWidth: 400,
-                    width: "100%",
-                    border: `1px solid ${GOLD}33`,
-                  }}
-                >
-                  <h2
-                    style={{
-                      color: GOLD,
-                      fontFamily: "'Playfair Display',serif",
-                      margin: "0 0 12px",
-                    }}
-                  >
-                    About Pilotehub+
-                  </h2>
-                  <p
-                    style={{
-                      color: tc,
-                      fontSize: 14,
-                      lineHeight: 1.8,
-                      margin: "0 0 12px",
-                    }}
-                  >
-                    Pilotehub+ is a free educational platform for students from
-                    7th grade to Junior year. All courses, exercises, and exams
-                    — organized by grade and subject — in one place.
-                  </p>
-                  <p style={{ color: sub, fontSize: 13 }}>
-                    No ads. No subscriptions. Forever free.
-                  </p>
-                  <button
-                    onClick={() => setShowInfo(false)}
-                    style={{
-                      marginTop: 18,
-                      padding: "11px 22px",
-                      background: GOLD,
-                      border: "none",
-                      borderRadius: 10,
-                      color: NAVY,
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      fontSize: 14,
-                    }}
-                  >
-                    Got it!
-                  </button>
-                </div>
-              </div>
-            )}
+{showReviews && <ReviewsModal dark={dark} user={user} reviews={reviews} onClose={() => setShowReviews(false)} onSignIn={() => askSignIn("Sign in to rate Pilotehub+ and leave a comment.")} onPosted={loadReviews} />}
+{authModal}
 
-            {showReviews && (
-              <div
-                style={{
-                  position: "fixed",
-                  inset: 0,
-                  background: "rgba(0,0,0,0.7)",
-                  zIndex: 600,
-                  display: "flex",
-                  alignItems: "flex-end",
-                  justifyContent: "center",
-                }}
-                onClick={() => setShowReviews(false)}
-              >
-                <div
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    background: card,
-                    borderRadius: "20px 20px 0 0",
-                    padding: 24,
-                    maxWidth: 430,
-                    width: "100%",
-                    maxHeight: "85vh",
-                    overflowY: "auto",
-                    border: `1px solid ${GOLD}33`,
-                    borderBottom: "none",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      marginBottom: 4,
-                    }}
-                  >
-                    <h2
-                      style={{
-                        color: GOLD,
-                        fontFamily: "'Playfair Display',serif",
-                        margin: 0,
-                      }}
-                    >
-                      Community Reviews
-                    </h2>
-                    <button
-                      onClick={() => setShowReviews(false)}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        color: sub,
-                        fontSize: 20,
-                        cursor: "pointer",
-                      }}
-                    >
-                      ✕
-                    </button>
-                  </div>
-                  <div style={{ color: sub, fontSize: 13, marginBottom: 18 }}>
-                    {reviews.length > 0
-                      ? `${avgRating.toFixed(1)} ★ average from ${
-                          reviews.length
-                        } review${reviews.length === 1 ? "" : "s"}`
-                      : "Be the first to leave a review!"}
-                  </div>
+{/* Top bar */}
+<div style={{ background: dark ? `${NAVY}EE` : `${WHITE}EE`, backdropFilter: "blur(12px)", borderBottom: `1px solid ${t.line}`, padding: "14px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 100 }}>
+<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+{hasBack && <button onClick={goBack} style={{ background: "none", border: "none", color: GOLD, fontSize: 22, cursor: "pointer", padding: "0 6px 0 0", lineHeight: 1 }}>←</button>}
+<span style={{ fontFamily: PF, fontSize: 20, fontWeight: 700, color: t.tc }}>Pilotehub<span style={{ color: GOLD }}>+</span></span>
+</div>
+<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+{user ? (
+<button onClick={handleSignOut} title={user.email || ""} style={{ background: `${GOLD}22`, border: `1px solid ${GOLD}55`, borderRadius: 20, padding: "6px 12px", color: GOLD, fontSize: 11, fontWeight: 700, cursor: "pointer" }}>Sign Out</button>
+) : (
+<button onClick={() => askSignIn()} style={{ background: GRAD, border: "none", borderRadius: 20, padding: "6px 14px", color: NAVY, fontSize: 11, fontWeight: 700, cursor: "pointer" }}>Sign In</button>
+)}
+<button onClick={() => setDark((d) => !d)} style={{ background: "none", border: "none", fontSize: 20, cursor: "pointer" }}>{dark ? "☀️" : "🌙"}</button>
+</div>
+</div>
 
-                  <div
-                    style={{
-                      background: dark ? "#080F1C" : SOFT,
-                      borderRadius: 16,
-                      padding: 16,
-                      marginBottom: 20,
-                    }}
-                  >
-                    <input
-                      type="text"
-                      placeholder="Your name (optional)"
-                      value={reviewName}
-                      onChange={(e) => setReviewName(e.target.value)}
-                      style={{
-                        width: "100%",
-                        padding: "10px 12px",
-                        borderRadius: 10,
-                        border: `1px solid ${
-                          dark
-                            ? "rgba(255,255,255,0.15)"
-                            : "rgba(10,22,40,0.15)"
-                        }`,
-                        background: card,
-                        color: tc,
-                        fontSize: 13,
-                        marginBottom: 10,
-                        outline: "none",
-                      }}
-                    />
-                    <div style={{ display: "flex", gap: 4, marginBottom: 10 }}>
-                      {[1, 2, 3, 4, 5].map((n) => (
-                        <span
-                          key={n}
-                          onClick={() => setReviewStars(n)}
-                          style={{
-                            fontSize: 24,
-                            cursor: "pointer",
-                            color: n <= reviewStars ? GOLD : GRAY,
-                          }}
-                        >
-                          ★
-                        </span>
-                      ))}
-                    </div>
-                    <textarea
-                      placeholder="Share your thoughts about Pilotehub+…"
-                      value={reviewText}
-                      onChange={(e) => setReviewText(e.target.value)}
-                      rows={3}
-                      style={{
-                        width: "100%",
-                        padding: "10px 12px",
-                        borderRadius: 10,
-                        border: `1px solid ${
-                          dark
-                            ? "rgba(255,255,255,0.15)"
-                            : "rgba(10,22,40,0.15)"
-                        }`,
-                        background: card,
-                        color: tc,
-                        fontSize: 13,
-                        resize: "vertical",
-                        outline: "none",
-                        fontFamily: "inherit",
-                      }}
-                    />
-                    <button
-                      onClick={handleSubmitReview}
-                      disabled={reviewLoading || !reviewText.trim()}
-                      style={{
-                        width: "100%",
-                        marginTop: 10,
-                        padding: "11px 22px",
-                        background: `linear-gradient(135deg,${GOLD},#A8822A)`,
-                        border: "none",
-                        borderRadius: 10,
-                        color: NAVY,
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        fontSize: 13,
-                        opacity: reviewLoading || !reviewText.trim() ? 0.6 : 1,
-                      }}
-                    >
-                      {reviewLoading ? "Posting…" : "Post Review"}
-                    </button>
-                  </div>
+{!level && (
+<div onClick={() => setShowInfo(true)} style={{ background: `linear-gradient(135deg,${NAVY},${LNAV})`, padding: "14px 20px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+<div>
+<div style={{ color: GOLD, fontSize: 12, fontWeight: 700, letterSpacing: 2 }}>ABOUT PILOTEHUB+</div>
+<div style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginTop: 2 }}>Tap to learn about the app →</div>
+</div>
+<span style={{ fontSize: 20 }}>ℹ️</span>
+</div>
+)}
 
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: 10,
-                    }}
-                  >
-                    {reviews.map((r, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          background: dark ? "#080F1C" : SOFT,
-                          borderRadius: 14,
-                          padding: "14px 16px",
-                        }}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            marginBottom: 6,
-                          }}
-                        >
-                          <span
-                            style={{ color: tc, fontWeight: 700, fontSize: 13 }}
-                          >
-                            {r.email || "user"}
-                          </span>
-                          <span style={{ color: GOLD, fontSize: 13 }}>
-                            {"★".repeat(r.stars)}
-                            {"☆".repeat(5 - r.stars)}
-                          </span>
-                        </div>
+<div style={{ padding: "24px 20px 40px" }}>
+{!level && (
+<>
+<div style={{ fontSize: 22, fontWeight: 700, color: t.tc, fontFamily: PF, marginBottom: 6 }}>Welcome to Pilotehub+ 👋</div>
+<div style={{ color: t.sub, fontSize: 14, marginBottom: user || !authChecked ? 28 : 14 }}>Select your school level to get started.</div>
+{authChecked && !user && (
+<div onClick={() => askSignIn()} style={{ background: `${GOLD}18`, border: `1px solid ${GOLD}55`, borderRadius: 14, padding: "12px 14px", marginBottom: 24, cursor: "pointer", color: t.tc, fontSize: 13, lineHeight: 1.5 }}>
+🔒 Create a free account to view and download all PDFs. <span style={{ color: GOLD, fontWeight: 700 }}>Sign in →</span>
+</div>
+)}
+<div style={{ fontSize: 13, color: t.sub, fontWeight: 700, letterSpacing: 2, marginBottom: 14 }}>CHOOSE YOUR LEVEL</div>
+<div style={{ display: "flex", gap: 14 }}>
+{["Middle School", "High School"].map((lv, i) => (
+<div key={lv} onClick={() => pickLevel(lv)} style={{ flex: 1, borderRadius: 20, cursor: "pointer", background: i === 0 ? "linear-gradient(135deg,#1A3158,#0A1628)" : "linear-gradient(135deg,#2A1A10,#1A0A05)", border: `1px solid ${GOLD}33`, padding: "24px 16px", position: "relative", boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}>
+<div style={{ fontSize: 32, marginBottom: 10 }}>{i === 0 ? "🏫" : "🎓"}</div>
+<div style={{ color: WHITE, fontWeight: 700, fontSize: 16, fontFamily: PF }}>{lv}</div>
+<div style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, marginTop: 4 }}>{i === 0 ? "Grades 7–9" : "Freshman–Junior"}</div>
+<div style={{ position: "absolute", bottom: 14, right: 16, color: GOLD, fontSize: 20 }}>→</div>
+</div>
+))}
+</div>
 
-                        <div
-                          style={{ color: sub, fontSize: 13, lineHeight: 1.6 }}
-                        >
-                          {r.comment}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
+<div style={{ fontSize: 13, color: t.sub, fontWeight: 700, letterSpacing: 2, margin: "32px 0 14px" }}>OUR COMMUNITY</div>
+<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 20 }}>
+{[
+["👥", "Registered Users", registeredCount === null ? "—" : registeredCount],
+["📚", "Resources Available", RESOURCES_COUNT],
+["🏫", "Schools Represented", SCHOOLS_COUNT],
+["🤝", "Team Members", TEAM_MEMBERS_COUNT],
+].map(([icon, lab, val]) => (
+<div key={lab} style={{ background: t.card, borderRadius: 16, padding: "16px 14px", border: `1px solid ${t.line}`, boxShadow: t.shadow }}>
+<div style={{ fontSize: 20, marginBottom: 6 }}>{icon}</div>
+<div style={{ color: GOLD, fontFamily: PF, fontSize: 22, fontWeight: 700 }}>{val}</div>
+<div style={{ color: t.sub, fontSize: 11, marginTop: 2 }}>{lab}</div>
+</div>
+))}
+</div>
 
-            <div
-              style={{
-                background: dark ? `${NAVY}EE` : `${WHITE}EE`,
-                backdropFilter: "blur(12px)",
-                borderBottom: `1px solid ${
-                  dark ? "rgba(201,168,76,0.15)" : "rgba(10,22,40,0.08)"
-                }`,
-                padding: "14px 20px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                position: "sticky",
-                top: 0,
-                zIndex: 100,
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                {hasBack && (
-                  <button
-                    onClick={goBack}
-                    style={{
-                      background: "none",
-                      border: "none",
-                      color: GOLD,
-                      fontSize: 22,
-                      cursor: "pointer",
-                      padding: "0 6px 0 0",
-                      lineHeight: 1,
-                    }}
-                  >
-                    ←
-                  </button>
-                )}
-                <span
-                  style={{
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: 20,
-                    fontWeight: 700,
-                    color: tc,
-                  }}
-                >
-                  Pilotehub<span style={{ color: GOLD }}>+</span>
-                </span>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <button
-                  onClick={handleSignOut}
-                  title={user && user.email}
-                  style={{
-                    background: `${GOLD}22`,
-                    border: `1px solid ${GOLD}55`,
-                    borderRadius: 20,
-                    padding: "6px 12px",
-                    color: GOLD,
-                    fontSize: 11,
-                    fontWeight: 700,
-                    cursor: "pointer",
-                  }}
-                >
-                  Sign Out
-                </button>
-                <button
-                  onClick={() => setDark((d) => !d)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    fontSize: 20,
-                    cursor: "pointer",
-                  }}
-                >
-                  {dark ? "☀️" : "🌙"}
-                </button>
-              </div>
-            </div>
+<div onClick={() => window.open(JOIN_FORM_LINK, "_blank")} style={{ background: `linear-gradient(135deg,${NAVY},${LNAV})`, borderRadius: 18, padding: "20px 18px", cursor: "pointer", border: `1px solid ${GOLD}44`, marginBottom: 14, boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}>
+<div style={{ color: GOLD, fontSize: 12, fontWeight: 700, letterSpacing: 2, marginBottom: 6 }}>JOIN US</div>
+<div style={{ color: WHITE, fontSize: 15, lineHeight: 1.6, marginBottom: 12 }}>Help us improve access to education in Tunisia — become a contributor to Pilotehub+.</div>
+<div style={{ color: GOLD, fontWeight: 700, fontSize: 13 }}>Apply now →</div>
+</div>
 
-            {!level && (
-              <div
-                onClick={() => setShowInfo(true)}
-                style={{
-                  background: `linear-gradient(135deg,${NAVY},${LNAV})`,
-                  padding: "14px 20px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                    }}
-                  >
-                    ABOUT PILOTEHUB+
-                  </div>
-                  <div
-                    style={{
-                      color: "rgba(255,255,255,0.7)",
-                      fontSize: 13,
-                      marginTop: 2,
-                    }}
-                  >
-                    Tap to learn about the app →
-                  </div>
-                </div>
-                <span style={{ fontSize: 20 }}>ℹ️</span>
-              </div>
-            )}
+<div onClick={() => { loadReviews(); setShowReviews(true); }} style={{ ...rowCard, borderRadius: 16, padding: "16px 18px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+<div>
+<div style={{ color: t.tc, fontWeight: 700, fontSize: 15, fontFamily: PF }}>⭐ Reviews & Comments</div>
+<div style={{ color: t.sub, fontSize: 12, marginTop: 4 }}>
+{reviews.length ? `${(reviews.reduce((a, r) => a + (r.stars || 0), 0) / reviews.length).toFixed(1)} ★ · ${reviews.length} review${reviews.length === 1 ? "" : "s"}` : "Rate us & share your thoughts"}
+</div>
+</div>
+<span style={{ color: GOLD, fontSize: 22 }}>→</span>
+</div>
+</>
+)}
 
-            <div style={{ padding: "24px 20px 40px" }}>
-              {!level && (
-                <>
-                  <div
-                    style={{
-                      fontSize: 22,
-                      fontWeight: 700,
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      marginBottom: 6,
-                    }}
-                  >
-                    Welcome to Pilotehub+ 👋
-                  </div>
-                  <div style={{ color: sub, fontSize: 14, marginBottom: 28 }}>
-                    Select your school level to get started.
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 13,
-                      color: sub,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 14,
-                    }}
-                  >
-                    CHOOSE YOUR LEVEL
-                  </div>
-                  <div style={{ display: "flex", gap: 14 }}>
-                    {["Middle School", "High School"].map((lv, i) => (
-                      <div
-                        key={lv}
-                        onClick={() => setLevelSafe(lv)}
-                        style={{
-                          flex: 1,
-                          borderRadius: 20,
-                          cursor: "pointer",
-                          background:
-                            i === 0
-                              ? `linear-gradient(135deg,#1A3158,#0A1628)`
-                              : `linear-gradient(135deg,#2A1A10,#1A0A05)`,
-                          border: `1px solid ${GOLD}33`,
-                          padding: "24px 16px",
-                          position: "relative",
-                          boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
-                        }}
-                      >
-                        <div style={{ fontSize: 32, marginBottom: 10 }}>
-                          {i === 0 ? "🏫" : "🎓"}
-                        </div>
-                        <div
-                          style={{
-                            color: WHITE,
-                            fontWeight: 700,
-                            fontSize: 16,
-                            fontFamily: "'Playfair Display',serif",
-                          }}
-                        >
-                          {lv}
-                        </div>
-                        <div
-                          style={{
-                            color: "rgba(255,255,255,0.5)",
-                            fontSize: 12,
-                            marginTop: 4,
-                          }}
-                        >
-                          {i === 0 ? "Grades 7–9" : "Freshman–Junior"}
-                        </div>
-                        <div
-                          style={{
-                            position: "absolute",
-                            bottom: 14,
-                            right: 16,
-                            color: GOLD,
-                            fontSize: 20,
-                          }}
-                        >
-                          →
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+{level && !grade && (
+<>
+<div style={label()}>{level.toUpperCase()}</div>
+<div style={h1}>Select Grade</div>
+<div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+{grades.map((g) => (
+<div key={g} onClick={() => pickGrade(g)} style={{ ...rowCard, borderRadius: 18, padding: 20, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+<div>
+<div style={{ color: t.tc, fontWeight: 700, fontSize: 17, fontFamily: PF }}>{g}</div>
+<div style={{ color: t.sub, fontSize: 12, marginTop: 4 }}>{Object.keys(CONTENT[level][g]).length} subjects</div>
+</div>
+<span style={{ color: GOLD, fontSize: 22 }}>→</span>
+</div>
+))}
+</div>
+</>
+)}
 
-                  <div
-                    style={{
-                      fontSize: 13,
-                      color: sub,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      margin: "32px 0 14px",
-                    }}
-                  >
-                    OUR COMMUNITY
-                  </div>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: 12,
-                      marginBottom: 20,
-                    }}
-                  >
-                    {[
-                      {
-                        icon: "👥",
-                        label: "Registered Users",
-                        value: registeredCount === null ? "—" : registeredCount,
-                      },
-                      {
-                        icon: "📚",
-                        label: "Resources Available",
-                        value: RESOURCES_COUNT,
-                      },
-                      {
-                        icon: "🏫",
-                        label: "Schools Represented",
-                        value: SCHOOLS_COUNT,
-                      },
-                      {
-                        icon: "🤝",
-                        label: "Team Members",
-                        value: TEAM_MEMBERS_COUNT,
-                      },
-                    ].map((s) => (
-                      <div
-                        key={s.label}
-                        style={{
-                          background: card,
-                          borderRadius: 16,
-                          padding: "16px 14px",
-                          border: `1px solid ${
-                            dark
-                              ? "rgba(201,168,76,0.12)"
-                              : "rgba(10,22,40,0.08)"
-                          }`,
-                          boxShadow: dark
-                            ? "none"
-                            : "0 2px 8px rgba(10,22,40,0.04)",
-                        }}
-                      >
-                        <div style={{ fontSize: 20, marginBottom: 6 }}>
-                          {s.icon}
-                        </div>
-                        <div
-                          style={{
-                            color: GOLD,
-                            fontFamily: "'Playfair Display',serif",
-                            fontSize: 22,
-                            fontWeight: 700,
-                          }}
-                        >
-                          {s.value}
-                        </div>
-                        <div style={{ color: sub, fontSize: 11, marginTop: 2 }}>
-                          {s.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+{level && grade && !subj && (
+<>
+<div style={label()}>{grade.toUpperCase()}</div>
+<div style={h1}>Select Subject</div>
+<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+{subjects.map((s) => (
+<div key={s} onClick={() => pickSubj(s)} style={{ ...rowCard, borderRadius: 14, padding: "16px 14px", display: "flex", alignItems: "center", gap: 10 }}>
+<span style={{ fontSize: 22 }}>{SICO[s] || "📚"}</span>
+<span style={{ color: t.tc, fontSize: 13, fontWeight: 600 }}>{s}</span>
+</div>
+))}
+</div>
+</>
+)}
 
-                  <div
-                    onClick={() => window.open(JOIN_FORM_LINK, "_blank")}
-                    style={{
-                      background: `linear-gradient(135deg,${NAVY},${LNAV})`,
-                      borderRadius: 18,
-                      padding: "20px 18px",
-                      cursor: "pointer",
-                      border: `1px solid ${GOLD}44`,
-                      marginBottom: 14,
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
-                    }}
-                  >
-                    <div
-                      style={{
-                        color: GOLD,
-                        fontSize: 12,
-                        fontWeight: 700,
-                        letterSpacing: 2,
-                        marginBottom: 6,
-                      }}
-                    >
-                      JOIN US
-                    </div>
-                    <div
-                      style={{
-                        color: WHITE,
-                        fontSize: 15,
-                        lineHeight: 1.6,
-                        marginBottom: 12,
-                      }}
-                    >
-                      Help us improve access to education in Tunisia — become a
-                      contributor to Pilotehub+.
-                    </div>
-                    <div
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 6,
-                        color: GOLD,
-                        fontWeight: 700,
-                        fontSize: 13,
-                      }}
-                    >
-                      Apply now →
-                    </div>
-                  </div>
+{level && grade && subj && !ctype && (
+<>
+<div style={label()}>{subj.toUpperCase()}</div>
+<div style={h1}>What to study?</div>
+<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+{[["courses", "📖", "Courses", "Lessons & resumes"], ["exercises", "✏️", "Exercises", "Practice problems"], ["exams", "📋", "Exams", "Past & mock exams"]].map(([type, icon, lab, desc], i) => (
+<div key={type} onClick={() => setCtype(type)} style={{ ...rowCard, borderRadius: 18, padding: "22px 16px", gridColumn: i === 2 ? "span 2" : "auto" }}>
+<div style={{ fontSize: 32, marginBottom: 10 }}>{icon}</div>
+<div style={{ color: t.tc, fontWeight: 700, fontSize: 16, fontFamily: PF }}>{lab}</div>
+<div style={{ color: t.sub, fontSize: 12, marginTop: 4 }}>{desc}</div>
+</div>
+))}
+</div>
+</>
+)}
 
-                  <div
-                    onClick={() => setShowReviews(true)}
-                    style={{
-                      background: card,
-                      borderRadius: 16,
-                      padding: "16px 18px",
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      border: `1px solid ${
-                        dark ? "rgba(201,168,76,0.12)" : "rgba(10,22,40,0.08)"
-                      }`,
-                      boxShadow: dark
-                        ? "none"
-                        : "0 2px 8px rgba(10,22,40,0.04)",
-                    }}
-                  >
-                    <div>
-                      <div
-                        style={{
-                          color: tc,
-                          fontWeight: 700,
-                          fontSize: 15,
-                          fontFamily: "'Playfair Display',serif",
-                        }}
-                      >
-                        ⭐ Reviews & Comments
-                      </div>
-                      <div style={{ color: sub, fontSize: 12, marginTop: 4 }}>
-                        {reviews.length > 0
-                          ? `${avgRating.toFixed(1)} ★ · ${
-                              reviews.length
-                            } review${reviews.length === 1 ? "" : "s"}`
-                          : "Rate us & share your thoughts"}
-                      </div>
-                    </div>
-                    <span style={{ color: GOLD, fontSize: 22 }}>→</span>
-                  </div>
-                </>
-              )}
+{level && grade && subj && ctype && (
+<>
+<div style={label()}>{subj.toUpperCase()} · {grade.toUpperCase()}</div>
+<div style={h1}>{ctype === "courses" ? "Courses" : ctype === "exercises" ? "Exercises" : "Exams"}</div>
+{items.length === 0 ? (
+<div style={{ background: t.card, borderRadius: 20, padding: "44px 24px", textAlign: "center", border: `2px dashed ${dark ? "rgba(255,255,255,0.08)" : "rgba(10,22,40,0.1)"}` }}>
+<div style={{ fontSize: 40, marginBottom: 12 }}>{ctypeIcon(ctype)}</div>
+<div style={{ color: t.tc, fontFamily: PF, fontSize: 16, fontWeight: 700, marginBottom: 8 }}>No {ctype} yet</div>
+<div style={{ color: GRAY, fontSize: 13, lineHeight: 1.7 }}>Content coming soon.<br />Check back later!</div>
+</div>
+) : (
+<div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+{items.map((item, i) => {
+const lockedBadge = item.pdf && authChecked && !user;
+return (
+<div key={i} onClick={() => setOpenItem(item)} style={{ ...rowCard, borderRadius: 14, padding: "16px 18px", display: "flex", alignItems: "center", gap: 14, animation: `fadeUp 0.35s ease ${i * 0.06}s both` }}>
+<div style={{ width: 44, height: 44, borderRadius: 12, flexShrink: 0, background: `linear-gradient(135deg,${NAVY},${LNAV})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>{lockedBadge ? "🔒" : ctypeIcon(ctype)}</div>
+<div style={{ flex: 1, minWidth: 0 }}>
+<div style={{ color: t.tc, fontWeight: 600, fontSize: 14, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.title}</div>
+<div style={{ marginTop: 4 }}>
+<span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, background: item.pdf ? `${GOLD}18` : "rgba(150,150,150,0.1)", border: `1px solid ${item.pdf ? GOLD + "44" : "rgba(150,150,150,0.2)"}`, color: item.pdf ? GOLD : GRAY, fontWeight: 700 }}>
+{!item.pdf ? "📄 Coming soon" : lockedBadge ? "🔒 Sign in to view" : "📄 PDF ready"}
+</span>
+</div>
+</div>
+<span style={{ color: GOLD, fontSize: 18, flexShrink: 0 }}>→</span>
+</div>
+);
+})}
+</div>
+)}
+</>
+)}
+</div>
+</div>
+);
+}
 
-              {level && !grade && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {level.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    Select Grade
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: 12,
-                    }}
-                  >
-                    {grades.map((g) => (
-                      <div
-                        key={g}
-                        onClick={() => setGradeSafe(g)}
-                        style={{
-                          background: card,
-                          borderRadius: 18,
-                          padding: "20px",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          border: `1px solid ${
-                            dark
-                              ? "rgba(201,168,76,0.12)"
-                              : "rgba(10,22,40,0.08)"
-                          }`,
-                          boxShadow: dark
-                            ? "none"
-                            : "0 2px 12px rgba(10,22,40,0.06)",
-                        }}
-                      >
-                        <div>
-                          <div
-                            style={{
-                              color: tc,
-                              fontWeight: 700,
-                              fontSize: 17,
-                              fontFamily: "'Playfair Display',serif",
-                            }}
-                          >
-                            {g}
-                          </div>
-                          <div
-                            style={{ color: sub, fontSize: 12, marginTop: 4 }}
-                          >
-                            {Object.keys(CONTENT[level][g]).length} subjects
-                          </div>
-                        </div>
-                        <span style={{ color: GOLD, fontSize: 22 }}>→</span>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {level && grade && !subj && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {grade.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    Select Subject
-                  </div>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: 12,
-                    }}
-                  >
-                    {subjects.map((s) => (
-                      <div
-                        key={s}
-                        onClick={() => setSubjSafe(s)}
-                        style={{
-                          background: card,
-                          borderRadius: 14,
-                          padding: "16px 14px",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 10,
-                          border: `1px solid ${
-                            dark
-                              ? "rgba(255,255,255,0.05)"
-                              : "rgba(10,22,40,0.07)"
-                          }`,
-                          boxShadow: dark
-                            ? "none"
-                            : "0 2px 8px rgba(10,22,40,0.04)",
-                        }}
-                      >
-                        <span style={{ fontSize: 22 }}>{SICO[s] || "📚"}</span>
-                        <span
-                          style={{ color: tc, fontSize: 13, fontWeight: 600 }}
-                        >
-                          {s}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {level && grade && subj && !ctype && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {subj.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    What to study?
-                  </div>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: 14,
-                    }}
-                  >
-                    {[
-                      {
-                        type: "courses",
-                        icon: "📖",
-                        label: "Courses",
-                        desc: "Lessons & resumes",
-                      },
-                      {
-                        type: "exercises",
-                        icon: "✏️",
-                        label: "Exercises",
-                        desc: "Practice problems",
-                      },
-                      {
-                        type: "exams",
-                        icon: "📋",
-                        label: "Exams",
-                        desc: "Past & mock exams",
-                      },
-                    ].map((item, i) => (
-                      <div
-                        key={item.type}
-                        onClick={() => setCtypeSafe(item.type)}
-                        style={{
-                          background: card,
-                          borderRadius: 18,
-                          padding: "22px 16px",
-                          cursor: "pointer",
-                          gridColumn: i === 2 ? "span 2" : "auto",
-                          border: `1px solid ${
-                            dark
-                              ? "rgba(201,168,76,0.12)"
-                              : "rgba(10,22,40,0.08)"
-                          }`,
-                          boxShadow: dark
-                            ? "none"
-                            : "0 2px 12px rgba(10,22,40,0.06)",
-                        }}
-                      >
-                        <div style={{ fontSize: 32, marginBottom: 10 }}>
-                          {item.icon}
-                        </div>
-                        <div
-                          style={{
-                            color: tc,
-                            fontWeight: 700,
-                            fontSize: 16,
-                            fontFamily: "'Playfair Display',serif",
-                          }}
-                        >
-                          {item.label}
-                        </div>
-                        <div style={{ color: sub, fontSize: 12, marginTop: 4 }}>
-                          {item.desc}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {level && grade && subj && ctype && (
-                <>
-                  <div
-                    style={{
-                      color: GOLD,
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: 2,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {subj.toUpperCase()} · {grade.toUpperCase()}
-                  </div>
-                  <div
-                    style={{
-                      color: tc,
-                      fontFamily: "'Playfair Display',serif",
-                      fontSize: 24,
-                      fontWeight: 700,
-                      marginBottom: 20,
-                    }}
-                  >
-                    {ctype === "courses"
-                      ? "Courses"
-                      : ctype === "exercises"
-                      ? "Exercises"
-                      : "Exams"}
-                  </div>
-                  {items.length === 0 ? (
-                    <div
-                      style={{
-                        background: card,
-                        borderRadius: 20,
-                        padding: "44px 24px",
-                        textAlign: "center",
-                        border: `2px dashed ${
-                          dark ? "rgba(255,255,255,0.08)" : "rgba(10,22,40,0.1)"
-                        }`,
-                      }}
-                    >
-                      <div style={{ fontSize: 40, marginBottom: 12 }}>
-                        {ctypeIcon(ctype)}
-                      </div>
-                      <div
-                        style={{
-                          color: tc,
-                          fontFamily: "'Playfair Display',serif",
-                          fontSize: 16,
-                          fontWeight: 700,
-                          marginBottom: 8,
-                        }}
-                      >
-                        No {ctype} yet
-                      </div>
-                      <div
-                        style={{ color: GRAY, fontSize: 13, lineHeight: 1.7 }}
-                      >
-                        Content coming soon.
-                        <br />
-                        Check back later!
-                      </div>
-                    </div>
-                  ) : (
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 10,
-                      }}
-                    >
-                      {items.map((item, i) => (
-                        <div
-                          key={i}
-                          onClick={() => setOpenItem(item)}
-                          style={{
-                            background: card,
-                            borderRadius: 14,
-                            padding: "16px 18px",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 14,
-                            border: `1px solid ${
-                              dark
-                                ? "rgba(255,255,255,0.06)"
-                                : "rgba(10,22,40,0.07)"
-                            }`,
-                            boxShadow: dark
-                              ? "none"
-                              : "0 2px 8px rgba(10,22,40,0.04)",
-                            cursor: "pointer",
-                            animation: `fadeUp 0.35s ease ${i * 0.06}s both`,
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: 44,
-                              height: 44,
-                              borderRadius: 12,
-                              flexShrink: 0,
-                              background: `linear-gradient(135deg,${NAVY},${LNAV})`,
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              fontSize: 18,
-                            }}
-                          >
-                            {ctypeIcon(ctype)}
-                          </div>
-                          <div style={{ flex: 1, minWidth: 0 }}>
-                            <div
-                              style={{
-                                color: tc,
-                                fontWeight: 600,
-                                fontSize: 14,
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                whiteSpace: "nowrap",
-                              }}
-                            >
-                              {item.title}
-                            </div>
-                            <div style={{ marginTop: 4 }}>
-                              <span
-                                style={{
-                                  fontSize: 10,
-                                  padding: "2px 8px",
-                                  borderRadius: 20,
-                                  background: item.pdf
-                                    ? `${GOLD}18`
-                                    : "rgba(150,150,150,0.1)",
-                                  border: `1px solid ${
-                                    item.pdf
-                                      ? GOLD + "44"
-                                      : "rgba(150,150,150,0.2)"
-                                  }`,
-                                  color: item.pdf ? GOLD : GRAY,
-                                  fontWeight: 700,
-                                }}
-                              >
-                                {item.pdf ? "📄 PDF ready" : "📄 Coming soon"}
-                              </span>
-                            </div>
-                          </div>
-                          <span
-                            style={{ color: GOLD, fontSize: 18, flexShrink: 0 }}
-                          >
-                            →
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
-        );
-      }
-
-      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-    </script>
-
-    <script>
-      // PDF download click tracker for Google Analytics
-      window.addEventListener(
-        "click",
-        function (e) {
-          const path = e.composedPath ? e.composedPath() : [];
-          for (let el of path) {
-            if (el && el.tagName === "A") {
-              const href = el.getAttribute("href");
-              if (href && href.includes(".pdf")) {
-                if (typeof gtag === "function") {
-                  gtag("event", "download", {
-                    file_name: href.split("/").pop(),
-                  });
-                }
-                break;
-              }
-            }
-          }
-        },
-        true
-      );
-    </script>
-
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-      import {
-        getFirestore,
-        doc,
-        setDoc,
-        getDoc,
-        updateDoc,
-        increment,
-        collection,
-        addDoc,
-        getDocs,
-        query,
-        orderBy,
-        limit,
-      } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-      import {
-        getAuth,
-        createUserWithEmailAndPassword,
-        signInWithEmailAndPassword,
-        signOut,
-        onAuthStateChanged,
-        sendPasswordResetEmail,
-      } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-
-      const firebaseConfig = {
-        apiKey: "AIzaSyAz1tmNsEWKaCFwK8Ue-6OQMmsSgW08RDY",
-        authDomain: "pilotehub-617bf.firebaseapp.com",
-        projectId: "pilotehub-617bf",
-        storageBucket: "pilotehub-617bf.firebasestorage.app",
-        messagingSenderId: "664479873048",
-        appId: "1:664479873048:web:3d985beb36502ea032eb6d",
-        measurementId: "G-834HYGDPSQ",
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
-      const auth = getAuth(app);
-
-      window.trackDownload = async function () {
-        try {
-          const ref = doc(db, "downloads", "total");
-          await updateDoc(ref, { count: increment(1) });
-          console.log("Download counted!");
-        } catch (err) {
-          console.error("Firebase error:", err);
-        }
-      };
-
-      // ---- User registration (email/password via Firebase Auth) ----
-      window.pilotehubSignUp = async function (email, password) {
-        const cred = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        // Bump the cumulative registered-users counter (creates the doc if missing)
-        await setDoc(
-          doc(db, "stats", "users"),
-          { count: increment(1) },
-          { merge: true }
-        );
-        return cred.user;
-      };
-
-      window.pilotehubSignIn = async function (email, password) {
-        const cred = await signInWithEmailAndPassword(auth, email, password);
-        return cred.user;
-      };
-
-      window.pilotehubSignOut = async function () {
-        await signOut(auth);
-      };
-      window.pilotehubResetPassword = async function (email) {
-        await sendPasswordResetEmail(auth, email);
-      };
-
-      window.pilotehubOnAuthChange = function (callback) {
-        return onAuthStateChanged(auth, callback);
-      };
-
-      window.pilotehubGetRegisteredUsersCount = async function () {
-        try {
-          const snap = await getDoc(doc(db, "stats", "users"));
-          return snap.exists() ? snap.data().count || 0 : 0;
-        } catch (err) {
-          console.error("Firebase error:", err);
-          return null;
-        }
-      };
-
-      // ---- Reviews / comments with star ratings ----
-      window.pilotehubSubmitReview = async function (stars, comment) {
-        const user = auth.currentUser;
-
-        await addDoc(collection(db, "reviews"), {
-          email: user ? user.email : "Unknown",
-          stars,
-          comment,
-          createdAt: Date.now(),
-        });
-      };
-      window.pilotehubGetReviews = async function () {
-        try {
-          const q = query(
-            collection(db, "reviews"),
-            orderBy("createdAt", "desc"),
-            limit(50)
-          );
-          const snap = await getDocs(q);
-          return snap.docs.map((d) => d.data());
-        } catch (err) {
-          console.error("Firebase error:", err);
-          return [];
-        }
-      };
-    </script>
-  </body>
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
 </html>
